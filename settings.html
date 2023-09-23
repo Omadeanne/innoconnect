@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/output.css">
+    <title>Mentee's Dashboard</title>
+    <!-- link to google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+    <!-- fontawesome link -->
+    <script 
+        src="https://kit.fontawesome.com/3fff25e001.js" 
+        crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+    <div class="flex ">
+      <aside class="w-1/5 z-10 bg-[#1c2434] h-screen text-[#d2d8e2] items-center justify-around p-4 ">
+        <!-- brand logo -->
+        <div class=" my-3">
+          <div class="m-1 p-2">
+            <span class=" text-2xl">
+              <a href="#">
+                <img src="./img/logo.png" alt="">
+              </a>
+            </span>
+          </div>
+        </div>
+
+
+
+      
+
+        <!-- side buttons -->
+        <div class="mt-7 p-3">
+            <div>
+                <ul>
+                <li class="p-2 m-2 mb-3 text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+                    <a href="">
+                        <i class="fa-solid fa-house pr-1" ></i>
+                        <span class="font-semibold"> Overview</span>
+                    </a>
+                </li>
+
+
+                <li class="p-2 m-2 my-7 text-white justify-center items-center hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+                    <a href="" class="flex">
+                        <i class="fa-solid fa-book-open pr-2"></i>
+                        <span class="font-semibold">Courses</span>
+                    </a>
+                </li>
+                <li class="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+                    <a href="">
+                        <i class="fa-regular fa-comments pr-1"></i>
+                        <span class="font-semibold">Messages</span>
+                    </a>
+                </li>
+                <li class="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+                    <a href="">
+                        <i class="fa-solid fa-graduation-cap pr-1"></i>
+                        <span class="font-semibold"> Mentorship</span>
+                    </a>
+                </li>
+                <li class="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+                    <a href="">
+                        <i class="fa-solid fa-user-group pr-1"></i>
+                        <span class="font-semibold"> Community</span>
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- sign out button -->
+        <div>
+            <button class="p-1 m-2 text-center justify-center  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2 hover:pr-5">
+                <a href="">
+                    <i class="fa-regular fa-circle-left pr-1"></i>
+                    <span class="font-semibold">Logout</span>
+                </a>
+            </button>
+        </div>
+      </aside>
+
+
+
+
+
+      <!-- dashbaord body -->
+        <main class="relative flex flex-col w-4/5 bg-zinc-100">
+            <header class="sticky top-0 index flex py-2 items-center justify-between drop-shadow-sm bg-[#ffffff]">
+                <!-- user greeting -->
+                <div class="flex-col ml-2 pl-9">
+                    <div class="">
+                        <h3 class="font-bold">
+                            Hi,
+                            <span>Edet Effiong</span>
+                        </h3>
+                    </div>
+                    <div class="font-light text-xs">
+                        What are we learning today?
+                    </div>
+                </div>
+
+                <!-- search bar -->
+                <div class="mb-4 flex items-center justify-center mt-1 ml-[35px]">
+                    <div class="flex border-2 border-gray-300 rounded-xl px-2 py-1 w-80">
+                        <i 
+                        class="fas fa-search text-xl text-slate-500 align-center p-1"></i>
+                        <input
+                            type="text"
+                            class="text-gray-500  py-1 pr-2 w-72 focus:outline-none"
+                            placeholder="Search for courses"
+                        />
+                    </div>
+                </div>
+
+
+                <!-- notification bell and profile  -->
+                <div class="flex items-center">
+                    <!-- bell -->
+                    <div class="px-2">
+                        <a href="" class="w-5 text-xl">
+                            <i class="fa-solid fa-bell text-gray-700"></i>
+                        </a>
+                    </div>
+
+                    <!-- profile -->
+                    <div class="pr-6 py-2">
+                        <a href="">                        
+                            <img 
+                            class="w-14"
+                            src="./img/menee.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            
+            </header>
+
+
+
+
+            <!-- main body -->
+            <div class="px-6">
+              
+
+            </div>
+            
+        </main>
+
+    </div>
+        
+    
+</body>
+</html>
