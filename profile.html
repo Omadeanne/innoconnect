@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="output.css">
     <title>Mentee's Dashboard</title>
     <!-- link to google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,43 +18,37 @@
 </head>
 <body>
     <div class="flex relative">
-        <aside class="sticky left-0 top-0 w-1/5 bg-[#1c2434] h-screen text-[#d2d8e2] items-center justify-around p-4 ">
+        <aside class="sticky top-0 left-0 w-1/5 z-10 bg-[#1c2434] h-screen text-[#d2d8e2] items-center justify-around p-4 ">
             <!-- brand logo -->
             <div class=" my-3">
-                <div class="m-1 p-2">
-                    <span class=" text-2xl">
-                        <a href="#">
-                           <img src="./img/logo.png" alt="">
-                        </a>
-                    </span>
-                </div>
+              <div class="m-1 p-2">
+                <span class=" text-2xl">
+                  <a href="#">
+                    <img src="./assets/logo.png" alt="">
+                  </a>
+                </span>
+              </div>
             </div>
-
-
-
-        
-
             <!-- side buttons -->
             <div class="mt-7 p-3">
                 <div>
                     <ul>
                     <li class="p-2 m-2 mb-3 text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
-                        <a href="">
+                        <a href="dashboard.html">
                             <i class="fa-solid fa-house pr-1" ></i>
                             <span class="font-semibold"> Overview</span>
                         </a>
                     </li>
-
-
-                    <li 
-                        class="p-2 m-2 my-7 items-center text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+    
+    
+                    <li class="p-2 m-2 my-7 text-white justify-center items-center hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
                         <a href="" class="flex">
-                            <i class="fa-solid fa-book-open pr-1"></i>
-                            <span class="font-semibold flex-wrap">Courses</span>
+                            <i class="fa-solid fa-book-open pr-2"></i>
+                            <span class="font-semibold">Courses</span>
                         </a>
                     </li>
                     <li class="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
-                        <a href="">
+                        <a href="message.html">
                             <i class="fa-regular fa-comments pr-1"></i>
                             <span class="font-semibold">Messages</span>
                         </a>
@@ -74,8 +68,8 @@
                     </ul>
                 </div>
             </div>
-
-
+    
+    
             <!-- sign out button -->
             <div>
                 <button class="p-1 m-2 text-center justify-center  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2 hover:pr-5">
@@ -85,15 +79,15 @@
                     </a>
                 </button>
             </div>
-      </aside>
+          </aside>
 
 
 
 
 
       <!-- dashbaord body -->
-        <main class="flex flex-col w-4/5 overflow-x-hidden  bg-zinc-100">
-            <header class="sticky top-0 right-0 index flex py-2 items-center justify-between drop-shadow-sm bg-[#ffffff]">
+        <main class="relative flex flex-col w-4/5 bg-zinc-100">
+            <header class="sticky top-0 right-0 z-50 flex py-2 items-center justify-between drop-shadow-sm bg-[#ffffff]">
                 <!-- user greeting -->
                 <div class="flex-col ml-2 pl-9">
                     <div class="">
@@ -130,30 +124,33 @@
                         </a>
                     </div>
 
-                    <!-- profile -->
-                    <div class="pr-6 py-2">
-                        <a href="">                        
-                            <img 
-                            class="w-14"
-                            src="./img/menee.png" alt="">
-                        </a>
-                    </div>
 
-                </div>
-            
+                    <div class="dropdown group item relative z-50">
+                        <div href="#" class="dropdownbtn flex items-center cursor-pointer font-medium text-lg text-[#1D3557] px-4 py-2">
+                            <img class="w-14" src="./assets/menee.png" alt="">
+                            <i class="ml-3 text-xs transition-all duration-100 fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="menu hidden absolute right-2 bg-white w-52 mt-4 rounded-b transition ease-linear duration-100 divide-y divide-slate-300">
+                            <a href="dashboard.html" class="text-gray-800 px-4  py-2 block hover:bg-slate-200 ">Dashboard</a>
+                            <a href="profile.html" class="text-gray-800 px-4  py-2 block hover:bg-slate-200">My Profile</a>
+                            <a href="settings.html" class="text-gray-800 px-4  py-2 block hover:bg-slate-200">Account Settingsr</a>
+                         
+                        </div>
+                    </div>               
+                </div>          
             </header>
 
 
 
 
             <!-- main body -->
-            <div class=" mx-6 my-5">
-                <div class="flex flex-col">
+            <div class=" mx-6 my-5 z-0">
+                <div class="relative flex flex-col z-0">
                     <h3 class="text-heading text-lg font-semibold py-2">Profile</h3>
-                    <div class="w-full relative">
+                    <div class="w-full relative z-0">
                         <!-- cover photo -->
                         <div class="h-60 mb-16 relative">
-                            <img src="./img/cover-photo.png" alt="">
+                            <img src="./assets/cover-01.png" class="relative" alt="">
                             <label for="cover" class="flex absolute right-10 px-5 py-2 bottom-3 bg-blue-900 cursor-pointer items-center justify-center rounded-sm">
                                 <i class="fa-solid fa-camera text-white px-1"></i>
                                 <span class=" text-white">Edit</span>
@@ -161,10 +158,10 @@
                             </label>
                             <!-- profile photo -->
                             <div class="absolute -bottom-16 right-96 ">
-                                <div class="bg-white/20 backdrop-blur-2xl rounded-full p-4">
+                                <div class="relative bg-white/20 backdrop-blur-2xl rounded-full p-4">
                                   <img 
                                   class="w-36"
-                                  src="./img/menee.png" alt="profile">
+                                  src="./assets/menee.png" alt="profile">
                                   <label for="profile" class="absolute flex h-8.5 w-8.5 p-2 cursor-pointer items-center justify-center rounded-full text-white bg-blue-900 hover:bg-opacity-90 sm:bottom-2 sm:right-2">
                                         <i class="fa-solid fa-camera"></i>
                                         <input type="file" name="profile" id="profile" class="sr-only" data-listener-added_91799faf="true">
@@ -228,6 +225,7 @@
 
     </div>
         
+    <script src="./JS/index.js"></script>
     
 </body>
 </html>
