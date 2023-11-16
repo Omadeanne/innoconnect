@@ -8,10 +8,10 @@ import Community from './pages/community/Community';
 function App() {
   return (
     <Routes>
-      <Route
+      {/* <Route
         path='/'
         element={<Home />}
-      />
+      /> */}
       <Route
         path='/login'
         element={<Login />}
@@ -24,6 +24,7 @@ function App() {
         path='/community'
         element={<Community />}
       />
+      <Route path='/' element={<Signup />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
