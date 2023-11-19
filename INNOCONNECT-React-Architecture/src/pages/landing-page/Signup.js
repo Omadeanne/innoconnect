@@ -2,13 +2,18 @@ import { useState } from 'react';
 import MenteeRegister from '../register/MenteeRegister';
 import EmployerRegister from '../register/EmployerRegister';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/logo.png';
 import mentee from '../../assets/mentee.png';
 import employer from '../../assets/businessman.png';
-import image from '../../assets/registerpageimage.png'
+import image from '../../assets/registerpageimage.png';
 
 const Signup = () => {
-  const [showEployer, setShowEmployer] = useState(false);
+  const [activeTab, setActiveTab] = useState(1);
+
+  const handleTabClick = (index) => {
+    setActiveTab(index);
+  };
+
   return (
     <div>
       <div className='flex flex-col md:flex-row min-h-screen'>
@@ -39,40 +44,37 @@ const Signup = () => {
                 <li className='group w-1/2'>
                   <button
                     type='button'
-                    onClick={() => setShowEmployer(!showEployer)}
-                    id='defaultOpen'
+                    onClick={() => handleTabClick(1)}
                     className='tabLinks text-left inline-block text-lg font-bold w-full border-b'
                   >
                     <img
                       src={mentee}
                       className='w-10 h-10 inline-block my-4'
-                      alt=""
+                      alt=''
                     />
                     <span className='ml-2'>Mentee</span>
-                    <div className='bar bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'></div>
+                    <div className={`${activeTab === 1 ? 'bg-black h-[2px] group-hover:scale-x-100 transition-all duration-100' : 'bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'}`}></div>
                   </button>
                 </li>
                 <li className='group w-1/2'>
                   <button
                     type='button'
-                    onClick={() => {
-                      setShowEmployer(!showEployer);
-                      console.log(showEployer);
-                    }}
+                    onClick={() => handleTabClick(2)}
                     className='tabLinks text-left inline-block text-lg font-semibold w-full border-b'
                   >
                     <img
                       src={employer}
                       className='w-10 h-10 inline-block my-4'
-                      alt=""
+                      alt=''
                     />
                     <span className='ml-2'>Employer</span>
-                    <div className='bar bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'></div>
+                    <div className={`${activeTab === 2 ? 'bg-black h-[2px] group-hover:scale-x-100 transition-all duration-100' : 'bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'}`}></div>
                   </button>
                 </li>
               </ul>
             </div>
-            {showEployer ? <MenteeRegister /> : <EmployerRegister />}
+            {activeTab === 1 && <MenteeRegister />}
+            {activeTab === 2 && <EmployerRegister />}
             <p className='text-center my-2 text-[#234270] text-base font-bold col-span-full'>
               Or
             </p>
@@ -84,7 +86,7 @@ const Signup = () => {
                 <img
                   src='assets/GoogleLogo.png'
                   className
-                  alt=""
+                  alt=''
                 />
                 <span>Sign up with Google</span>
               </button>

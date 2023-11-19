@@ -4,14 +4,17 @@ import Login from './pages/landing-page/Login';
 import Signup from './pages/landing-page/Signup';
 import NotFound from './pages/NotFound/NotFound';
 import Community from './pages/community/Community';
+import JobSearch from './pages/job-search/JobSearch';
+import JobDetails from './pages/job-search/JobDetails';
+import Application from './pages/job-search/Application';
 
 function App() {
   return (
     <Routes>
-      {/* <Route
+      <Route
         path='/'
         element={<Home />}
-      /> */}
+      />
       <Route
         path='/login'
         element={<Login />}
@@ -24,7 +27,9 @@ function App() {
         path='/community'
         element={<Community />}
       />
-      <Route path='/' element={<Signup />} />
+      <Route path="/job-search" element={<JobSearch />} />
+      <Route path='/job-details/:id' element={<JobDetails />} />
+      <Route path="/apply/:id" element={<Application />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
