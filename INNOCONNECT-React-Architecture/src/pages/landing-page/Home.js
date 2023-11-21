@@ -24,34 +24,37 @@ const secondHalf = mentors.slice(8);
 const testimonials = [
   {
     name: 'Mariam Ahmad',
-    description: "I can't thank this app enough for connecting me with an amazing mentor. With their guidance, I landed a job at a tech company I've always dreamt of working for. This app truly transformed my career!",
+    description:
+      "I can't thank this app enough for connecting me with an amazing mentor. With their guidance, I landed a job at a tech company I've always dreamt of working for. This app truly transformed my career!",
     job: 'Full Stack Developer',
     company: 'Google',
-    img: test7
+    img: test7,
   },
   {
     name: 'Sara Ali',
-    description: "I've been working with this app for a while now. It's been a game-changer. I've found the support I need to land my dream job. I'm so grateful for this app!",
+    description:
+      "I've been working with this app for a while now. It's been a game-changer. I've found the support I need to land my dream job. I'm so grateful for this app!",
     job: 'Software Engineer',
     company: 'Amazon',
-    img: test8
+    img: test8,
   },
   {
     name: 'Blessing Okonkwo',
-    description: "I've been working with this app for a while now. It's been a game-changer. I've found the support I need to land my dream job. I'm so grateful for this app!",
+    description:
+      "I've been working with this app for a while now. It's been a game-changer. I've found the support I need to land my dream job. I'm so grateful for this app!",
     job: 'Software Engineer',
     company: 'Convexity',
-    img: test10
+    img: test10,
   },
   {
     name: 'Samson Nathan',
-    description: "I was feeling lost after graduation, but this app gave me direction. The job listings are tailored to my skills, and my mentor provided invaluable advice. I'm now on my way to a fulfilling career!",
+    description:
+      "I was feeling lost after graduation, but this app gave me direction. The job listings are tailored to my skills, and my mentor provided invaluable advice. I'm now on my way to a fulfilling career!",
     job: 'Data Scientist',
     company: 'Dumena',
-    img: test11
+    img: test11,
   },
-]
-
+];
 
 const Home = () => {
   return (
@@ -349,12 +352,14 @@ const Home = () => {
               loop={true}
               transition={{ duration: 2 }}
               navigation={({ setActiveIndex, activeIndex, length }) => (
-                <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-                  {new Array(length).fill("").map((_, i) => (
+                <div className='absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2'>
+                  {new Array(length).fill('').map((_, i) => (
                     <span
                       key={i}
                       className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                        activeIndex === i ? "w-8 bg-gray-600" : "w-4 bg-gray-400"
+                        activeIndex === i
+                          ? 'w-8 bg-gray-600'
+                          : 'w-4 bg-gray-400'
                       }`}
                       onClick={() => setActiveIndex(i)}
                     />
@@ -411,7 +416,10 @@ const Home = () => {
               )}
             >
               {testimonials.map((test, index) => (
-                <Testimonial key={index} test={test} />
+                <Testimonial
+                  key={index}
+                  test={test}
+                />
               ))}
             </Carousel>
           </section>
