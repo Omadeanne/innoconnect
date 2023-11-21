@@ -2,59 +2,16 @@ import React from 'react';
 import { Carousel, IconButton } from '@material-tailwind/react';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
-import {
-  bg1,
-  expert,
-  skill,
-  community,
-  job_h,
-  jobs_f,
-  test7,
-  test8,
-  test10,
-  test11,
-} from '../../assets';
-import { mentors } from './mentors';
+import { bg1, expert, skill, community, job_h, jobs_f } from '../../assets';
+import { courses, mentors, testimonials, blogs } from './constants';
 import { Link } from 'react-router-dom';
 import Testimonial from './Testimonial';
+import MentorCard from './MentorCard';
+import CourseCard from './CourseCard';
+import BlogCard from './BlogCard';
 
 const firstHalf = mentors.slice(0, 8);
 const secondHalf = mentors.slice(8);
-
-const testimonials = [
-  {
-    name: 'Mariam Ahmad',
-    description:
-      "I can't thank this app enough for connecting me with an amazing mentor. With their guidance, I landed a job at a tech company I've always dreamt of working for. This app truly transformed my career!",
-    job: 'Full Stack Developer',
-    company: 'Google',
-    img: test7,
-  },
-  {
-    name: 'Sara Ali',
-    description:
-      "I've been working with this app for a while now. It's been a game-changer. I've found the support I need to land my dream job. I'm so grateful for this app!",
-    job: 'Software Engineer',
-    company: 'Amazon',
-    img: test8,
-  },
-  {
-    name: 'Blessing Okonkwo',
-    description:
-      "I've been working with this app for a while now. It's been a game-changer. I've found the support I need to land my dream job. I'm so grateful for this app!",
-    job: 'Software Engineer',
-    company: 'Convexity',
-    img: test10,
-  },
-  {
-    name: 'Samson Nathan',
-    description:
-      "I was feeling lost after graduation, but this app gave me direction. The job listings are tailored to my skills, and my mentor provided invaluable advice. I'm now on my way to a fulfilling career!",
-    job: 'Data Scientist',
-    company: 'Dumena',
-    img: test11,
-  },
-];
 
 const Home = () => {
   return (
@@ -150,31 +107,11 @@ const Home = () => {
                 You may have met some of the mentors that are on our platform
               </p>
             </div>
-            <div className='py-8 max-w-[1440px] mx-auto px-4 sm:px-10'>
+            <div>
               <div className='w-full mt-10 inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]'>
                 <ul className='flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll'>
                   {firstHalf.map((mentor) => (
-                    <li>
-                      <div
-                        className='bg-white px-14 py-6 rounded-lg'
-                        id='slide1'
-                      >
-                        <img
-                          src={mentor.image}
-                          alt='mentor'
-                          className='w-32 h-32 rounded-full'
-                        />
-                        <div className='items-center text-center'>
-                          <p className='text[#222C2C] font-semibold'>
-                            {mentor.name}
-                          </p>
-                          <p className='text-[#435758]'>
-                            {mentor.description}
-                            <br />
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+                    <MentorCard mentor={mentor} />
                   ))}
                 </ul>
                 <ul
@@ -182,54 +119,14 @@ const Home = () => {
                   aria-hidden='true'
                 >
                   {secondHalf.map((mentor) => (
-                    <li>
-                      <div
-                        className='bg-white px-14 py-6 rounded-lg'
-                        id='slide1'
-                      >
-                        <img
-                          src={mentor.image}
-                          alt='mentor'
-                          className='w-32 h-32 rounded-full'
-                        />
-                        <div className='items-center text-center'>
-                          <p className='text[#222C2C] font-semibold'>
-                            {mentor.name}
-                          </p>
-                          <p className='text-[#435758]'>
-                            {mentor.description}
-                            <br />
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+                    <MentorCard mentor={mentor} />
                   ))}
                 </ul>
               </div>
               <div className='w-full mt-10 inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]'>
                 <ul className='flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll-reverse'>
                   {firstHalf.map((mentor) => (
-                    <li>
-                      <div
-                        className='bg-white px-14 py-6 rounded-lg'
-                        id='slide1'
-                      >
-                        <img
-                          src={mentor.image}
-                          alt='mentor'
-                          className='w-32 h-32 rounded-full'
-                        />
-                        <div className='items-center text-center'>
-                          <p className='text[#222C2C] font-semibold'>
-                            {mentor.name}
-                          </p>
-                          <p className='text-[#435758]'>
-                            {mentor.description}
-                            <br />
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+                    <MentorCard mentor={mentor} />
                   ))}
                 </ul>
                 <ul
@@ -237,27 +134,7 @@ const Home = () => {
                   aria-hidden='true'
                 >
                   {secondHalf.map((mentor) => (
-                    <li>
-                      <div
-                        className='bg-white px-14 py-6 rounded-lg'
-                        id='slide1'
-                      >
-                        <img
-                          src={mentor.image}
-                          alt='mentor'
-                          className='w-32 h-32 rounded-full'
-                        />
-                        <div className='items-center text-center'>
-                          <p className='text[#222C2C] font-semibold'>
-                            {mentor.name}
-                          </p>
-                          <p className='text-[#435758]'>
-                            {mentor.description}
-                            <br />
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+                    <MentorCard mentor={mentor} />
                   ))}
                 </ul>
               </div>
@@ -434,33 +311,12 @@ const Home = () => {
                 </p>
               </div>
               <div className='flex xmd:flex-col justify-around'>
-                <div className='bg-[#DAE5EB3D] px-14 py-6 rounded-lg'>
-                  <img
-                    src='assets/frontend.png'
-                    alt='course'
+                {courses.map((course, index) => (
+                  <CourseCard
+                    key={index}
+                    course={course}
                   />
-                  <p className='text-[#222C2C] text-[22px] pt-4 font-semibold'>
-                    Front-End Development
-                  </p>
-                </div>
-                <div className='bg-[#DAE5EB3D] px-14 py-6 rounded-lg'>
-                  <img
-                    src='assets/backend.png'
-                    alt='course'
-                  />
-                  <p className='text-[#222C2C] text-[22px] pt-4 font-semibold'>
-                    Back-End Development
-                  </p>
-                </div>
-                <div className='bg-[#DAE5EB3D] px-14 py-6 rounded-lg'>
-                  <img
-                    src='assets/ui.png'
-                    alt='course'
-                  />
-                  <p className='text-[#222C2C] text-[22px] pt-4 text-center font-semibold'>
-                    UI/UX Design
-                  </p>
-                </div>
+                ))}
               </div>
               <div className='flex justify-center pt-10 gap-3'>
                 <a
@@ -576,49 +432,13 @@ const Home = () => {
                   Blog
                 </h1>
                 <p className='text-[#222C2C] font-semibold'>
-                  Here are some Articles written by our Mentors and Mentees
+                  Here are some Blogs written by our Mentors and Mentees
                 </p>
               </div>
               <div className='flex xmd:flex-col gap-10 justify-around px-20'>
-                <div className='bg-white'>
-                  <img
-                    src='assets/blog1.png'
-                    alt='blog'
-                  />
-                  <div className='px-6 py-6'>
-                    <p>The best Cities in Africa in 2023</p>
-                    <p className='text-[12px] font-semibold pt-2'>
-                      Tanzania's capital is also one of the most developed
-                      cities, which will probably surprise many people... more
-                    </p>
-                  </div>
-                </div>
-                <div className='bg-white'>
-                  <img
-                    src='assets/blog2.png'
-                    alt='blog'
-                  />
-                  <div className='px-6 py-6'>
-                    <p>Resources to help you prepare for interviews</p>
-                    <p className='text-[12px] font-semibold pt-2'>
-                      Prepare for interviews jobs internships Interviews are
-                      only really stressful when you're starting out... more
-                    </p>
-                  </div>
-                </div>
-                <div className='bg-white'>
-                  <img
-                    src='assets/blog3.png'
-                    alt='blog'
-                  />
-                  <div className='px-6 py-6'>
-                    <p>Are unpaid internships worth it?</p>
-                    <p className='text-[12px] font-semibold pt-2'>
-                      In the fast-paced, ever-evolving landscape of the modern
-                      workplace, the importance of employee... more
-                    </p>
-                  </div>
-                </div>
+                {blogs.map((blog) => (
+                  <BlogCard blog={blog} />
+                ))}
               </div>
               <div className='flex justify-center pt-10 gap-3'>
                 <div className='flex gap-2 items-center rounded border-[1px] text-[#37627E] border-[#37627E] px-12 py-2 text-sm font-medium leading-normal transition duration-150 ease-in-out hover:border-[#37627E] hover:bg-neutral-500 hover:bg-opacity-10'>

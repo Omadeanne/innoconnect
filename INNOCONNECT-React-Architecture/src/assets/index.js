@@ -30,5 +30,49 @@ import test8 from './test8.jpg';
 // import test9 from './test9.jpg';
 import test10 from './test10.jpg';
 import test11 from './test11.jpg';
+import backend from './backend.png';
+import frontend from './frontend.png';
+import ui from './ui.png';
+import blog1 from './blog1.png'
+import blog2 from './blog2.png'
+import blog3 from './blog3.png'
 
-export { logo, registerpageimage, defaultImg, mentee, businessman, bg1, expert, skill, community, mentor01, mentor02, mentor03, mentor04, mentor05, mentor06, mentor07, mentor08, mentor09, mentor10, mentor11, mentor12, mentor13, mentor14, mentor15, mentor16, jobs_f, job_h, test7, test8, test10, test11 };
+export {
+  logo,
+  registerpageimage,
+  defaultImg,
+  mentee,
+  businessman,
+  bg1,
+  expert,
+  skill,
+  community,
+  mentor01,
+  mentor02,
+  mentor03,
+  mentor04,
+  mentor05,
+  mentor06,
+  mentor07,
+  mentor08,
+  mentor09,
+  mentor10,
+  mentor11,
+  mentor12,
+  mentor13,
+  mentor14,
+  mentor15,
+  mentor16,
+  jobs_f,
+  job_h,
+  test7,
+  test8,
+  test10,
+  test11,
+  backend,
+  frontend,
+  ui,
+  blog1,
+  blog2,
+  blog3
+};

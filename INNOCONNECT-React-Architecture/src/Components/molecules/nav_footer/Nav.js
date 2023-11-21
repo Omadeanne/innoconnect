@@ -153,7 +153,7 @@ export default function Nav() {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                  href='#'
+                                  to='/blog'
                                   className={classNames(
                                     active
                                       ? 'bg-gray-100 text-gray-900'
@@ -168,7 +168,7 @@ export default function Nav() {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                  href='#'
+                                  to='/community'
                                   className={classNames(
                                     active
                                       ? 'bg-gray-100 text-gray-900'
@@ -183,7 +183,7 @@ export default function Nav() {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                  href='#'
+                                  to='/about'
                                   className={classNames(
                                     active
                                       ? 'bg-gray-100 text-gray-900'
