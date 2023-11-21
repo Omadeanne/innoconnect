@@ -1,8 +1,9 @@
 import React from 'react'
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
+import { Link } from 'react-router-dom';
 
-const Article = () => {
+const Article = (blog) => {
   return (
     <div>
       <Nav />
@@ -50,7 +51,14 @@ const Article = () => {
               the importance of employee connections and team member connections
               cannot be overstated. These connections play a pivotal role in
               facilitating engagement, which, in turn, contributes significantly
-              to individual and organizational growth...<span><a href="blogDetails.html" className="text-error-04 font-medium">Read more</a>
+              to individual and organizational growth...<span>
+              <Link
+            to={`/blog-details/${blog.id}`}
+            className='bg-primary-06 px-8 py-1 inline-flex items-center text-white  rounded-sm shadow'
+          >
+            Read More
+          </Link>
+                {/* <a href="blogDetails.html" className="text-error-04 font-medium">Read more</a> */}
               </span></p>
             <div className="flex items-center mt-8 font-medium">
               <img src="./assets/team/lizzy.jpg" className="rounded-full h-10 w-10" alt="team" />
