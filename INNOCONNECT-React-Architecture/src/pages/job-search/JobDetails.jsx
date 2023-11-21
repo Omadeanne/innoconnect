@@ -2,8 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import jobs from './jobs';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
-import defaultImg from '../../assets/default.png';
-
+import { defaultImg } from '../../assets';
 const JobDetails = () => {
   const { id } = useParams();
 

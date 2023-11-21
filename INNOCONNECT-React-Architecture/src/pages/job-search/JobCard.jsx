@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultImg from '../../assets/default.png';
+import { defaultImg } from '../../assets';
 import { Link } from 'react-router-dom';
 
 const JobCard = ({ job }) => {

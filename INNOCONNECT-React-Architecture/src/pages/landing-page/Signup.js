@@ -2,10 +2,8 @@ import { useState } from 'react';
 import MenteeRegister from '../register/MenteeRegister';
 import EmployerRegister from '../register/EmployerRegister';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
-import mentee from '../../assets/mentee.png';
-import employer from '../../assets/businessman.png';
-import image from '../../assets/registerpageimage.png';
+import { logo } from '../../assets';
+import { businessman, registerpageimage, mentee } from '../../assets';
 
 const Signup = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -29,7 +27,7 @@ const Signup = () => {
         </Link>
         <div className='hidden md:flex  bg-[#112034] flex-1 justify-center items-center p-10'>
           <img
-            src={image}
+            src={registerpageimage}
             alt='signup'
             className='w-full max-w-md'
           />
@@ -63,7 +61,7 @@ const Signup = () => {
                     className='tabLinks text-left inline-block text-lg font-semibold w-full border-b'
                   >
                     <img
-                      src={employer}
+                      src={businessman}
                       className='w-10 h-10 inline-block my-4'
                       alt=''
                     />

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
-import image from '../../assets/registerpageimage.png';
+import { logo, registerpageimage } from '../../assets';
 
 const Login = () => {
   return (
@@ -14,7 +13,7 @@ const Login = () => {
       </div>
       <div className='hidden md:flex  bg-[#112034] flex-1 justify-center items-center p-10'>
         <img
-          src={image}
+          src={registerpageimage}
           alt='signup img'
           className='w-full max-w-md'
         />

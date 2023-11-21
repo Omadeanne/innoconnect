@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "flowbite-react": "^0.6.4",
+    "postcss": "^8.4.31"
+  }
+}
