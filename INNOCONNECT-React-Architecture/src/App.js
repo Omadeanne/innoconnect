@@ -7,6 +7,8 @@ import Community from './pages/community/Community';
 import JobSearch from './pages/job-search/JobSearch';
 import JobDetails from './pages/job-search/JobDetails';
 import Application from './pages/job-search/Application';
+import Smartmatch from './pages/find-a-mentor/Smartmatch';
+
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
       <Route path="/job-search" element={<JobSearch />} />
       <Route path='/job-details/:id' element={<JobDetails />} />
       <Route path="/apply/:id" element={<Application />} />
+      <Route path="/Smartmatch" element={<Smartmatch />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
