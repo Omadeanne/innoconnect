@@ -13,6 +13,7 @@ import Faq from './pages/articles/Faq';
 import Smartmatch from './pages/find-a-mentor/Smartmatch';
 import Pricing from './pages/pricing/Pricing';
 import About from './pages/about-us/About';
+import ForgotPassword from './pages/landing-page/ForgotPassword';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
       <Route path="/Smartmatch" element={<Smartmatch />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/about" element={<About />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
