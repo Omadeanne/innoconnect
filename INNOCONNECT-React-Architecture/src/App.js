@@ -14,6 +14,7 @@ import Smartmatch from './pages/find-a-mentor/Smartmatch';
 import Pricing from './pages/pricing/Pricing';
 import About from './pages/about-us/About';
 import ForgotPassword from './pages/landing-page/ForgotPassword';
+import BecomeMentor from './pages/become-mentor/BecomeMentor';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/about" element={<About />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/become-mentor" element={<BecomeMentor />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
