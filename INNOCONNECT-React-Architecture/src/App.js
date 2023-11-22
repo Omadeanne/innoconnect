@@ -7,14 +7,14 @@ import Community from './pages/community/Community';
 import JobSearch from './pages/job-search/JobSearch';
 import JobDetails from './pages/job-search/JobDetails';
 import Application from './pages/job-search/Application';
-import MentorForm from './pages/become-mentor/MentorForm';
-import Article from './pages/articles/Article';
-import Faq from './pages/articles/Faq';
 import Smartmatch from './pages/find-a-mentor/Smartmatch';
 import Pricing from './pages/pricing/Pricing';
 import About from './pages/about-us/About';
 import ForgotPassword from './pages/landing-page/ForgotPassword';
 import BecomeMentor from './pages/become-mentor/BecomeMentor';
+import MentorForm from './pages/become-mentor/MentorForm';
+import Article from './pages/articles/Article';
+import Faq from './pages/articles/Faq';
 
 
 function App() {
