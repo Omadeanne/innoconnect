@@ -4,7 +4,7 @@ const Testimonial = ({ test }) => {
   return (
     <div className='mx-auto w-full max-w-[70%] flex items-center gap-10'>
       <img
-        className='rounded-xl'
+        className='rounded-full h-96 w-96 object-cover object-center'
         src={test.img}
         alt='tania andrew'
       />

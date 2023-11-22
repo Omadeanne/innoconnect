@@ -14,12 +14,8 @@ import ForgotPassword from './pages/landing-page/ForgotPassword';
 import BecomeMentor from './pages/become-mentor/BecomeMentor';
 import MentorForm from './pages/become-mentor/MentorForm';
 import Article from './pages/articles/Article';
-<<<<<<< HEAD
-import Faq from './pages/articles/Faq'
-=======
 import Faq from './pages/articles/Faq';
 
->>>>>>> 52d5c134e3758439e3b6b85f7223495594b55cce
 
 function App() {
   return (
