@@ -39,6 +39,7 @@ function App() {
       <Route path="/job-search" element={<JobSearch />} />
       <Route path='/job-details/:id' element={<JobDetails />} />
       <Route path="/apply/:id" element={<Application />} />
+      <Route path="/Smart-match/" element={<Smartmatch />} />
       <Route path="/mentor-form" element={<MentorForm />} />
       <Route path="/blog" element={<Article />} />
       <Route path='/blog-details/:id' element={<JobDetails />} />  
