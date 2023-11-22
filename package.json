@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "autoprefixer": "^10.4.16",
-    "flowbite-react": "^0.6.4",
-    "postcss": "^8.4.31"
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.4",
