@@ -84,7 +84,7 @@ export default function Nav() {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                  href='#'
+                                to='/Smartmatch'
                                   className={classNames(
                                     active
                                       ? 'bg-gray-100 text-gray-900'
@@ -99,7 +99,7 @@ export default function Nav() {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                  href='#'
+                                to='/become-mentor'
                                   className={classNames(
                                     active
                                       ? 'bg-gray-100 text-gray-900'
