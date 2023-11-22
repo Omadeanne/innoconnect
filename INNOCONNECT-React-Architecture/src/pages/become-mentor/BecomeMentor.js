@@ -12,7 +12,7 @@ const BecomeMentor = () => {
       <div className="overflow-hidden bg-cover bg-no-repeat text-center flex flex-col items-center justify-center h-screen md:h-screen md:w-[100%]" style={{backgroundImage: 'url("assets/hero.png")'}}>
         <div className>
           <div className="mb-14">
-            <h1 className="text-white text-[64px] font-bold">Become a Mentor</h1>
+            <h1 className="text-white text-[64px] font-bold">Become A Mentor</h1>
             <p className="text-white text-[22px]">
               Guide our mentees bring their dreams to fruition
             </p>
