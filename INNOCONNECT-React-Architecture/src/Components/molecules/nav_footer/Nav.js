@@ -205,13 +205,13 @@ export default function Nav() {
               <div className='lg:flex lg:px-0 hidden gap-4 absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
               <Link
                 to='/login'
-                className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-4 py-2 font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+                className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-4 py-2  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
               >
                 Login
               </Link>
               <Link
                 to='/register'
-                className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-secondary-06 px-4 py-2 font-semibold text-white shadow-sm active:bg-secondary-07 hover:shadow-btn'
+                className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-secondary-06 px-4 py-2  text-white shadow-sm active:bg-secondary-07 hover:shadow-btn'
               >
                 Register
               </Link>
