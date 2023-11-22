@@ -10,7 +10,7 @@ function Footer() {
             <li>
               <a
                 className='hover:underline'
-                href='termsAndConditions.html'
+                href='terms-and-conditions'
               >
                 Terms &amp; Conditions
               </a>

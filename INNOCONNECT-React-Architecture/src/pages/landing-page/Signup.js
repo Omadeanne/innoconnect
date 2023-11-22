@@ -73,6 +73,9 @@ const Signup = () => {
             </div>
             {activeTab === 1 && <MenteeRegister />}
             {activeTab === 2 && <EmployerRegister />}
+            <span className='text-[#234270] p-10 font-medium'>Want to become a Mentor? 
+                  <Link to='/mentor-form' class='hover:font-bold hover:text-[#192433] mt-3'> Click here</Link>
+                </span>
             <p className='text-center my-2 text-[#234270] text-base font-bold col-span-full'>
               Or
             </p>
