@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.svg';
-import image from '../../assets/registerpageimage.png';
+import { logo, registerpageimage } from '../../assets';
 
 const Login = () => {
   return (
@@ -14,7 +13,7 @@ const Login = () => {
       </div>
       <div className='hidden md:flex  bg-[#112034] flex-1 justify-center items-center p-10'>
         <img
-          src={image}
+          src={registerpageimage}
           alt='signup img'
           className='w-full max-w-md'
         />
@@ -71,7 +70,7 @@ const Login = () => {
                 Login
               </button>
               <div className='text-right text-sm text-[#234270] mt-2'>
-                <a href='./forgot.html'>Forgot Password?</a>
+                <a href='/forgot-password'>Forgot Password?</a>
               </div>
               <p className='text-center my-2 text-[#234270] text-base'>Or</p>
               <button
@@ -98,7 +97,7 @@ const Login = () => {
               <p className='text-base text-center mt-2'>
                 Don't have an account?{' '}
                 <span className='text-[#234270] font-medium'>
-                  <Link to='/'>Register</Link>
+                  <Link to='/register'>Register</Link>
                 </span>
               </p>
             </form>

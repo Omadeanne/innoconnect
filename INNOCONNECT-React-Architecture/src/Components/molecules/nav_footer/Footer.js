@@ -47,7 +47,7 @@ function Footer() {
             <li>
               <a
                 className='hover:underline'
-                href='faq.html'
+                href='/faq'
               >
                 FAQ
               </a>
