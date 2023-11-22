@@ -54,22 +54,28 @@ function Community() {
               </p>
             </div>
             <div className='w-full lg:w-1/2'>
-              <img
-                src='assets/commu-3.jpg'
-                alt=''
-                className='w-full object-cover '
-              />
+            <a href="https://imgbb.com/">
+                <img
+                  src="https://i.ibb.co/MMss42Z/commu-4.jpg"
+                  className="w-full object-cover"
+                  alt="commu-4"
+                  border="0"
+                />
+              </a>
             </div>
           </div>
         </div>
         <div className='container mx-auto p-4 mt-[8rem]'>
           <div className='flex justify-center items-center flex-col-reverse lg:flex-row  gap-8'>
             <div className='w-full lg:w-1/2'>
-              <img
-                src='assets/comm-1.jpg'
-                alt='image'
-                className='w-full object-cover'
-              />
+            <a href="https://imgbb.com/">
+                <img
+                  src="https://i.ibb.co/2nj4sfr/commu-3.jpg"
+                  className="w-full object-cover"
+                  alt="commu-3"
+                  border="0"
+                />
+              </a>
             </div>
             <div className='w-full text-center lg:text-left lg:w-1/2'>
               <h3 className='text-[3rem] font-bold text-primary-06 px-10'>
@@ -97,22 +103,28 @@ function Community() {
               </p>
             </div>
             <div className='w-full lg:w-1/2'>
-              <img
-                src='assets/commu-4.jpg'
-                alt='image'
-                className='w-full object-cover'
-              />
+            <a href="https://imgbb.com/">
+                <img
+                  src="https://i.ibb.co/VjHpDXP/comm-2-1.jpg"
+                  className="w-full object-cover"
+                  alt="comm-2-1"
+                  border="0"
+                />
+              </a>
             </div>
           </div>
         </div>
         <div className='container mx-auto p-4 my-[8rem]'>
           <div className='flex flex-col-reverse lg:flex-row  justify-center items-center  gap-8'>
             <div className='w-full lg:w-1/2'>
-              <img
-                src='assets/comm-2.jpg'
-                alt='image'
-                className='w-full object-cover'
-              />
+            <a href="https://imgbb.com/">
+                <img
+                  src="https://i.ibb.co/DGVrvnL/comm-1.jpg"
+                  className="w-full object-cover"
+                  alt="comm-1"
+                  border="0"
+                />
+              </a>
             </div>
             <div className='w-full text-center lg:text-left lg:w-1/2'>
               <div className='pl-4'>

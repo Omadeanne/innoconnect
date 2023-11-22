@@ -12,7 +12,9 @@ import Pricing from './pages/pricing/Pricing';
 import About from './pages/about-us/About';
 import ForgotPassword from './pages/landing-page/ForgotPassword';
 import BecomeMentor from './pages/become-mentor/BecomeMentor';
-
+import MentorForm from './pages/become-mentor/MentorForm';
+import Article from './pages/articles/Article';
+import Faq from './pages/articles/Faq'
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
         path='/community'
         element={<Community />}
       />
+       
       <Route path="/job-search" element={<JobSearch />} />
       <Route path='/job-details/:id' element={<JobDetails />} />
       <Route path="/apply/:id" element={<Application />} />
