@@ -70,7 +70,7 @@ const Login = () => {
                 Login
               </button>
               <div className='text-right text-sm text-[#234270] mt-2'>
-                <a href='./forgot.html'>Forgot Password?</a>
+                <a href='/forgot-password'>Forgot Password?</a>
               </div>
               <p className='text-center my-2 text-[#234270] text-base'>Or</p>
               <button
@@ -97,7 +97,7 @@ const Login = () => {
               <p className='text-base text-center mt-2'>
                 Don't have an account?{' '}
                 <span className='text-[#234270] font-medium'>
-                  <Link to='/'>Register</Link>
+                  <Link to='/register'>Register</Link>
                 </span>
               </p>
             </form>
