@@ -23,31 +23,31 @@ export default function Dashboard() {
         <div className="mt-7 p-3">
           <div>
             <ul>
-              <li className="p-2 m-2 mb-3 text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+              <li className="p-2 m-2 mb-3 text-white hover:bg-white hover:text-blue-900 hover:rounded-lg hover:p-2">
                 <a href="#">
                   <i className="fa-solid fa-house pr-2 text-xl" />
                   <span className="font-semibold text-xl">Dashboard</span>
                 </a>
               </li>
-              <li className="p-2 m-2 my-7 text-white justify-center items-center hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+              <li className="p-2 m-2 my-7 text-white justify-center items-center hover:bg-white hover:text-blue-900 hover:rounded-lg hover:p-2">
                 <a href="myJobs.html" className="flex">
                   <i className="fa-solid fa-book-open pr-3 text-xl" />
                   <span className="font-semibold text-xl">My jobs</span>
                 </a>
               </li>
-              <li className="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+              <li className="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-900 hover:rounded-lg hover:p-2">
                 <a href="postJob.html">
                   <i className="fa-regular fa-comments pr-2 text-xl" />
                   <span className="font-semibold text-xl">Post a job</span>
                 </a>
               </li>
-              <li className="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+              <li className="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-900 hover:rounded-lg hover:p-2">
                 <a href="message.html">
                   <i className="fa-solid fa-graduation-cap pr-2 text-xl" />
                   <span className="font-semibold text-xl">Messages</span>
                 </a>
               </li>
-              <li className="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:p-2">
+              <li className="p-2 m-2 my-7  text-white hover:bg-white hover:text-blue-900 hover:rounded-lg hover:p-2">
                 <a href="applicants.html">
                   <i className="fa-solid fa-user-group pr-2 text-xl" />
                   <span className="font-semibold text-xl">Applicants</span>

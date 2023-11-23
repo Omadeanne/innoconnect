@@ -18,6 +18,7 @@ import Faq from './pages/articles/Faq'
 import TermsCondition from './pages/terms-and-conditions/TermsCondition'
 import MenteesDashboard from './pages/mentees-dashboard/MenteesDashboard'
 import Dashboard from './pages/employers-dashbord/Dashboard'
+import MentorsDashboard from './pages/mentors-dashboard/MentorsDashboard'
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
       <Route path="/terms-and-conditions" element={<TermsCondition />} />
       <Route path="/mentees-dashboard" element={<MenteesDashboard />} />
       <Route path="/employers-dashboard" element={<Dashboard />} />
+      <Route path="/mentors-dashboard" element={<MentorsDashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
