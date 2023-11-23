@@ -1,4 +1,7 @@
+<<<<<<< HEAD:src/pages/become-mentor/Step1.jsx
 
+=======
+>>>>>>> aede4d05ca1a4c917056200454411ed53209cdce:INNOCONNECT-React-Architecture/src/pages/become-mentor/Step1.jsx
 const Step1 = ({ data, handleChange, next }) => {
   return (
     <>
