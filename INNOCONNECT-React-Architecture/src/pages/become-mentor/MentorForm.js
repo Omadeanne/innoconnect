@@ -12,10 +12,12 @@ const MentorForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    street: '',
-    city: '',
-    postcode: '',
-    comments: '',
+    phone: '',
+    location: '',
+    company: '',
+    why: '',
+    achievement: '',
+    resume: '',
   });
   const handleChange = (event) => {
     setFormData({
@@ -102,7 +104,7 @@ const MentorForm = () => {
                       }
                     ></div>
                   ) : (
-                    <div className='absolute items-center justify-center w-8 h-8 bg-success-06 rounded-full'>
+                    <div className={currentStep >= 2 ? 'absolute items-center justify-center w-8 h-8 bg-success-06 rounded-full transition-all' : 'hidden'}>
                       <i className='block w-3.5 h-3.5 translate-x-1/2 translate-y-1/2 text-secondary-01 fa-solid fa-check' />
                     </div>
                   )}
@@ -111,10 +113,19 @@ const MentorForm = () => {
               </li>
               <li className='step relative flex items-center'>
                 <span className='flex items-center justify-center w-8 h-8 bg-white rounded-full border border-secondary-05  shrink-0'>
-                  <div className='hidden current border border-secondary-05 h-5 w-5 rounded-full bg-secondary-07'></div>
-                  <div className='absolute finish hidden items-center justify-center w-8 h-8 bg-success-06 rounded-full'>
-                    <i className='block w-3.5 h-3.5 translate-x-1/2 translate-y-1/2 text-secondary-01 fa-solid fa-check' />
-                  </div>
+                {currentStep === 3 ? (
+                    <div
+                      className={
+                        currentStep === 3
+                          ? 'transition-all border border-secondary-05 h-5 w-5 rounded-full bg-secondary-07'
+                          : 'hidden'
+                      }
+                    ></div>
+                  ) : (
+                    <div className={currentStep >= 3 ? 'absolute items-center justify-center w-8 h-8 bg-success-06 rounded-full transition-all' : 'hidden'}>
+                      <i className='block w-3.5 h-3.5 translate-x-1/2 translate-y-1/2 text-secondary-01 fa-solid fa-check' />
+                    </div>
+                  )}
                 </span>
                 <p className='absolute top-10 -left-5 font-semibold'>
                   Experience

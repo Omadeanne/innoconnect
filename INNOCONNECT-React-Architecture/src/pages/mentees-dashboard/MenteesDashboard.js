@@ -65,7 +65,6 @@ export default function MenteesDashboard() {
             </div>
           </div>
         </div>
-          <DateUpdate />
       </div>
 
     </div>
