@@ -1,10 +1,13 @@
 import React from 'react'
+// import Aside from '../../Components/molecules/mentee-dashboard/Aside'
+// import Header from '../../Components/molecules/mentee-dashboard/Header'
 
-export default function dashboard() {
+export default function Dashboard() {
   return (
    <div>
   <main className="darkmode:bg-gray-900">
     <div className="flex relative">
+      {/* <Aside /> */}
       <aside className="sticky top-0 left-0 w-1/5 z-10 bg-[#1c2434] h-screen text-[#d2d8e2] items-center justify-around p-4 hidden lg:block">
         {/* brand logo */}
         <div className=" my-3">

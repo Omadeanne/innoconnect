@@ -1,8 +1,9 @@
 import React from 'react'
 
 const Header = () => {
+  
   return (
-    <header className='w-4/5'>
+    <header >
         <div className="sticky top-0 right-0 z-50 py-2 items-center justify-between drop-shadow-sm bg-[#ffffff] flex">
             <div className="lg:hidden flex text-2xl ml-4" id="open-menu">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

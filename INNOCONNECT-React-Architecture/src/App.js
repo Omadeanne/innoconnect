@@ -16,6 +16,8 @@ import MentorForm from './pages/become-mentor/MentorForm';
 import Article from './pages/articles/Article';
 import Faq from './pages/articles/Faq'
 import TermsCondition from './pages/terms-and-conditions/TermsCondition'
+import MenteesDashboard from './pages/mentees-dashboard/MenteesDashboard'
+import Dashboard from './pages/employers-dashbord/Dashboard'
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/become-mentor" element={<BecomeMentor />} />
       <Route path="/terms-and-conditions" element={<TermsCondition />} />
+      <Route path="/mentees-dashboard" element={<MenteesDashboard />} />
+      <Route path="/employers-dashboard" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

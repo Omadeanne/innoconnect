@@ -491,8 +491,8 @@ const Home = () => {
                   Customer Support
                 </p>
                 <p className='pt-4 text-[12px]'>Chat with our friendly team</p>
-                <a
-                  href='url'
+                <a 
+                  href='mailto:InnoConnect@gmail.com'
                   className='text-[12px] font-bold decoration-solid'
                 >
                   InnoConnect@gmail.com
@@ -507,7 +507,7 @@ const Home = () => {
                 </p>
                 <p className='pt-4 text-[12px]'>Some questions we're asked</p>
                 <a
-                  href='url'
+                  href='faq'
                   className='text-[12px] font-bold decoration-solid'
                 >
                   InnoConnect.com/FAQs
@@ -537,7 +537,7 @@ const Home = () => {
                 </p>
                 <p className='pt-4 text-[12px]'>Talk to our support team</p>
                 <a
-                  href='url'
+                  href='tel:+234 704 342 2345 '
                   className='text-[12px] font-bold decoration-solid'
                 >
                   +234 704 342 2345

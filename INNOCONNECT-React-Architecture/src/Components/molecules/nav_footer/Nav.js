@@ -8,7 +8,7 @@ import { logo } from '../../../assets';
 
 const navigation = [
   { name: 'Jobs', to: '/job-search', current: true },
-  { name: 'Courses', to: '/courses', current: false },
+  // { name: 'Courses', to: '/courses', current: false },
   { name: 'Pricing', to: '/pricing', current: false },
 ];
 
