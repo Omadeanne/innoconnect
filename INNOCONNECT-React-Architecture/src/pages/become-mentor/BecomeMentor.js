@@ -2,8 +2,52 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
-import { hero, icon, book, benefits, test2, test3, test4, test5, test6, salami, mentor09 } from '../../assets';
-// import { icon } from '../../assets';
+import {
+  hero,
+  icon,
+  book,
+  benefits,
+  test2,
+  test3,
+  test4,
+  test5,
+  test6,
+  salami,
+  mentor09,
+} from '../../assets';
+
+const card = [
+  {
+    img: 'test2',
+    quote: 'In every failure lies an opportunity for improvement.',
+    name: 'Anna Absalom, Project Manager at Telesoftas',
+  },
+  {
+    img: 'test3',
+    quote: 'The key to growth is preventing the repetition of errors.',
+    name: 'Helen Paul, Talent Manager at Dumena',
+  },
+  {
+    img: 'test4',
+    quote: 'Wisdom is born from the lessons of yesterday.',
+    name: 'Richard Ibrahim, Senior Developer at Sudo Africa',
+  },
+  {
+    img: 'test5',
+    quote: 'The only thing we have to fear is fear itself.',
+    name: 'Steven Adetoun, Product Manager at TIIDELab',
+  },
+  {
+    img: 'test6',
+    quote: 'Learn from the past to create a better future.',
+    name: 'Derick Jaja, Community Manager at Innoconnect',
+  },
+  {
+    img: 'mentor09',
+    quote: 'Mistakes are the stepping stones to progress.',
+    name: 'Richard Ibrahim, Senior Developer at Sudo Africa',
+  },
+];
 
 const BecomeMentor = () => {
   return (
@@ -53,12 +97,12 @@ const BecomeMentor = () => {
               You can follow these steps to become a Mentor
             </p>
           </div>
-          <div className='flex gap-10'>
+          <div className='flex gap-10 items-center justify-center'>
             <div className='bg-[#37627E]  pb-10 pt-10 px-4 rounded-lg'>
               <div className='flex flex-col items-center'>
                 <img
                   src={icon}
-                  alt
+                  alt=''
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
                   <h1 className='text-[20px] '>Sign Up</h1>
@@ -73,7 +117,7 @@ const BecomeMentor = () => {
               <div className='flex flex-col items-center'>
                 <img
                   src={icon}
-                  alt
+                  alt=''
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
                   <h1 className='text-[20px] '>Set Availability</h1>
@@ -89,7 +133,7 @@ const BecomeMentor = () => {
               <div className='flex flex-col items-center'>
                 <img
                   src={icon}
-                  alt
+                  alt=''
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
                   <h1 className='text-[20px] '>Mentee Matching</h1>
@@ -105,7 +149,7 @@ const BecomeMentor = () => {
               <div className='flex flex-col items-center'>
                 <img
                   src={icon}
-                  alt
+                  alt=''
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
                   <h1 className='text-[20px] '>Start Mentoring</h1>
@@ -121,7 +165,7 @@ const BecomeMentor = () => {
               <div className='flex flex-col items-center'>
                 <img
                   src={icon}
-                  alt
+                  alt=''
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
                   <h1 className='text-[20px] '>Track Progress</h1>
@@ -136,9 +180,9 @@ const BecomeMentor = () => {
           </div>
         </section>
         <section className='bg-[#EEF8F8]'>
-          <div className='w-[80%] m-auto py-16 flex gap-8'>
+          <div className='py-16 flex items-center justify-center gap-8'>
             <div>
-              <h1 className='text-[50px] text-[#222C2C] font-bold pb-6'>
+              <h1 className='text-[50px] text-[#222C2C] font-bold pb-6 text-center'>
                 The requirements for becoming a mentor
               </h1>
               <ul className='list-disc gap-4 pl-6 pt-10'>
@@ -159,17 +203,17 @@ const BecomeMentor = () => {
             <div>
               <img
                 src={book}
-                alt='image'
+                alt=''
               />
             </div>
           </div>
         </section>
-        <section className='bg-[#FCFEFC]'>
-          <div className='w-[80%] m-auto py-16 flex gap-8'>
+        <section className='bg-[#FCFEFC] container mx-auto'>
+          <div className='py-16 flex justify-center items-center gap-x-10'>
             <div>
               <img
                 src={benefits}
-                alt='image'
+                alt=''
               />
             </div>
             <div>
@@ -202,7 +246,7 @@ const BecomeMentor = () => {
               <p className='text-[#37627E]'>
                 Senior Designers, Senior Developers and Leaders agree that
                 mentoring is one of
-                <br /> the impactful ways to spend your time. In return you’re
+                <br /> the impactful ways to spend your time. In return you're
                 building crucial
                 <br /> leadership qualities.
               </p>
@@ -211,12 +255,12 @@ const BecomeMentor = () => {
               <div className='w-[18%] bg-[#37627E] rounded-md absolute left-80'>
                 <img
                   src={test5}
-                  alt
+                  alt=''
                   className='h-[300px] w-[300px]'
                 />
                 <div className='px-2 py-3'>
                   <p className='text-[#FFFFFF] mb-4'>
-                    “Ensure people don’t make the same mistake”
+                    “Ensure people don't make the same mistake”
                   </p>
                   <p className='text-[#F9ED7B] text-[14px]'>
                     Adebayo Adetayo, Senior Designer at NASA
@@ -226,7 +270,7 @@ const BecomeMentor = () => {
               <div className='w-[18%] bg-[#37627E] rounded-md absolute mt-10'>
                 <img
                   src={test4}
-                  alt
+                  alt=''
                   className='h-[300px] w-[300px]'
                 />
                 <div className='px-2 py-3'>
@@ -241,7 +285,7 @@ const BecomeMentor = () => {
               <div className='w-[18%] bg-[#37627E] rounded-md a absolute right-80'>
                 <img
                   src={test3}
-                  alt
+                  alt=''
                   className='h-[300px] w-[300px]'
                 />
                 <div className='px-2 py-3'>
@@ -258,8 +302,8 @@ const BecomeMentor = () => {
               <div className='w-[18%] bg-[#37627E] rounded-md absolute left-80'>
                 <img
                   src={test6}
-                  alt
-                  className='h-[300px] w-[300px]'
+                  alt=''
+                  className='h-[300px] w-[300px] object-cover object-center'
                 />
                 <div className='px-2 py-3'>
                   <p className='text-[#FFFFFF] mb-4'>
@@ -273,7 +317,7 @@ const BecomeMentor = () => {
               <div className='w-[18%] bg-[#37627E] rounded-md absolute mt-10'>
                 <img
                   src={test2}
-                  alt
+                  alt=''
                   className='h-[300px] w-[300px]'
                 />
                 <div className='px-2 py-3'>
@@ -288,7 +332,7 @@ const BecomeMentor = () => {
               <div className='w-[18%] bg-[#37627E] rounded-md a absolute right-80'>
                 <img
                   src={mentor09}
-                  alt
+                  alt=''
                   className='h-[300px] w-[300px]'
                 />
                 <div className='px-2 py-3'>
@@ -313,7 +357,7 @@ const BecomeMentor = () => {
             <div className='flex justify-center items-center gap-4'>
               <img
                 src={salami}
-                alt
+                alt=''
               />
               <div className='flex gap-6 text-[36px] text-[#112034]'>
                 <p>Kadiri Salami</p>
