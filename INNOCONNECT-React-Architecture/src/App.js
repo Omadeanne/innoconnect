@@ -20,6 +20,12 @@ import MenteesDashboard from './pages/mentees-dashboard/MenteesDashboard'
 import Dashboard from './pages/employers-dashbord/Dashboard'
 import MentorsDashboard from './pages/mentors-dashboard/MentorsDashboard'
 import MentorsFaq from './pages/articles/MentorsFaq'
+import PersonalityTest from './pages/become-mentor/PersonalityTest'
+import MentorProfile from './pages/find-a-mentor/MentorProfile'
+import PostJobs from './pages/employers-dashbord/PostJobs'
+import JobPosted from './pages/employers-dashbord/JobPosted' 
+import Applicant from './pages/employers-dashbord/Applicant' 
+import Contact from './pages/contact-us/Contact' 
 
 function App() {
   return (
@@ -59,6 +65,12 @@ function App() {
       <Route path="/employers-dashboard" element={<Dashboard />} />
       <Route path="/mentors-dashboard" element={<MentorsDashboard />} />
       <Route path="/mentors-faq" element={<MentorsFaq />} />
+      <Route path="/personality-test" element={<PersonalityTest />} />
+      <Route path="/mentor-profile" element={<MentorProfile />} />
+      <Route path="/post-jobs" element={<PostJobs />} />
+      <Route path="/job-posted" element={<JobPosted />} />
+      <Route path="/applicant" element={<Applicant />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

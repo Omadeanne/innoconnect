@@ -36,13 +36,13 @@ const Home = () => {
                   </h4>
                   <div className='flex justify-center gap-3 xmd:flex-col xmd:w-[50%] xmd:m-auto'>
                     <a
-                      href='register.html'
+                      href='/register'
                       className='rounded border-[1px] border-neutral-50 px-10 py-2 text-sm font-medium bg-white text-[#37627E] transition duration-150 ease-in-out hover:border-neutral-100 hover:shadow-xl focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-white'
                     >
                       Register
                     </a>
                     <a
-                      href='login.html'
+                      href='/login'
                       className='rounded border-[1px] border-neutral-50 px-12 py-2 text-sm font-medium leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10'
                     >
                       Login
@@ -320,13 +320,13 @@ const Home = () => {
               </div>
               <div className='flex justify-center pt-10 gap-3'>
                 <a
-                  href='register.html'
+                  href='/register'
                   className='text-white font-semibold border bg-secondary-06 border-secondary-06 text-center rounded px-12 py-2  block active:bg-secondary-07 hover:shadow-btn'
                 >
                   Register
                 </a>
                 <a
-                  href='login.html'
+                  href='/login'
                   className='rounded border-[1px] text-[#37627E] border-[#37627E] px-12 py-2 text-sm font-medium leading-normal transition duration-150 ease-in-out hover:border-[#37627E] hover:bg-neutral-500 hover:bg-opacity-10 focus:border-neutral-100 focus:ring-0 active:border-neutral-200 active:text-neutral-200'
                 >
                   Login
