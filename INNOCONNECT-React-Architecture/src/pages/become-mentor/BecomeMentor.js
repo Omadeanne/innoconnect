@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
-import { hero } from '../../assets';
+import { hero, icon, book, benefits, test2, test3, test4, test5, test6, salami, mentor09 } from '../../assets';
+// import { icon } from '../../assets';
 
 const BecomeMentor = () => {
   return (
@@ -34,7 +35,7 @@ const BecomeMentor = () => {
               Become A Mentor
             </a> */}
                 <a
-                  href='mentors.html'
+                  href='/faq'
                   className='bg-transparent border-solid text-white font-bold border-2 border-white w-[180px] px-1 py-2 rounded'
                 >
                   FAQs
@@ -56,7 +57,7 @@ const BecomeMentor = () => {
             <div className='bg-[#37627E]  pb-10 pt-10 px-4 rounded-lg'>
               <div className='flex flex-col items-center'>
                 <img
-                  src='assets/icon.png'
+                  src={icon}
                   alt
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
@@ -71,7 +72,7 @@ const BecomeMentor = () => {
             <div className='bg-[#37627E]  pb-10 pt-10 px-4 rounded-lg'>
               <div className='flex flex-col items-center'>
                 <img
-                  src='assets/icon.png'
+                  src={icon}
                   alt
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
@@ -87,7 +88,7 @@ const BecomeMentor = () => {
             <div className='bg-[#37627E]  pb-10 pt-10 px-4 rounded-lg'>
               <div className='flex flex-col items-center'>
                 <img
-                  src='assets/icon.png'
+                  src={icon}
                   alt
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
@@ -103,7 +104,7 @@ const BecomeMentor = () => {
             <div className='bg-[#37627E]  pb-10 pt-10 px-4 rounded-lg'>
               <div className='flex flex-col items-center'>
                 <img
-                  src='assets/icon.png'
+                  src={icon}
                   alt
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
@@ -119,7 +120,7 @@ const BecomeMentor = () => {
             <div className='bg-[#37627E]  pb-10 pt-10 px-4 rounded-lg'>
               <div className='flex flex-col items-center'>
                 <img
-                  src='assets/icon.png'
+                  src={icon}
                   alt
                 />
                 <div className='w-48 text-center pt-3 text-[#fff]'>
@@ -157,7 +158,7 @@ const BecomeMentor = () => {
             </div>
             <div>
               <img
-                src='assets/book.png'
+                src={book}
                 alt='image'
               />
             </div>
@@ -167,7 +168,7 @@ const BecomeMentor = () => {
           <div className='w-[80%] m-auto py-16 flex gap-8'>
             <div>
               <img
-                src='assets/benefits.png'
+                src={benefits}
                 alt='image'
               />
             </div>
@@ -209,7 +210,7 @@ const BecomeMentor = () => {
             <div className='flex justify-center gap-6 relative'>
               <div className='w-[18%] bg-[#37627E] rounded-md absolute left-80'>
                 <img
-                  src='assets/test5.jpg'
+                  src={test5}
                   alt
                   className='h-[300px] w-[300px]'
                 />
@@ -224,7 +225,7 @@ const BecomeMentor = () => {
               </div>
               <div className='w-[18%] bg-[#37627E] rounded-md absolute mt-10'>
                 <img
-                  src='assets/test4.jpg'
+                  src={test4}
                   alt
                   className='h-[300px] w-[300px]'
                 />
@@ -239,7 +240,7 @@ const BecomeMentor = () => {
               </div>
               <div className='w-[18%] bg-[#37627E] rounded-md a absolute right-80'>
                 <img
-                  src='assets/test3.jpg'
+                  src={test3}
                   alt
                   className='h-[300px] w-[300px]'
                 />
@@ -256,7 +257,7 @@ const BecomeMentor = () => {
             <div className='flex justify-center gap-6 relative top-[500px]'>
               <div className='w-[18%] bg-[#37627E] rounded-md absolute left-80'>
                 <img
-                  src='assets/test6.jpg'
+                  src={test6}
                   alt
                   className='h-[300px] w-[300px]'
                 />
@@ -271,7 +272,7 @@ const BecomeMentor = () => {
               </div>
               <div className='w-[18%] bg-[#37627E] rounded-md absolute mt-10'>
                 <img
-                  src='assets/test2.jpg'
+                  src={test2}
                   alt
                   className='h-[300px] w-[300px]'
                 />
@@ -286,7 +287,7 @@ const BecomeMentor = () => {
               </div>
               <div className='w-[18%] bg-[#37627E] rounded-md a absolute right-80'>
                 <img
-                  src='assets/mentor09.jpg'
+                  src={mentor09}
                   alt
                   className='h-[300px] w-[300px]'
                 />
@@ -311,7 +312,7 @@ const BecomeMentor = () => {
             </h1>
             <div className='flex justify-center items-center gap-4'>
               <img
-                src='assets/salami.png'
+                src={salami}
                 alt
               />
               <div className='flex gap-6 text-[36px] text-[#112034]'>

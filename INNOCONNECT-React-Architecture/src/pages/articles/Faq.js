@@ -12,7 +12,7 @@ export default function Faq() {
             <ul className='flex gap-4 flex-row sm:flex-col text-[#1D3557]'>
               <li>
                 <a
-                  href='faq.html'
+                  href='/faq'
                   className='inline-block group py-2 text-lg font-semibold'
                 >
                   For Mentees
@@ -21,7 +21,7 @@ export default function Faq() {
               </li>
               <li>
                 <a
-                  href='mentors.html'
+                  href='/mentors-faq'
                   className=' inline-block group py-2 text-lg font-semibold'
                 >
                   For Mentors{' '}

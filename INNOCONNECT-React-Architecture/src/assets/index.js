@@ -37,6 +37,17 @@ import blog1 from './blog1.png'
 import blog2 from './blog2.png'
 import blog3 from './blog3.png'
 import hero from './hero.png'
+import icon from './icon.png'
+import book from './book.png'
+import benefits from './benefits.png'
+import test2 from './test2.jpg'
+import test3 from './test3.jpg'
+import test4 from './test4.jpg'
+import test5 from './test5.jpg'
+import test6 from './test6.jpg'
+import salami from './salami.png'
+import blog_illustration from './blog_illustration.svg'
+import carr from './carr.jpg'
 
 export {
   logo,
@@ -77,4 +88,15 @@ export {
   blog2,
   blog3,
   hero,
+  icon,
+  book,
+  benefits,
+  test2,
+  test3,
+  test4,
+  test5,
+  test6,
+  salami,
+  blog_illustration,
+  carr
 };

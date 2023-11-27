@@ -2,6 +2,8 @@ import React from 'react';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import { Link } from 'react-router-dom';
+import { blog_illustration, carr } from '../../assets';
+
 
 const Article = (blog) => {
   return (
@@ -35,7 +37,7 @@ const Article = (blog) => {
             </div>
             <div className='w-full md:w-[30rem]'>
               <img
-                src='/assets/blog_illustration.svg'
+                src={blog_illustration}
                 className='w-full object-cover'
                 alt='blog'
               />
@@ -50,7 +52,7 @@ const Article = (blog) => {
             <div className='flex flex-col md:flex-row items-center justify-center gap-10 px-4'>
               <div className>
                 <img
-                  src='./assets/carr.jpg'
+                  src={carr}
                   className='rounded-xl'
                   alt='thumbnail'
                 />
@@ -74,7 +76,7 @@ const Article = (blog) => {
                   <span>
                     <Link
                       to={`/blog-details/${blog.id}`}
-                      className='bg-primary-06 px-8 py-1 inline-flex items-center text-white  rounded-sm shadow'
+                      className=' px-3 py-1 inline-flex items-center text-red-500  font-bold'
                     >
                       Read More
                     </Link>
