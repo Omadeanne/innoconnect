@@ -3,22 +3,21 @@ import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import { useParams } from 'react-router-dom';
 import mentors from './mentors';
-import { edet, test3, test4, test6, test7, test10 } from "../../assets";
 
 
 export default function MentorProfile() {
-  const { id } = useParams;
+  const { id } = useParams();
 
   const mentor = mentors.find((mentor) => mentor.id === id);
   return (
     <div>
       <Nav />
-      <div className='flex justify-center mt-3'>
+      <div className='flex justify-center mt-3 items-center'>
         <div className='flex flex-1 justify-center items-center'>
           <img
             src={mentor.image}
             alt="mentor's pic"
-            className=''
+            className='h-[500px] w-[500px] rounded-full object-cover object-center'
           />
         </div>
         <div className='text-left flex-1 py-5 px-10'>

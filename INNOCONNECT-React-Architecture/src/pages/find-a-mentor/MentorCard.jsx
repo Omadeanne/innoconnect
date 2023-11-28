@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const MentorCard = ({mentor}) => {
   return (
-    <Link to='/mentors/:id'>
-      <div className='flex flex-col pl-7 items-center justify-center'>
+    <Link to={`/mentors/${mentor.id}`}>
+      <div className='flex flex-col pl-7 items-center justify-center hull'>
         <div>
           <img
             className='w-[120px] h-[120px] rounded-full shadow-card object-cover object-center'
