@@ -4,7 +4,7 @@ import AsideButton from './AsideButton'
 
 function Aside({ links }) {
     return (
-        <aside className="sticky top-0 left-0  z-10 bg-[#1c2434] h-screen text-[#d2d8e2] items-center justify-around p-4">
+        <aside className="sticky top-0 left-0  z-10 bg-[#1c2434] h-screen text-[#d2d8e2] items-center  p-4">
             {/* brand logo  */}
             <div className=" my-3">
                 <div className="p-3 justify-self">
@@ -44,7 +44,7 @@ function Aside({ links }) {
             </div>
             {/* sign out button */}
             <div>
-                <button className="p-2 mx-5 my-5 text-center justify-center  text-white hover:bg-white hover:text-blue-950 hover:rounded-lg hover:px-4">
+                <button className="p-2 mx-5 my-5 text-center justify-center  text-white hover:bg-primary-05 hover:text-blue-900 hover:rounded-lg hover:px-4">
                     <a href className='flex'> 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />

@@ -82,3 +82,12 @@ export const community = (
     />
   </svg>
 );
+export const postJobs = (
+  <i class="fa-solid fa-book-open pr-3 text-xl"></i>
+);
+export const jobPosted = (
+  <i class="fa-regular fa-comments pr-2 text-xl"></i>
+);
+export const applicants = (
+  <i class="fa-solid fa-user-group pr-2 text-xl"></i>
+);

@@ -31,7 +31,7 @@ function Footer() {
             <li>
               <a
                 className='hover:underline'
-                href='#'
+                href='/contact'
               >
                 Help &amp; Support
               </a>

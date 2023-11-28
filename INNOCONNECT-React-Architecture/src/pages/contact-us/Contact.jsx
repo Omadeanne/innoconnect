@@ -1,8 +1,11 @@
 import React from 'react'
+import Nav from '../../Components/molecules/nav_footer/Nav';
+import Footer from '../../Components/molecules/nav_footer/Footer';
 
 export default function Contact(){
   return(
     <div>
+      <Nav />
       <section className="my-12 lg:pl-0 pl-7 pr-3 lg:ml-40">
   {/* support and paragra */}
   <div className>
@@ -184,7 +187,7 @@ export default function Contact(){
     </div>
   </div>
 </section>
-
+              <Footer />
     </div>
   )
 }
