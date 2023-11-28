@@ -3,23 +3,31 @@ import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import MentorCard from './MentorCard';
 import mentors from './mentors';
+import { hero} from '../../assets';
 
 export default function Smartmatch() {
   return (
     <>
       <Nav />
       <div className='m-auto'>
-        <div className='w-[75%] m-auto'>
-          <p className='font-font text-6xl font-bold text-primary-07 text-center my-[20px] p-[10px]'>
+        <div className=' m-auto '>
+        <div
+            className='relative overflow-hidden bg-cover bg-no-repeat p-12 text-center flex justify-center items-center h-screen xmd:h-screen xmd:w-[100%]'
+            style={{ backgroundImage: `url(${hero})` }}
+          >
+          <div>
+          <p className='font-font text-6xl font-bold text-white text-center my-[20px] p-[10px]'>
             Discover Your Mentorship Match
           </p>
-          <p className='font-font text-base font-medium text-primary-07 text-center my-[20px] max-w-3xl mx-auto'>
+          <p className='font-font text-base font-medium text-white text-center my-[20px] max-w-3xl mx-auto'>
             Explore the possibilities of mentorship with us! Whether you're
             seeking technical guidance or professional growth, we're here to
             connect you with the mentor who's perfectly suited to your unique
             needs and aspirations. Your journey to success starts with the right
             mentorship match!
           </p>
+          </div>
+        </div>
         </div>
         <div className='grid grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
           {mentors.map((mentor) => (
