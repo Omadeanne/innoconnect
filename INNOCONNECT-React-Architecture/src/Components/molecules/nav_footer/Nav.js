@@ -84,7 +84,7 @@ export default function Nav() {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                to='/Smartmatch'
+                                to='/mentors'
                                   className={classNames(
                                     active
                                       ? 'bg-gray-100 text-gray-900'

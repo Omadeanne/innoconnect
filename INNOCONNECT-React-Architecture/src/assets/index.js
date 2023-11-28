@@ -48,6 +48,7 @@ import test6 from './test6.jpg'
 import salami from './salami.png'
 import blog_illustration from './blog_illustration.svg'
 import carr from './carr.jpg'
+import edet from './edet.jpg'
 
 export {
   logo,
@@ -98,5 +99,6 @@ export {
   test6,
   salami,
   blog_illustration,
-  carr
+  carr,
+  edet
 };

@@ -55,7 +55,8 @@ function App() {
       <Route path="/blog" element={<Article />} />
       <Route path='/blog-details/:id' element={<JobDetails />} />  
       <Route path="/faq" element={<Faq />} />
-      <Route path="/Smartmatch" element={<Smartmatch />} />
+      <Route path="/mentors" element={<Smartmatch />} />
+      <Route path="/mentors/:id" element={<MentorProfile />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/about" element={<About />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
