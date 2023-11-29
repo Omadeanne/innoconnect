@@ -9,7 +9,6 @@ import JobDetails from './pages/job-search/JobDetails';
 import Application from './pages/job-search/Application';
 import Smartmatch from './pages/find-a-mentor/Smartmatch';
 import Pricing from './pages/pricing/Pricing';
-import About from './pages/about-us/About';
 import ForgotPassword from './pages/landing-page/ForgotPassword';
 import BecomeMentor from './pages/become-mentor/BecomeMentor';
 import MentorForm from './pages/become-mentor/MentorForm';
@@ -27,6 +26,7 @@ import JobPosted from './pages/employers-dashbord/JobPosted';
 import Applicant from './pages/employers-dashbord/Applicant';
 import Contact from './pages/contact-us/Contact';
 import Layout from './Layout';
+import About from './pages/about-us/AboutUs';
 
 function App() {
   return (

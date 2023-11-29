@@ -44,10 +44,10 @@ const links = [
 export default function MentorsDashboard (){
   return(
     <div className="flex">
-      <div className='w-1/4'>
+      <div className=''>
         <Aside links={links} />
       </div>
-      <div className='w-3/4 bg-gray-200'>
+      <div className='bg-gray-200 w-full'>
         <Header />
       </div>
     </div>
