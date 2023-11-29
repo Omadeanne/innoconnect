@@ -27,26 +27,28 @@ import Applicant from './pages/employers-dashbord/Applicant';
 import Contact from './pages/contact-us/Contact';
 import Layout from './Layout';
 import About from './pages/about-us/AboutUs';
+import Overview from './pages/employers-dashbord/Overview';
+import Message from './pages/employers-dashbord/Message';
 
 function App() {
   return (
     <Routes>
       <Route
-          path='/'
-          element={<Home />}
-        />
-        <Route
-          path='/login'
-          element={<Login />}
-        />
-        <Route
-          path='/register'
-          element={<Signup />}
-        />
-        <Route
-          path='/community'
-          element={<Community />}
-        />
+        path='/'
+        element={<Home />}
+      />
+      <Route
+        path='/login'
+        element={<Login />}
+      />
+      <Route
+        path='/register'
+        element={<Signup />}
+      />
+      <Route
+        path='/community'
+        element={<Community />}
+      />
       <Route element={<Layout />}>
         <Route
           path='/job-search'
@@ -136,17 +138,30 @@ function App() {
           element={<MentorProfile />}
         />
         <Route
-          path='/post-jobs'
-          element={<PostJobs />}
-        />
-        <Route
-          path='/job-posted'
-          element={<JobPosted />}
-        />
-        <Route
-          path='/applicant'
-          element={<Applicant />}
-        />
+          path='/employers-dashboard'
+          element={<Dashboard />}
+        >
+          <Route
+            path=''
+            element={<Overview />}
+          />
+          <Route
+            path='post-job'
+            element={<PostJobs />}
+          />
+          <Route
+            path='job-posted'
+            element={<JobPosted />}
+          />
+          <Route
+            path='messages'
+            element={<Message />}
+          />
+          <Route
+            path='applicants'
+            element={<Applicant />}
+          />
+        </Route>
         <Route
           path='/contact'
           element={<Contact />}
