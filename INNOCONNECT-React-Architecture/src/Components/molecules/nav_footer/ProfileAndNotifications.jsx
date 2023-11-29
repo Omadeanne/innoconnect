@@ -15,7 +15,7 @@ const ProfileAndNotifications = () => {
   }
 
   const user = {
-    role: 'mentor',
+    role: 'employer',
   };
 
   return (
