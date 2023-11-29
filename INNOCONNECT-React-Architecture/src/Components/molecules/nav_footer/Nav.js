@@ -17,9 +17,7 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
-  const user = {
-    role: 'employer',
-  };
+  const user = null
 
   return (
     <Disclosure

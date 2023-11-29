@@ -9,7 +9,7 @@ import {
 import { CubeTransparentIcon } from '@heroicons/react/24/outline';
 import AsideButton from './AsideButton';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function Aside({ links }) {
   const [openAlert, setOpenAlert] = useState(true);
@@ -35,6 +35,7 @@ export default function Aside({ links }) {
           );
         })}
       </List>
+      <Outlet />
       <Alert
         open={openAlert}
         className='mt-auto bg-[#2c3850]'

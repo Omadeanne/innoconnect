@@ -114,8 +114,11 @@ function App() {
         />
         <Route
           path='/employers-dashboard'
-          element={<Dashboard />}
-        />
+          element={<Dashboard />}>
+          <Route
+            path='post-jobs'
+            element={<PostJobs />} />
+        </Route>
         <Route
           path='/mentors-dashboard'
           element={<MentorsDashboard />}
