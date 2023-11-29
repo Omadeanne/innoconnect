@@ -41,11 +41,11 @@ const links = [
 export default function MenteesDashboard() {
   return (
     <div className='flex'>
-      <div className='w-1/4'>
+      <div className=''>
         <Aside links={links} />
       </div>
 
-      <div className='w-3/4 bg-gray-200'>
+      <div className='bg-gray-200 w-full'>
         <Header />
         <div className='px-6 z-0 snap-x'>
           {/* courses boxes */}
