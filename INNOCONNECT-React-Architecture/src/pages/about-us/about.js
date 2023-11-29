@@ -61,92 +61,105 @@ const About = () => {
               className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 my-10 mx-20'
             >
               <div>
-                <img
+                {/* <img
                   src='assets/team/lizzy.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/35X4VZP"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/5XDGCHJ/lizzy.jpg" alt="lizzy" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Elizabeth Okwong</p>
               </div>
               <div>
-                <img
+                {/* <img
                   src='assets/team/obi.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/XSf703r"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/SRDtYd4/obi.jpg" alt="obi" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Obinna Nnodim</p>
               </div>
               <div>
-                <img
+                {/* <img
                   src='assets/team/som.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/QKq3TDc"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/JsbwG3d/som.jpg" alt="som" border="0" /></a>
                 <p className='mb-1 text-center text-xl'>Ejiba Chisom</p>
               </div>
               <div>
-                <img
+                {/* <img
                   src='assets/team/pat.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/YdCXM0s"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/t2GztLr/pat.jpg" alt="pat" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Patience Bassey</p>
               </div>
               {/* hidden */}
-              <div className='hidden '>
-                <img
+              <div className=''>
+                {/* <img
                   src='assets/team/edet.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/mTsNFWx"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/PjpDzHS/edet.jpg" alt="edet" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Edet Effiong</p>
               </div>
-              <div className='hidden '>
-                <img
-                  src='assets/team/glad.jpg'
-                  alt
-                  className='rounded-full mx-auto w-52 h-52'
-                />
+              <div className=''>
+                
+                <a href="https://ibb.co/j30WjGc"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/bNw2GLS/glad.jpg" alt="glad" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Gladys Luke</p>
               </div>
-              <div className='hidden'>
-                <img
-                  src='assets/team/dan.jpg'
-                  alt
-                  className='rounded-full mx-auto w-52 h-52'
-                />
+              <div className=''>
+                 
+                <a href="https://ibb.co/vYnbpy5"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/Ryw1frn/dan.jpg" alt="dan" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Daniel Omoanon</p>
               </div>
-              <div className='hidden'>
-                <img
+              <div className=''>
+                {/* <img
                   src='assets/team/nofi.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/vx2MhZR"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/5WqJkBw/nofi.jpg" alt="nofi" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Nofisat Aboidun</p>
               </div>
-              <div className='hidden'>
-                <img
+              <div className=''>
+                {/* <img
                   src='assets/team/efe.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/ZzJL2fx"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/VYNjwLT/efe.jpg" alt="efe" border="0" /></a>
+ 
                 <p className='mb-1 text-xl text-center'>Efe Salubi</p>
               </div>
-              <div className='hidden'>
-                <img
+              <div className=''>
+                {/* <img
                   src='assets/team/anas.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/rswxzdp"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/wszSPcQ/anas.jpg" alt="anas" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Anas Abdulmalik</p>
               </div>
-              <div className='hidden'>
-                <img
+              <div className=''>
+                {/* <img
                   src='assets/team/abbas.jpg'
                   alt
                   className='rounded-full mx-auto w-52 h-52'
-                />
+                /> */}
+                <a href="https://ibb.co/P1LmKkT"><img className='rounded-full mx-auto w-52 h-52' src="https://i.ibb.co/DwJVhdG/abbas.jpg" alt="abbas" border="0" /></a>
+
                 <p className='mb-1 text-xl text-center'>Abbas Toafeeq</p>
               </div>
             </div>
