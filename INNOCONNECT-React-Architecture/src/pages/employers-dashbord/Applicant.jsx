@@ -10,11 +10,14 @@ export default function Applicant() {
         <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
           <div className='flex items-center'>
             <div className='mr-4'>
-              <img
-                src='./assets/team/edet.jpg'
-                alt=''
-                className='w-20 h-20 rounded-full object-cover'
-              />
+              <a href='https://ibb.co/mTsNFWx'>
+                <img
+                  className='w-20 h-20 rounded-full object-cover'
+                  src='https://i.ibb.co/PjpDzHS/edet.jpg'
+                  alt='edet'
+                  border='0'
+                />
+              </a>
             </div>
             <div className='flex flex-col'>
               <div className='flex'>
@@ -56,11 +59,14 @@ export default function Applicant() {
         <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
           <div className='flex items-center'>
             <div className='mr-4'>
-              <img
-                src='./assets/team/ismail memeber.jpg'
-                alt=''
-                className='w-20 h-20 rounded-full object-cover'
-              />
+              <a href='https://ibb.co/hc0yzks'>
+                <img
+                  className='w-20 h-20 rounded-full object-cover'
+                  src='https://i.ibb.co/jztTXdh/ismail-memeber.jpg'
+                  alt='ismail-memeber'
+                  border='0'
+                />
+              </a>
             </div>
             <div className='flex flex-col'>
               <div className='flex'>
@@ -102,11 +108,14 @@ export default function Applicant() {
         <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
           <div className='flex items-center'>
             <div className='mr-4'>
-              <img
-                src='./assets/team/som.jpg'
-                alt=''
-                className='w-20 h-20 rounded-full object-cover'
-              />
+              <a href='https://ibb.co/QKq3TDc'>
+                <img
+                  className='w-20 h-20 rounded-full object-cover'
+                  src='https://i.ibb.co/JsbwG3d/som.jpg'
+                  alt='som'
+                  border='0'
+                />
+              </a>
             </div>
             <div className='flex flex-col'>
               <div className='flex'>
