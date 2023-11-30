@@ -3,9 +3,11 @@ import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import { Link } from 'react-router-dom';
 import { blog_illustration, carr } from '../../assets';
+// import ArticleContents from './ArticleContents';
+// import ArticleDetails from './ArticleDetails';
 
 
-const Article = (blog) => {
+const Article = () => {
   return (
     <div>
       <Nav />
@@ -18,7 +20,7 @@ const Article = (blog) => {
                   Our Blog
                 </h1>
                 <p className='text-xl text-white my-4 max-w-lg'>
-                  A center for all our Resources and insights.Get the best of
+                  A center for all our Resources and insights.Get the best oArticleCard
                   mentorship and career news, internship and land the dream job
                 </p>
                 {/* <div class="inline-block w-full">
@@ -50,6 +52,14 @@ const Article = (blog) => {
             id='featured'
           >
             <div className='flex flex-col md:flex-row items-center justify-center gap-10 px-4'>
+
+              {/* {ArticleContents.map((blog) => (
+                <ArticleDetails
+                  key={blog.id}
+                  blog={blog}
+                />
+              ))} */}
+
               <div className>
                 <img
                   src={carr}
@@ -75,12 +85,12 @@ const Article = (blog) => {
                   organizational growth...
                   <span>
                     <Link
-                      to={`/blog-details/${blog.id}`}
+                     
                       className=' px-3 py-1 inline-flex items-center text-red-500  font-bold'
                     >
                       Read More
                     </Link>
-                    {/* <a href="blogDetails.html" className="text-error-04 font-medium">Read more</a> */}
+                  
                   </span>
                 </p>
                 <div className='flex items-center mt-8 font-medium'>

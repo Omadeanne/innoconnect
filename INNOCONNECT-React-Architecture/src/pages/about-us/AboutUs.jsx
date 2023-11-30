@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "../../Components/molecules/nav_footer/Nav";
 import Footer from "../../Components/molecules/nav_footer/Footer";
 
 const About = () => {
+
+  const [viewImage, setViewImage] = useState(false);
+
+  const toggleViewImage = () => {
+    setViewImage(!viewImage);
+
+  }
+
+
   return (
     <div>
       <Nav />
@@ -108,101 +117,97 @@ const About = () => {
                 <p className="mb-1 text-xl text-center">Patience Bassey</p>
               </div>
               {/* hidden */}
-              <div className="hidden">
-                <a href="https://ibb.co/mTsNFWx">
-                  <img
-                    className="rounded-full mx-auto w-52 h-52"
-                    src="https://i.ibb.co/PjpDzHS/edet.jpg"
-                    alt="edet"
-                    border="0"
-                  />
-                </a>
+              
+              
 
-                <p className="mb-1 text-xl text-center">Edet Effiong</p>
-              </div>
-              <div className="hidden">
-                <a href="https://ibb.co/j30WjGc">
-                  <img
-                    className="rounded-full mx-auto w-52 h-52"
-                    src="https://i.ibb.co/bNw2GLS/glad.jpg"
-                    alt="glad"
-                    border="0"
-                  />
-                </a>
-
-                <p className="mb-1 text-xl text-center">Gladys Luke</p>
-              </div>
-              <div className="hidden">
-                <a href="https://ibb.co/vYnbpy5">
-                  <img
-                    className="rounded-full mx-auto w-52 h-52"
-                    src="https://i.ibb.co/Ryw1frn/dan.jpg"
-                    alt="dan"
-                    border="0"
-                  />
-                </a>
-
-                <p className="mb-1 text-xl text-center">Daniel Omoanon</p>
-              </div>
-              <div className="hidden">
-                <a href="https://ibb.co/vx2MhZR">
-                  <img
-                    className="rounded-full mx-auto w-52 h-52"
-                    src="https://i.ibb.co/5WqJkBw/nofi.jpg"
-                    alt="nofi"
-                    border="0"
-                  />
-                </a>
-
-                <p className="mb-1 text-xl text-center">Nofisat Aboidun</p>
-              </div>
-              <div className="hidden">
-                <a href="https://ibb.co/ZzJL2fx">
-                  <img
-                    className="rounded-full mx-auto w-52 h-52"
-                    src="https://i.ibb.co/VYNjwLT/efe.jpg"
-                    alt="efe"
-                    border="0"
-                  />
-                </a>
-
-                <p className="mb-1 text-xl text-center">Efe Salubi</p>
-              </div>
-              <div className="hidden">
-                <a href="https://ibb.co/rswxzdp">
-                  <img
-                    className="rounded-full mx-auto w-52 h-52"
-                    src="https://i.ibb.co/wszSPcQ/anas.jpg"
-                    alt="anas"
-                    border="0"
-                  />
-                </a>
-
-                <p className="mb-1 text-xl text-center">Anas Abdulmalik</p>
-              </div>
-              <div className="hidden">
-                <a href="https://ibb.co/P1LmKkT">
-                  <img
-                    className="rounded-full mx-auto w-52 h-52"
-                    src="https://i.ibb.co/DwJVhdG/abbas.jpg"
-                    alt="abbas"
-                    border="0"
-                  />
-                </a>
-
-                <p className="mb-1 text-xl text-center">Abbas Toafeeq</p>
-              </div>
             </div>
-            {/* view all */}
-            {/* <div class="relative mt-24 mr-36 mb-3 text-right flex flex-row-reverse">
-          <div>
-          <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-[#DCF0F1] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="image-button" aria-expanded="true" aria-haspopup="true">
-              View All
-              <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-              </svg>
-          </button>
-          </div> */}
+            {viewImage && (<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 my-10 mx-20'>
+                <div className="">
+                  <a href="https://ibb.co/mTsNFWx">
+                    <img
+                      className="rounded-full mx-auto w-52 h-52"
+                      src="https://i.ibb.co/PjpDzHS/edet.jpg"
+                      alt="edet"
+                      border="0"
+                    />
+                  </a>
+
+                  <p className="mb-1 text-xl text-center">Edet Effiong</p>
+                </div>
+                <div className="">
+                  <a href="https://ibb.co/j30WjGc">
+                    <img
+                      className="rounded-full mx-auto w-52 h-52"
+                      src="https://i.ibb.co/bNw2GLS/glad.jpg"
+                      alt="glad"
+                      border="0"
+                    />
+                  </a>
+
+                  <p className="mb-1 text-xl text-center">Gladys Luke</p>
+                </div>
+                <div className="">
+                  <a href="https://ibb.co/vYnbpy5">
+                    <img
+                      className="rounded-full mx-auto w-52 h-52"
+                      src="https://i.ibb.co/Ryw1frn/dan.jpg"
+                      alt="dan"
+                      border="0"
+                    />
+                  </a>
+
+                  <p className="mb-1 text-xl text-center">Daniel Omoanon</p>
+                </div>
+                <div className="">
+                  <a href="https://ibb.co/vx2MhZR">
+                    <img
+                      className="rounded-full mx-auto w-52 h-52"
+                      src="https://i.ibb.co/5WqJkBw/nofi.jpg"
+                      alt="nofi"
+                      border="0"
+                    />
+                  </a>
+
+                  <p className="mb-1 text-xl text-center">Nofisat Aboidun</p>
+                </div>
+                <div className="">
+                  <a href="https://ibb.co/ZzJL2fx">
+                    <img
+                      className="rounded-full mx-auto w-52 h-52"
+                      src="https://i.ibb.co/VYNjwLT/efe.jpg"
+                      alt="efe"
+                      border="0"
+                    />
+                  </a>
+
+                  <p className="mb-1 text-xl text-center">Efe Salubi</p>
+                </div>
+                <div className="">
+                  <a href="https://ibb.co/rswxzdp">
+                    <img
+                      className="rounded-full mx-auto w-52 h-52"
+                      src="https://i.ibb.co/wszSPcQ/anas.jpg"
+                      alt="anas"
+                      border="0"
+                    />
+                  </a>
+
+                  <p className="mb-1 text-xl text-center">Anas Abdulmalik</p>
+                </div>
+                <div className="">
+                  <a href="https://ibb.co/P1LmKkT">
+                    <img
+                      className="rounded-full mx-auto w-52 h-52"
+                      src="https://i.ibb.co/DwJVhdG/abbas.jpg"
+                      alt="abbas"
+                      border="0"
+                    />
+                  </a>
+
+                  <p className="mb-1 text-xl text-center">Abbas Toafeeq</p>
+                </div>
+              </div>)}
+            
           </div>
           <div className="relative mt-4 mb-4 mr-8 lg:mt-24 text-right flex flex-row-reverse">
             <div>
@@ -212,6 +217,7 @@ const About = () => {
                 id="image-button"
                 aria-expanded="true"
                 aria-haspopup="true"
+                onClick={toggleViewImage}
               >
                 View All
                 <svg
