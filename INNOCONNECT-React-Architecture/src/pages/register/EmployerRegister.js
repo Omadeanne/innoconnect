@@ -1,6 +1,6 @@
 import { Link} from 'react-router-dom';
 import { useRef, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { Spinner } from '@material-tailwind/react';
 
 const EmployerRegister = () => {
@@ -38,7 +38,7 @@ const EmployerRegister = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/v1/auth/employer/register',
+        '/auth/employer/register',
         JSON.stringify(data),
         {
           headers: { 'Content-Type': 'application/json' },

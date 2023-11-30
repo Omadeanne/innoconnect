@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { Spinner } from '@material-tailwind/react';
 
 const MenteeRegister = () => {
@@ -41,7 +41,7 @@ const MenteeRegister = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'http://localhost:5000/v1/auth/mentee/register',
+        '/auth/mentee/register',
         JSON.stringify(data),
         {
           headers: { 'Content-Type': 'application/json' },

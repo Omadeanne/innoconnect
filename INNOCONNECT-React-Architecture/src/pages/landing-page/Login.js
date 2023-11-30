@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logo, registerpageimage } from '../../assets';
 import { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { Spinner } from '@material-tailwind/react';
 import useAuthProvider from '../../context/useAuthProvider';
 
@@ -42,7 +42,7 @@ const Login = () => {
         password,
       };
       const response = await axios.post(
-        'http://localhost:5000/v1/auth/login',
+        '/auth/login',
         JSON.stringify(data),
         {
           headers: { 'Content-Type': 'application/json' },
