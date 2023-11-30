@@ -1,12 +1,7 @@
-import { Menu, Transition } from '@headlessui/react';
 import {
-  BellIcon,
-  ChevronDownIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import { Input } from '@material-tailwind/react';
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import ProfileAndNotifications from '../nav_footer/ProfileAndNotifications';
 
 const Header = () => {

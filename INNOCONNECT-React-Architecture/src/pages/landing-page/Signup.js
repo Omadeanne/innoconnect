@@ -12,6 +12,7 @@ const Signup = () => {
     setActiveTab(index);
   };
 
+
   return (
     <div>
       <div className='flex flex-col md:flex-row min-h-screen'>
@@ -102,36 +103,6 @@ const Signup = () => {
                 <span>signup with Apple</span>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id='success-modal'
-        className='hidden fixed inset-0  items-center justify-center z-50 bg-gray-800 bg-opacity-50'
-      >
-        <div className='container w-[464px] bg-white p-8 rounded-3xl text-center hover:shadow-lg'>
-          <div className='content'>
-            <div className='flex justify-center items-center'>
-              {/* <img
-                src='./assets/partypopper.png'
-                alt=""
-              /> */}
-            </div>
-            <div className='px-10'>
-              <h1 className='text-xl font-bold my-3'>
-                Account successfully created
-              </h1>
-              <p className='text-[#777676] '>
-                Your account creation process has been completed and successful.
-              </p>
-            </div>
-            <button
-              type='submit'
-              id='login-button'
-              className='bg-[#234270] text-white w-full font-semibold rounded py-2 mt-5 hover:bg-[#0d304c] transition duration-300'
-            >
-              Proceed to Login
-            </button>
           </div>
         </div>
       </div>

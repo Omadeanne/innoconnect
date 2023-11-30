@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
@@ -17,10 +17,7 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
-  const user = {
-    role: 'employer',
-  };
-
+  const [user, setUser] = useState()
   return (
     <Disclosure
       as='nav'

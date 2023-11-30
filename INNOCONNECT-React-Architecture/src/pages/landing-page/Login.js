@@ -1,7 +1,69 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logo, registerpageimage } from '../../assets';
+import { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import { Spinner } from '@material-tailwind/react';
+import useAuthProvider from '../../context/useAuthProvider';
+
+const roles = [
+  { name: 'mentor', to: '/mentors-dashboard' },
+  { name: 'mentee', to: '/mentees-dashboard' },
+  { name: 'employer', to: '/employers-dashboard' },
+];
 
 const Login = () => {
+  const location = useLocation();
+  let from = '';
+  const Navigate = useNavigate();
+
+  const { isLoggedIn, setIsLoggedIn } = useAuthProvider();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  roles.forEach((role) => {
+    if (isLoggedIn.user.role === role.name) {
+      from = location.state?.from?.pathname || `${role.to}`;
+    }
+  });
+  const errRef = useRef();
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [email]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setErrMsg('All fields are required');
+      return;
+    }
+
+    try {
+      const data = {
+        email,
+        password,
+      };
+      setLoading(true);
+      const response = await axios.post(
+        'http://localhost:5000/v1/auth/login',
+        JSON.stringify(data),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+
+      setLoading(false);
+      setIsLoggedIn(response.data);
+      Navigate(from, { replace: true });
+    } catch (error) {
+      setLoading(false);
+      setErrMsg(error.response.data.message);
+    }
+  };
   return (
     <div className='flex flex-col md:flex-row min-h-screen'>
       <div className='md:absolute h-20 left-4 top-4 p-4 bg-[#112034]'>
@@ -29,6 +91,18 @@ const Login = () => {
               className='bg-[#F6F9FA] p-8 rounded-2xl'
               id='form-login'
             >
+              <p
+                ref={errRef}
+                className={
+                  errMsg
+                    ? 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2 col-span-full'
+                    : 'hidden'
+                }
+                aria-live='assertive'
+                role='alert'
+              >
+                {errMsg}
+              </p>
               <div className='my-4'>
                 <label
                   className='block text-gray-700 font-bold my-2 text-sm'
@@ -41,6 +115,8 @@ const Login = () => {
                   id='email'
                   type='email'
                   placeholder='johndoe@gmail.com'
+                  onChange={(event) => setEmail(event.target.value)}
+                  value={email}
                 />
               </div>
               <div className='my-4'>
@@ -55,6 +131,8 @@ const Login = () => {
                   id='password'
                   type='password'
                   placeholder='Password'
+                  onChange={(event) => setPassword(event.target.value)}
+                  value={password}
                 />
                 <p
                   className='hidden'
@@ -66,8 +144,9 @@ const Login = () => {
               <button
                 type='submit'
                 className='bg-[#234270] text-white w-full font-semibold rounded py-2 mt-5 hover:bg-[#0d304c] transition duration-300'
+                onClick={handleSubmit}
               >
-                Login
+                {loading ? <Spinner className='block mx-auto' /> : 'Login'}
               </button>
               <div className='text-right text-sm text-[#234270] mt-2'>
                 <a href='/forgot-password'>Forgot Password?</a>
