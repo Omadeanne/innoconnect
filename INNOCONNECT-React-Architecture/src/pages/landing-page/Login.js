@@ -5,29 +5,22 @@ import axios from 'axios';
 import { Spinner } from '@material-tailwind/react';
 import useAuthProvider from '../../context/useAuthProvider';
 
-const roles = [
-  { name: 'mentor', to: '/mentors-dashboard' },
-  { name: 'mentee', to: '/mentees-dashboard' },
-  { name: 'employer', to: '/employers-dashboard' },
-];
-
 const Login = () => {
   const location = useLocation();
-  let from = '';
   const Navigate = useNavigate();
 
-  const { isLoggedIn, setIsLoggedIn } = useAuthProvider();
+  const { setIsLoggedIn } = useAuthProvider();
+  const roles = [
+    { name: 'mentor', to: '/mentors-dashboard' },
+    { name: 'mentee', to: '/mentees-dashboard' },
+    { name: 'employer', to: '/employers-dashboard' },
+  ];
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [loading, setLoading] = useState(false);
 
-  roles.forEach((role) => {
-    if (isLoggedIn.user.role === role.name) {
-      from = location.state?.from?.pathname || `${role.to}`;
-    }
-  });
   const errRef = useRef();
 
   useEffect(() => {
@@ -43,11 +36,11 @@ const Login = () => {
     }
 
     try {
+      setLoading(true);
       const data = {
         email,
         password,
       };
-      setLoading(true);
       const response = await axios.post(
         'http://localhost:5000/v1/auth/login',
         JSON.stringify(data),
@@ -57,7 +50,10 @@ const Login = () => {
       );
 
       setLoading(false);
-      setIsLoggedIn(response.data);
+      setIsLoggedIn(response?.data);
+      let from =
+        location.state?.from?.pathname ||
+        `${roles.find((role) => role.name === response?.data?.user?.role)?.to}`;
       Navigate(from, { replace: true });
     } catch (error) {
       setLoading(false);

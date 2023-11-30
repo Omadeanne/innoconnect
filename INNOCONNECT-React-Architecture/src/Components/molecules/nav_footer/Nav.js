@@ -1,10 +1,11 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 import { logo } from '../../../assets';
 import ProfileAndNotifications from './ProfileAndNotifications';
+import useAuthProvider from '../../../context/useAuthProvider';
 
 const navigation = [
   { name: 'Jobs', to: '/job-search', current: true },
@@ -17,7 +18,7 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
-  const [user, setUser] = useState()
+  const { isLoggedIn } = useAuthProvider();
   return (
     <Disclosure
       as='nav'
@@ -215,7 +216,7 @@ export default function Nav() {
                   </div>
                 </div>
               </div>
-              {!user ? (
+              {isLoggedIn ? (
                 <div className='lg:flex lg:px-0 hidden gap-4 absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
                   <Link
                     to='/login'

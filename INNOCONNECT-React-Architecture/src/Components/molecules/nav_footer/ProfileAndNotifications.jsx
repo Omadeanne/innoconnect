@@ -1,9 +1,12 @@
 import { Menu, Transition } from '@headlessui/react';
 import { BellIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuthProvider from '../../../context/useAuthProvider';
+import useLogout from '../../../hooks/useLogout';
 
 const ProfileAndNotifications = () => {
+  const Navigate = useNavigate();
   const roles = [
     { name: 'mentor', to: '/mentors-dashboard', current: true },
     { name: 'mentee', to: '/mentees-dashboard', current: false },
@@ -14,8 +17,13 @@ const ProfileAndNotifications = () => {
     return classes.filter(Boolean).join(' ');
   }
 
-  const user = {
-    role: 'employer',
+  const { isLoggedIn } = useAuthProvider();
+  const logout = useLogout()
+
+  const handleLogout = async () => {
+    await logout()
+    console.log('logged out');
+    Navigate('/register')
   };
 
   return (
@@ -68,7 +76,7 @@ const ProfileAndNotifications = () => {
             >
               <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                 {roles.map((role) => {
-                  if (role.name === user.role) {
+                  if (role.name === isLoggedIn?.user?.role) {
                     return (
                       <Menu.Item>
                         {({ active }) => (
@@ -130,8 +138,8 @@ const ProfileAndNotifications = () => {
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <Link
-                      to='#'
+                    <button
+                      onClick={handleLogout}
                       className={classNames(
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700'
@@ -152,7 +160,7 @@ const ProfileAndNotifications = () => {
                         />
                       </svg>
                       Sign out
-                    </Link>
+                    </button>
                   )}
                 </Menu.Item>
               </Menu.Items>
