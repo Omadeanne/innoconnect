@@ -29,6 +29,9 @@ import Layout from './Layout';
 import About from './pages/about-us/AboutUs';
 import Overview from './pages/employers-dashbord/Overview';
 import Message from './pages/employers-dashbord/Message';
+import MenteeOverview from './pages/mentees-dashboard/MenteeOverview';
+import Courses from './pages/mentees-dashboard/courses/Courses';
+import MyMentors from './pages/mentees-dashboard/MyMentors';
 
 function App() {
   return (
@@ -113,13 +116,19 @@ function App() {
         <Route
           path='/mentees-dashboard'
           element={<MenteesDashboard />}
-        />
-        <Route
-          path='/employers-dashboard'
-          element={<Dashboard />}>
+        >
           <Route
-            path='post-jobs'
-            element={<PostJobs />} />
+            path=''
+            element={<MenteeOverview />}
+          />
+          <Route
+            path='courses'
+            element={<Courses />}
+          />
+          <Route
+            path='my-mentors'
+            element={<MyMentors />}
+          />
         </Route>
         <Route
           path='/mentors-dashboard'

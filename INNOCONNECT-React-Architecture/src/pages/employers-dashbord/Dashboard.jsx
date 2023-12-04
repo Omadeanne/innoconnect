@@ -45,7 +45,7 @@ export default function Dashboard() {
         <div className=''>
           <Aside links={links} />
         </div>
-        <div className='h-screen bg-gray-200 overflow-auto w-full flex flex-col justify-between'>
+        <div className='h-screen bg-gray-200 overflow-auto w-full flex flex-col justify-between ml-[20rem]'>
           <Header />
           <div className=''>
             <Outlet />
