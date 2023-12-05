@@ -20,15 +20,15 @@ function Community() {
                   more about your experience
                 </b>
               </p>
-              <a
-                href='#'
+              <a 
+                href='https://discord.com/channels/1181568987788759040/11815689884891956'
                 className='text-white bg-secondary-06 p-3 rounded-md text-sm md:text-base inline-flex items-center shadow-md'
-              >
-                <img
+              ><i class="fa-brands fa-discord mr-2 inline-block h-5 w-5"></i>
+                {/* <img
                   src='assets/discord.svg'
                   alt=''
                   className='mr-2 inline-block h-5 w-5'
-                />
+                /> */}
                 Join the community
               </a>
             </div>

@@ -20,7 +20,7 @@ const MentorCard = ({ mentor }) => {
     <div className='flex flex-col'>
       <Link to={`/mentors/${mentor.id}`}>
         <div data-aos="fade-up">
-          <div className='flex flex-col  items-center justify-center hull bg-primary-01 my-3 py-8 rounded-lg hover:shadow-lg hover:transition hover:duration-300'>
+          <div className='flex flex-col items-center justify-center hull bg-primary-01 my-3 py-8 rounded-lg hover:shadow-lg hover:transition hover:duration-300'>
 
             <div className="">
               <img
