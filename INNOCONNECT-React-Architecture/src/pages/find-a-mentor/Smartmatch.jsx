@@ -3,7 +3,7 @@ import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import MentorCard from './MentorCard';
 import mentors from './mentors';
-import { hero} from '../../assets';
+// import { hero} from '../../assets';
 
 export default function Smartmatch() {
   return (
@@ -11,10 +11,7 @@ export default function Smartmatch() {
       <Nav />
       <div className='m-auto'>
         <div className=' m-auto '>
-        <div
-            className='relative overflow-hidden bg-cover bg-no-repeat p-12 text-center flex justify-center items-center h-screen xmd:h-screen xmd:w-[100%]'
-            style={{ backgroundImage: `url(${hero})` }}
-          >
+            <a href="https://ibb.co/0rrxLz4"><img className=' 'src="https://i.ibb.co/TttsGNj/findamentor.jpg" alt="findamentor" border="0" /></a>
           <div>
           <p className='font-font text-6xl font-bold text-white text-center my-[20px] p-[10px]'>
             Discover Your Mentorship Match
@@ -29,7 +26,7 @@ export default function Smartmatch() {
           </div>
         </div>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
+        <div className='grid grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
           {mentors.map((mentor) => (
             <MentorCard
               key={mentor.id}
@@ -69,7 +66,7 @@ export default function Smartmatch() {
             </li>
           </ul>
         </div>
-      </div>
+    
       <Footer />
     </>
   );

@@ -226,7 +226,9 @@ const ArticleDetails = () => {
             </p>
             <hr />
             <div className="flex items-center mt-4 font-medium">
-              <img src="./assets/team/lizzy.jpg" className="rounded-full h-10 w-10" alt />
+            <a href="https://ibb.co/35X4VZP"><img className="rounded-full h-10 w-10" src="https://i.ibb.co/5XDGCHJ/lizzy.jpg" alt="lizzy" border="0" /></a>
+
+              {/* <img src="./assets/team/lizzy.jpg" className="rounded-full h-10 w-10" alt /> */}
               <p className="ml-2">Elizbeth Okwong</p>
               <i className="fa-solid fa-circle text-[0.4rem] mx-2 opacity-50 text-primary-05" />
               <p className>20th July, 2022</p>
@@ -252,7 +254,7 @@ const ArticleDetails = () => {
             </p>
             <hr />
             <div className="flex items-center mt-4 font-medium">
-              <img src="./assets/team/lizzy.jpg" className="rounded-full h-10 w-10" alt />
+            <a href="https://ibb.co/35X4VZP"><img className="rounded-full h-10 w-10" src="https://i.ibb.co/5XDGCHJ/lizzy.jpg" alt="lizzy" border="0" /></a>
               <p className="ml-2">Elizbeth Okwong</p>
               <i className="fa-solid fa-circle text-[0.4rem] mx-2 opacity-50 text-primary-05" />
               <p className>20th July, 2022</p>
@@ -279,7 +281,9 @@ const ArticleDetails = () => {
             </p>
             <hr />
             <div className="flex items-center mt-4 font-medium">
-              <img src="./assets/team/dan.jpg" className="rounded-full h-10 w-10" alt />
+            <a href="https://ibb.co/vYnbpy5"><img className="rounded-full h-10 w-10" src="https://i.ibb.co/Ryw1frn/dan.jpg" alt="dan" border="0" /></a>
+
+              {/* <img src="./assets/team/dan.jpg" className="rounded-full h-10 w-10" alt /> */}
               <p className="ml-2">Omoanon Daniel</p>
               <i className="fa-solid fa-circle text-[0.4rem] mx-2 opacity-50 text-primary-05" />
               <p className>20th July, 2022</p>
