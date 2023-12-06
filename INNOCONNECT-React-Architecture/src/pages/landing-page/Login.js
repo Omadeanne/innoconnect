@@ -48,9 +48,10 @@ const Login = () => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
+      const {user, tokens} = response?.data
 
       setLoading(false);
-      setIsLoggedIn(response?.data);
+      setIsLoggedIn({user, tokens});
       let from =
         location.state?.from?.pathname ||
         `${roles.find((role) => role.name === response?.data?.user?.role)?.to}`;

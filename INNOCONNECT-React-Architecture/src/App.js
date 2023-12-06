@@ -52,66 +52,70 @@ function App() {
         path='/community'
         element={<Community />}
       />
+      <Route
+        path='/job-search'
+        element={<JobSearch />}
+      />
+      <Route
+        path='/job-details/:id'
+        element={<JobDetails />}
+      />
+      <Route
+        path='/blog-details/:id'
+        element={<JobDetails />}
+      />
+      <Route
+        path='/faq'
+        element={<Faq />}
+      />
+      <Route
+        path='/blog'
+        element={<Article />}
+      />
+      <Route
+        path='/mentors'
+        element={<Smartmatch />}
+      />
+      <Route
+        path='/mentors/:id'
+        element={<MentorProfile />}
+      />
+      <Route
+        path='/pricing'
+        element={<Pricing />}
+      />
+      <Route
+        path='/about'
+        element={<About />}
+      />
+      <Route
+        path='/forgot-password'
+        element={<ForgotPassword />}
+      />
+      <Route
+        path='/become-mentor'
+        element={<BecomeMentor />}
+      />
+      <Route
+        path='/terms-and-conditions'
+        element={<TermsCondition />}
+      />
+      <Route
+        path='/mentor-form'
+        element={<MentorForm />}
+      />
+      <Route
+        path='/mentors-faq'
+        element={<MentorsFaq />}
+      />
+      <Route
+        path='/personality-test'
+        element={<PersonalityTest />}
+      />
       <Route element={<Layout />}>
-        <Route
-          path='/job-search'
-          element={<JobSearch />}
-        />
-        <Route
-          path='/job-details/:id'
-          element={<JobDetails />}
-        />
         <Route
           path='/apply/:id'
           element={<Application />}
-        />
-        <Route
-          path='/Smart-match/'
-          element={<Smartmatch />}
-        />
-        <Route
-          path='/mentor-form'
-          element={<MentorForm />}
-        />
-        <Route
-          path='/blog'
-          element={<Article />}
-        />
-        <Route
-          path='/blog-details/:id'
-          element={<JobDetails />}
-        />
-        <Route
-          path='/faq'
-          element={<Faq />}
-        />
-        <Route
-          path='/mentors'
-          element={<Smartmatch />}
-        />
-        <Route
-          path='/mentors/:id'
-          element={<MentorProfile />}
-        />
-        <Route
-          path='/pricing'
-          element={<Pricing />}
-        />
-        <Route
-          path='/about'
-          element={<About />}
-        />
-        <Route
-          path='/forgot-password'
-          element={<ForgotPassword />}
-        />
-        <Route
-          path='/become-mentor'
-          element={<BecomeMentor />}
-        />
-        <Route
-          path='/terms-and-conditions'
-          element={<TermsCondition />}
         />
         <Route
           path='/mentees-dashboard'
@@ -133,18 +137,6 @@ function App() {
         <Route
           path='/mentors-dashboard'
           element={<MentorsDashboard />}
-        />
-        <Route
-          path='/mentors-faq'
-          element={<MentorsFaq />}
-        />
-        <Route
-          path='/personality-test'
-          element={<PersonalityTest />}
-        />
-        <Route
-          path='/mentor-profile'
-          element={<MentorProfile />}
         />
         <Route
           path='/employers-dashboard'
@@ -171,15 +163,15 @@ function App() {
             element={<Applicant />}
           />
         </Route>
-        <Route
-          path='/contact'
-          element={<Contact />}
-        />
-        <Route
-          path='*'
-          element={<NotFound />}
-        />
       </Route>
+      <Route
+        path='/contact'
+        element={<Contact />}
+      />
+      <Route
+        path='*'
+        element={<NotFound />}
+      />
     </Routes>
   );
 }
