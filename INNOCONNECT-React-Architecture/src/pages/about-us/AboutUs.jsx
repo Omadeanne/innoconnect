@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+
 import Nav from "../../Components/molecules/nav_footer/Nav";
 import Footer from "../../Components/molecules/nav_footer/Footer";
-
+import AOS from 'aos'
+import 'aos/dist/aos.css';
 const About = () => {
 
-  const [viewImage, setViewImage] = useState(false);
+  // const [viewImage, setViewImage] = useState(true);
 
-  const toggleViewImage = () => {
-    setViewImage(!viewImage);
+  // const toggleViewImage = () => {
+  //   setViewImage(!viewImage);
 
-  }
-
+  
+  useEffect(() => {
+    AOS.init();
+  }, [])
 
   return (
     <div>
@@ -58,160 +62,157 @@ const About = () => {
               </p>
             </div>
           </div>
-          <span className="text-4xl flex justify-center mt-24 font-extrabold">
+          {/* <span className="text-4xl flex justify-center mt-24 font-extrabold">
             OUR TEAM
-          </span>
-          <h3 className="text-2xl flex justify-center mt-1">
+          </span> */}
+          <h3 className="text-4xl flex justify-center mt-24 font-extrabold text-primary-06">
             Meet the entire team
           </h3>
           <div>
             <div
               id="image-grid"
-              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 my-10 mx-20"
+              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 pl-[60px] pr-[70px] my-10 mx-10"
             >
               <div>
                 <a href="https://ibb.co/35X4VZP">
                   <img
-                    className="rounded-full mx-auto w-52 h-52"
+                    className="rounded-full mx-auto w-20 h-30"
                     src="https://i.ibb.co/5XDGCHJ/lizzy.jpg"
                     alt="lizzy"
                     border="0"
                   />
                 </a>
 
-                <p className="mb-1 text-xl text-center">Elizabeth Okwong</p>
+                <p className="mb-1 text-[15px] text-center text-primary-06">Elizabeth Okwong</p>
               </div>
               <div>
                 <a href="https://ibb.co/XSf703r">
                   <img
-                    className="rounded-full mx-auto w-52 h-52"
+                    className="rounded-full mx-auto w-20 h-20"
                     src="https://i.ibb.co/SRDtYd4/obi.jpg"
                     alt="obi"
                     border="0"
                   />
                 </a>
 
-                <p className="mb-1 text-xl text-center">Obinna Nnodim</p>
+                <p className="mb-1 text-[15px] text-center text-primary-06">Obinna Nnodim</p>
               </div>
               <div>
                 <a href="https://ibb.co/QKq3TDc">
                   <img
-                    className="rounded-full mx-auto w-52 h-52"
+                    className="rounded-full mx-auto w-20 h-20"
                     src="https://i.ibb.co/JsbwG3d/som.jpg"
                     alt="som"
                     border="0"
                   />
                 </a>
-                <p className="mb-1 text-center text-xl">Ejiba Chisom</p>
+                <p className="mb-1 text-center text-[15px] text-primary-06">Ejiba Chisom</p>
               </div>
               <div>
                 <a href="https://ibb.co/YdCXM0s">
                   <img
-                    className="rounded-full mx-auto w-52 h-52"
+                    className="rounded-full mx-auto w-20 h-30"
                     src="https://i.ibb.co/t2GztLr/pat.jpg"
                     alt="pat"
                     border="0"
                   />
                 </a>
 
-                <p className="mb-1 text-xl text-center">Patience Bassey</p>
+                <p className="mb-1 text-[15px] text-center">Patience Bassey</p>
               </div>
-              {/* hidden */}
               
-              
-
             </div>
-            {viewImage && (<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 my-10 mx-20'>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pl-[30px] pr-[40px] my-10 mx-20'>
                 <div className="">
                   <a href="https://ibb.co/mTsNFWx">
                     <img
-                      className="rounded-full mx-auto w-52 h-52"
+                      className="rounded-full mx-auto w-20 h-30"
                       src="https://i.ibb.co/PjpDzHS/edet.jpg"
                       alt="edet"
                       border="0"
                     />
                   </a>
 
-                  <p className="mb-1 text-xl text-center">Edet Effiong</p>
+                  <p className="mb-1 text-[15px] text-center text-primary-06">Edet Effiong</p>
                 </div>
                 <div className="">
                   <a href="https://ibb.co/j30WjGc">
                     <img
-                      className="rounded-full mx-auto w-52 h-52"
+                      className="rounded-full mx-auto w-20 h-20"
                       src="https://i.ibb.co/bNw2GLS/glad.jpg"
                       alt="glad"
                       border="0"
                     />
                   </a>
 
-                  <p className="mb-1 text-xl text-center">Gladys Luke</p>
+                  <p className="mb-1 text-[15px] text-center text-primary-06">Gladys Luke</p>
                 </div>
                 <div className="">
                   <a href="https://ibb.co/vYnbpy5">
                     <img
-                      className="rounded-full mx-auto w-52 h-52"
+                      className="rounded-full mx-auto w-20 h-30"
                       src="https://i.ibb.co/Ryw1frn/dan.jpg"
                       alt="dan"
                       border="0"
                     />
                   </a>
 
-                  <p className="mb-1 text-xl text-center">Daniel Omoanon</p>
+                  <p className="mb-1 text-[15px] text-center text-primary-06">Daniel Omoanon</p>
                 </div>
                 <div className="">
                   <a href="https://ibb.co/vx2MhZR">
                     <img
-                      className="rounded-full mx-auto w-52 h-52"
+                      className="rounded-full mx-auto w-20 h-20"
                       src="https://i.ibb.co/5WqJkBw/nofi.jpg"
                       alt="nofi"
                       border="0"
                     />
                   </a>
 
-                  <p className="mb-1 text-xl text-center">Nofisat Aboidun</p>
+                  <p className="mb-1 text-[15px] text-center text-primary-06">Nofisat Aboidun</p>
                 </div>
                 <div className="">
                   <a href="https://ibb.co/ZzJL2fx">
                     <img
-                      className="rounded-full mx-auto w-52 h-52"
+                      className="rounded-full mx-auto w-20 h-20"
                       src="https://i.ibb.co/VYNjwLT/efe.jpg"
                       alt="efe"
                       border="0"
                     />
                   </a>
 
-                  <p className="mb-1 text-xl text-center">Efe Salubi</p>
+                  <p className="mb-1 text-[15px] text-center text-primary-06">Efe Salubi</p>
                 </div>
                 <div className="">
                   <a href="https://ibb.co/rswxzdp">
                     <img
-                      className="rounded-full mx-auto w-52 h-52"
+                      className="rounded-full mx-auto w-20 h-20"
                       src="https://i.ibb.co/wszSPcQ/anas.jpg"
                       alt="anas"
                       border="0"
                     />
                   </a>
 
-                  <p className="mb-1 text-xl text-center">Anas Abdulmalik</p>
+                  <p className="mb-1 text-[15px] text-center text-primary-06">Anas Abdulmalik</p>
                 </div>
                 <div className="">
                   <a href="https://ibb.co/P1LmKkT">
                     <img
-                      className="rounded-full mx-auto w-52 h-52"
+                      className="rounded-full mx-auto w-20 h-30"
                       src="https://i.ibb.co/DwJVhdG/abbas.jpg"
                       alt="abbas"
                       border="0"
                     />
                   </a>
 
-                  <p className="mb-1 text-xl text-center">Abbas Toafeeq</p>
+                  <p className="mb-1 text-[15px] text-center text-primary-06">Abbas Toafeeq</p>
                 </div>
-              </div>)}
+              </div>
             
           </div>
           <div className="relative mt-4 mb-4 mr-8 lg:mt-24 text-right flex flex-row-reverse">
             <div>
-              <button
+              {/* <button
                 type="button"
                 className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-[#DCF0F1] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 id="image-button"
@@ -219,8 +220,8 @@ const About = () => {
                 aria-haspopup="true"
                 onClick={toggleViewImage}
               >
-                View All
-                <svg
+                View All */}
+                {/* <svg
                   className="-mr-1 h-5 w-5 text-gray-400"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -231,8 +232,8 @@ const About = () => {
                     d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
                     clipRule="evenodd"
                   />
-                </svg>
-              </button>
+                </svg> */}
+              {/* </button> */}
             </div>
           </div>
         </div>

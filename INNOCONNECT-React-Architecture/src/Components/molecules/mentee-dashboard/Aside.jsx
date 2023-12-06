@@ -15,7 +15,7 @@ export default function Aside({ links }) {
   const [openAlert, setOpenAlert] = useState(true);
 
   return (
-    <Card className='h-[100vh] w-full max-w-[20rem] rounded-none p-4 shadow-xl bg-[#1c2434] shadow-blue-gray-900/5'>
+    <Card className='fixed z-50 top-0 left-0 h-[100vh] w-full max-w-[20rem] rounded-none p-4 shadow-xl bg-[#1c2434] shadow-blue-gray-900/5'>
       <div className='mb-2 flex items-center gap-4 p-4'>
         <Link to='/'>
           <img
