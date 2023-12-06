@@ -156,13 +156,13 @@ const Home = () => {
               </Link>
             </div>
           </section>
-          <section className='py-20 max-w-[1440px] mx-auto px-4 sm:px-10'>
-            <div className='flex justify-center items-center gap-20'>
+          <section className='py-20 max-w-[1440px] mx-auto px-4 sm:px-10 '>
+            <div className='flex justify-center items-center gap-20 xmd:flex-col'>
               <div>
                 <h1 className='text-[#222C2C] text-[40px] font-semibold py-2'>
                   Find<span className='text-[#457B9D]'> Jobs</span>
                   <br />
-                  That you'll definetly love
+                  That you'll definately love
                 </h1>
                 <p className='py-2'>
                   Your next role could be with one of these top leading
@@ -175,7 +175,7 @@ const Home = () => {
                   Apply now
                 </Link>
               </div>
-              <div className='w-2/5'>
+              <div className='w-2/5 '>
                 <img
                   src={jobs_f}
                   className='w-full object-contain rounded-xl'
@@ -186,7 +186,7 @@ const Home = () => {
           </section>
           <section className='bg-[#F6F9FA]'>
             <div className='py-20 max-w-[1440px] mx-auto px-4 sm:px-10'>
-              <div className='flex justify-center items-center gap-20'>
+              <div className='flex justify-center items-center gap-20 xmd:flex-col'>
                 <div className='w-2/5'>
                   <img
                     src={job_h}
@@ -211,7 +211,7 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <section className='pt-14 h-full py-8 max-w-[1440px] mx-auto px-4 sm:px-10'>
+          <section className='lg:block pt-14 h-full py-8 max-w-[1440px] mx-auto px-4 sm:px-10 hidden'>
             <div className='text-center pb-14'>
               <h1 className='text-[#222C2C] text-[40px] font-semibold'>
                 A few <span className='text-[#457B9D]'>Testimonials</span>
