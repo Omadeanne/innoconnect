@@ -64,7 +64,7 @@ const Article = () => {
                   <p className>4 mins read</p>
                 </div> */}
                 <h2 className='text-3xl lg:text-5xl font-bold text-primary-06 mt-4'>
-                  What you get when you learn how to code <br /> worth it?
+                  What you get when you learn how to code <br/> worth it?
                 </h2><p className='mt-4'>
                   In the fast-paced, ever-evolving landscape of the modern
                   workplace, the importance of employee connections and team
@@ -115,7 +115,7 @@ const Article = () => {
         </p>
         <hr/>
         <div class="flex items-center mt-4 font-medium">
-          <img src="./assets/team/lizzy.jpg" class="rounded-full h-10 w-10" alt=""/>
+        <a href="https://ibb.co/35X4VZP"><img className="rounded-full h-10 w-10" src="https://i.ibb.co/5XDGCHJ/lizzy.jpg" alt="lizzy" border="0" /></a>
           <p class="ml-2">Elizbeth Okwong</p>
           <i class="fa-solid fa-circle text-[0.4rem] mx-2 opacity-50 text-primary-05"></i>
           <p class="">20th July, 2022</p>
@@ -141,7 +141,7 @@ const Article = () => {
         </p>
         <hr/>
         <div class="flex items-center mt-4 font-medium">
-          <img src="./assets/team/lizzy.jpg" class="rounded-full h-10 w-10" alt=""/>
+        <a href="https://ibb.co/35X4VZP"><img className="rounded-full h-10 w-10" src="https://i.ibb.co/5XDGCHJ/lizzy.jpg" alt="lizzy" border="0" /></a>
           <p class="ml-2">Elizbeth Okwong</p>
           <i class="fa-solid fa-circle text-[0.4rem] mx-2 opacity-50 text-primary-05"></i>
           <p class="">20th July, 2022</p>
@@ -167,7 +167,7 @@ const Article = () => {
         </p>
         <hr/>
         <div class="flex items-center mt-4 font-medium">
-          <img src="./assets/team/dan.jpg" class="rounded-full h-10 w-10" alt=""/>
+        <a href="https://ibb.co/vYnbpy5"><img className="rounded-full h-10 w-10" src="https://i.ibb.co/Ryw1frn/dan.jpg" alt="dan" border="0" /></a>
           <p class="ml-2">Omoanon Daniel</p>
           <i class="fa-solid fa-circle text-[0.4rem] mx-2 opacity-50 text-primary-05"></i>
           <p class="">20th July, 2022</p>
