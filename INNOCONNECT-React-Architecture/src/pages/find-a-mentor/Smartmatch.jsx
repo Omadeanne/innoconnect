@@ -28,8 +28,8 @@ export default function Smartmatch() {
           </p>
           </div>
         </div>
-        </div>zzzz
-        <div className='grid grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
+        </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
           {mentors.map((mentor) => (
             <MentorCard
               key={mentor.id}

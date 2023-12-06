@@ -3,9 +3,9 @@ import React from 'react';
 function Footer() {
   return (
     <footer className='bg-primary-05  text-white '>
-      <div className='px-4 py-11 container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+      <div className='px-4 py-11 container mx-auto  grid md:grid-cols-1 justify-center items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         <div>
-          <h2 className='uppercase mb-4 font-bold tracking-[2px]'>Legal</h2>
+          <h2 className='uppercase mb-4 font-bold tracking-[2px] '>Legal </h2>
           <ul>
             <li>
               <a
