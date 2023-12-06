@@ -17,10 +17,10 @@ const MentorCard = ({ mentor }) => {
   }, [])
 
   return ( 
-    <div className='flex flex-col '>
+    <div className='flex flex-col'>
       <Link to={`/mentors/${mentor.id}`}>
         <div data-aos="fade-up">
-          <div className='flex flex-col items-center justify-center hull bg-primary-01 my-3 py-8 rounded-lg hover:shadow-lg hover:transition hover:duration-300'>
+          <div className='flex flex-col  items-center justify-center hull bg-primary-01 my-3 py-8 rounded-lg hover:shadow-lg hover:transition hover:duration-300'>
 
             <div className="">
               <img
@@ -71,9 +71,7 @@ const MentorCard = ({ mentor }) => {
           </div>
         </div>
       </Link>
-      {/* <div className='flex justify-center items-center gap-4 '>
-
-      </div> */}
+      
     </div>
   );
 };
