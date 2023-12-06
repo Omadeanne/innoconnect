@@ -13,7 +13,7 @@ export default function Smartmatch() {
         <div className=' m-auto '>
         <div
             className='relative overflow-hidden bg-cover bg-no-repeat p-12 text-center flex justify-center items-center h-screen xmd:h-screen xmd:w-[100%]'
-            style={{ backgroundImage: `url(${hero})` }}
+            // style={{ backgroundImage: `url(${hero})` }}
           >
           <div>
           <p className='font-font text-6xl font-bold text-white text-center my-[20px] p-[10px]'>
