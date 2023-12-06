@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
   return (
     <footer className='bg-primary-05  text-white '>
-      <div className='px-4 py-11 container mx-auto  grid md:grid-cols-1 justify-center items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+      <div className='px-5 py-10  mx-auto  grid  justify-center items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         <div>
           <h2 className='uppercase mb-4 font-bold tracking-[2px] '>Legal </h2>
           <ul>
@@ -174,22 +174,10 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className='border-t border-white'>
-        <div className='container mx-auto px-4 py-5 flex justify-between items-center'>
-          <a
-            aria-label='logo'
-            href='#'
-          >
-            <img
-              className='w-20 sm:w-full'
-              src='assets/inno-connect-1.svg'
-              alt=''
-            />
-          </a>
-          <p className='text-xs sm:text-sm text-center'>
-            Copyright © 2022. All Rights Reserved.
+      <div className='border-t border-white '>
+      <p className='text-xs sm:text-sm text-right px-5 py-6'>
+            Copyright © 2023. All Rights Reserved.
           </p>
-        </div>
       </div>
     </footer>
   );

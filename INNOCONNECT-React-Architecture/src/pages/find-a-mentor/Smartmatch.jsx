@@ -3,23 +3,23 @@ import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import MentorCard from './MentorCard';
 import mentors from './mentors';
-import { hero} from '../../assets';
+import { findamentor_img} from '../../assets';
 
 export default function Smartmatch() {
   return (
     <>
       <Nav />
       <div className='m-auto'>
-        <div className=' m-auto '>
-        <div
-            className='relative overflow-hidden bg-cover bg-no-repeat p-12 text-center flex justify-center items-center h-screen xmd:h-screen xmd:w-[100%]'
-            // style={{ backgroundImage: `url(${hero})` }}
+      <div
+            className='overflow-hidden bg-cover bg-no-repeat bg-black opacity-80 text-center flex flex-col items-center justify-center h-screen md:h-screen md:w-[100%] '
+            style={{ backgroundImage: `url(${findamentor_img})` }}
           >
+            {/* <a href="https://ibb.co/0rrxLz4"><img className='relative overflow-hidden bg-cover bg-no-repeat p-12 text-center h-screen xmd:h-screen xmd:w-[100%]'src="https://i.ibb.co/TttsGNj/findamentor.jpg" alt="findamentor" border="0" /></a> */}
           <div>
-          <p className='font-font text-6xl font-bold text-white text-center my-[20px] p-[10px]'>
+          <p className='font-font text-6xl font-bold text-primary-05 text-center my-[20px] p-[10px]'>
             Discover Your Mentorship Match
           </p>
-          <p className='font-font text-base font-medium text-white text-center my-[20px] max-w-3xl mx-auto'>
+          <p className='font-font text-lg font-medium text-primary-05 text-center my-[20px] max-w-3xl mx-auto'>
             Explore the possibilities of mentorship with us! Whether you're
             seeking technical guidance or professional growth, we're here to
             connect you with the mentor who's perfectly suited to your unique
@@ -29,7 +29,7 @@ export default function Smartmatch() {
           </div>
         </div>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
+        <div className='grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-10 w-[75%] m-auto pt-[30px]'>
           {mentors.map((mentor) => (
             <MentorCard
               key={mentor.id}
@@ -69,7 +69,7 @@ export default function Smartmatch() {
             </li>
           </ul>
         </div>
-      </div>
+    
       <Footer />
     </>
   );
