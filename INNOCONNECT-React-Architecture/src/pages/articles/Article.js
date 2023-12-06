@@ -94,11 +94,7 @@ const Article = () => {
                   </span>
                 </p>
                 <div className='flex items-center mt-8 font-medium'>
-                  <img
-                    src='./assets/team/lizzy.jpg'
-                    className='rounded-full h-10 w-10'
-                    alt='team'
-                  />
+                   <a href="https://ibb.co/35X4VZP"><img  className='rounded-full h-10 w-10' src="https://i.ibb.co/5XDGCHJ/lizzy.jpg" alt="lizzy" border="0" /></a>
                   <p className='ml-2'>Elizbeth Okwong</p>
                   <i className='fa-solid fa-circle text-[0.4rem] mx-2 opacity-50 text-primary-05' />
                   <p className>20th July, 2022</p>
