@@ -52,7 +52,9 @@ const ArticleDetails = () => {
             connections and team member connections cannot be overstated
           </p>
           <div className="flex gap-4 items-center mt-4 font-medium">
-            <img src="./assets/team/lizzy.jpg" className="rounded-full h-14 w-14" alt />
+            {/* <img src="./assets/team/lizzy.jpg" className="rounded-full h-14 w-14" alt /> */}
+            <a href="https://ibb.co/35X4VZP"><img className="rounded-full h-14 w-14" src="https://i.ibb.co/5XDGCHJ/lizzy.jpg" alt="lizzy" border="0" /></a>
+
             <div className="text-sm">
               <p className="mb-1">Elizbeth Okwong</p>
               <p>20th July, 2022</p>

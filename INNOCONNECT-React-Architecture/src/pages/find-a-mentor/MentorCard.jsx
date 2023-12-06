@@ -16,11 +16,11 @@ const MentorCard = ({ mentor }) => {
     AOS.init();
   }, [])
 
-  return (
-    <div className='flex flex-col'>
+  return ( 
+    <div className='flex flex-col '>
       <Link to={`/mentors/${mentor.id}`}>
         <div data-aos="fade-up">
-          <div className='flex flex-col  items-center justify-center hull bg-primary-01 my-3 py-8 rounded-lg hover:shadow-lg hover:transition hover:duration-300'>
+          <div className='flex flex-col items-center justify-center hull bg-primary-01 my-3 py-8 rounded-lg hover:shadow-lg hover:transition hover:duration-300'>
 
             <div className="">
               <img
@@ -40,28 +40,40 @@ const MentorCard = ({ mentor }) => {
                 {mentor.workPlace}
               </p>
               <div className='flex items-center justify-center m-auto text-2xl  pt-[10px] duration-300'>
-                <button><i className='fa-brands fa-linkedin fa-sm  mx-[10px] hover:cursor-pointer' /></button>
-                <button><i className='fa-brands fa-x-twitter fa-sm mx-[10px] hover:cursor-pointer' /></button>
-                <button><i className='fa-brands fa-facebook fa-sm mx-[10px] hover:cursor-pointer' /></button>
+
+                <button>
+                 <a href="https://www.linkedin.com/"><i className='fa-brands fa-linkedin fa-sm  mx-[6px] rounded-lg p-4 hover:bg-gray-200 transition duration-300 ease-in-out cursor-pointer' />
+                  </a> 
+                </button>
+
+                <button>
+                  <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i className='fa-brands fa-x-twitter fa-sm mx-[6px] rounded-lg p-4 hover:bg-gray-200 transition duration-300 ease-in-out cursor-pointer' />
+                  </a>
+                </button>
+
+                <button>
+                 <a href="https://www.facebook.com/"><i className='fa-brands fa-facebook fa-sm mx-[6px] rounded-lg p-4 hover:bg-gray-200 transition duration-300 ease-in-out cursor-pointer' />
+                 </a> 
+                </button>
               </div>
             </div>
-          </div>
-        </div>
-      </Link>
-      <div className='flex justify-center items-center gap-4 '>
-
         {
           connect ? (
-            <button className='px-[10px] py-[8px] rounded-lg border-primary-07 border-2 font-font text-primary-07 text-base font-bold'
+            <button className='px-[10px] py-[8px] rounded-lg border-primary-07 border-2 font-font text-primary-07 text-base font-bold '
             onClick={toggleConnect}>Request Sent</button>)
             : (
-              <button className='rounded-lg bg-primary-05 hover:bg-primary-07 font-font text-base font-md text-[#fff] px-[10px] py-[8px]'
+              <button className='rounded-lg bg-primary-05 hover:bg-primary-07 font-font text-base font-md text-[#fff] px-[10px] py-[8px] mt-8'
                 onClick={toggleConnect}
               >
                 Connect +
               </button>
             )}
-      </div>
+          </div>
+        </div>
+      </Link>
+      {/* <div className='flex justify-center items-center gap-4 '>
+
+      </div> */}
     </div>
   );
 };
