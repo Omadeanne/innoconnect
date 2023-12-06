@@ -1,10 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import useAuthProvider from './context/useAuthProvider';
 
 const Layout = () => {
-  const user = true;
+  const { isLoggedIn } = useAuthProvider();
   const location = useLocation();
-  return user ? (
+  return isLoggedIn ? (
     <Outlet />
   ) : (
     <Navigate
