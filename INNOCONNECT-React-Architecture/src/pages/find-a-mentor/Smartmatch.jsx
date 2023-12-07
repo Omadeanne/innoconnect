@@ -3,7 +3,7 @@ import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import MentorCard from './MentorCard';
 import mentors from './mentors';
-import { findamentor_img} from '../../assets';
+// import { findamentor_img} from '../../assets';
 
 export default function Smartmatch() {
   return (
@@ -12,7 +12,7 @@ export default function Smartmatch() {
       <div className='m-auto'>
       <div
             className='overflow-hidden bg-blend-overlay bg-cover bg-no-repeat  opacity-90 text-center flex flex-col items-center justify-center h-screen md:h-screen md:w-[100%] '
-            style={{ backgroundImage: `url(${findamentor_img})` }}
+            // style={{ backgroundImage: `url(${findamentor_img})` }}
           >
             {/* <a href="https://ibb.co/0rrxLz4"><img className='relative overflow-hidden bg-cover bg-no-repeat p-12 text-center h-screen xmd:h-screen xmd:w-[100%]'src="https://i.ibb.co/TttsGNj/findamentor.jpg" alt="findamentor" border="0" /></a> */}
           <div>
