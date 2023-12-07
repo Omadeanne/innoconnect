@@ -25,7 +25,7 @@ const Home = () => {
           >
             <div className='absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed'>
               <div className='flex h-full items-center justify-center'>
-                <div className='text-white'>
+                <div className='text-white px-3'>
                   <h2 className='mb-4 xmd:text-[20px] text-[50px] font-semibold'>
                     Learn a new skill, Launch a project,
                     <br />
@@ -175,7 +175,7 @@ const Home = () => {
                   Apply now
                 </Link>
               </div>
-              <div className='w-2/5 '>
+              <div className='hidden lg:block w-2/5 '>
                 <img
                   src={jobs_f}
                   className='w-full object-contain rounded-xl'
@@ -187,7 +187,7 @@ const Home = () => {
           <section className='bg-[#F6F9FA]'>
             <div className='py-20 max-w-[1440px] mx-auto px-4 sm:px-10'>
               <div className='flex justify-center items-center gap-20 xmd:flex-col'>
-                <div className='w-2/5'>
+                <div className='hidden lg:block w-2/5'>
                   <img
                     src={job_h}
                     className='w-full object-contain rounded-xl'

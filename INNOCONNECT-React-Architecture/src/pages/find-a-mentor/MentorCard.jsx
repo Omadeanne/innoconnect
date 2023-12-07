@@ -66,7 +66,7 @@ const MentorCard = ({ mentor }) => {
           </div>
           {connect ? (
             <button
-              className="px-[10px] py-[8px] rounded-lg border-primary-07 border-2 font-font text-primary-07 text-base font-bold "
+              className="px-[10px] py-[8px] mt-8 rounded-lg border-primary-07 border-2 font-font text-primary-07 text-base font-bold "
               onClick={toggleConnect}
             >
               Request Sent
