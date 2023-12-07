@@ -1,4 +1,4 @@
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import axios from '../../axios/axios';
 import { Spinner } from '@material-tailwind/react';
@@ -14,7 +14,6 @@ const EmployerRegister = () => {
   const [loading, setLoading] = useState(false);
 
   const errRef = useRef();
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,7 +48,11 @@ const EmployerRegister = () => {
       setSuccess(true);
     } catch (error) {
       setLoading(false);
-      setErrMsg(error.response.data.message);
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else {
+        setErrMsg(error?.response?.data?.message);
+      }
     }
   };
   return (

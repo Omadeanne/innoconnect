@@ -1,20 +1,26 @@
-import axios from "axios";
-import useAuthProvider from "../context/useAuthProvider";
-
+import axios from '../axios/axios';
+import useAuthProvider from '../context/useAuthProvider';
 
 const useLogout = () => {
-    const { setIsLoggedIn, isLoggedIn } = useAuthProvider();
-    const refreshToken = isLoggedIn?.tokens?.refresh?.token
-    const logout = async () => {
-        setIsLoggedIn(null)
-        try {
-            await axios.post('http://localhost:5000/v1/auth/logout', refreshToken);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+  const { setIsLoggedIn, isLoggedIn } = useAuthProvider();
+  const refreshToken = isLoggedIn?.tokens?.refresh?.token;
+  const data = {
+    refreshToken,
+  };
+  const logout = async () => {
+    try {
+      await axios.post('/auth/logout', JSON.stringify(data), {
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-    return logout
-}
+      localStorage.removeItem('isLoggedIn');
+      setIsLoggedIn(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return logout;
+};
 
 export default useLogout;
