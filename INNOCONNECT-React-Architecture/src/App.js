@@ -32,6 +32,7 @@ import Message from './pages/employers-dashbord/Message';
 import MenteeOverview from './pages/mentees-dashboard/MenteeOverview';
 import Courses from './pages/mentees-dashboard/courses/Courses';
 import MyMentors from './pages/mentees-dashboard/MyMentors';
+import PersistLogin from './PersistLogin';
 
 function App() {
   return (
@@ -112,56 +113,58 @@ function App() {
         path='/personality-test'
         element={<PersonalityTest />}
       />
-      <Route element={<Layout />}>
-        <Route
-          path='/apply/:id'
-          element={<Application />}
-        />
-        <Route
-          path='/mentees-dashboard'
-          element={<MenteesDashboard />}
-        >
+      <Route element={<PersistLogin />}>
+        <Route element={<Layout />}>
           <Route
-            path=''
-            element={<MenteeOverview />}
+            path='/apply/:id'
+            element={<Application />}
           />
           <Route
-            path='courses'
-            element={<Courses />}
+            path='/mentees-dashboard'
+            element={<MenteesDashboard />}
+          >
+            <Route
+              path=''
+              element={<MenteeOverview />}
+            />
+            <Route
+              path='courses'
+              element={<Courses />}
+            />
+            <Route
+              path='my-mentors'
+              element={<MyMentors />}
+            />
+          </Route>
+          <Route
+            path='/mentors-dashboard'
+            element={<MentorsDashboard />}
           />
           <Route
-            path='my-mentors'
-            element={<MyMentors />}
-          />
-        </Route>
-        <Route
-          path='/mentors-dashboard'
-          element={<MentorsDashboard />}
-        />
-        <Route
-          path='/employers-dashboard'
-          element={<Dashboard />}
-        >
-          <Route
-            path=''
-            element={<Overview />}
-          />
-          <Route
-            path='post-job'
-            element={<PostJobs />}
-          />
-          <Route
-            path='job-posted'
-            element={<JobPosted />}
-          />
-          <Route
-            path='messages'
-            element={<Message />}
-          />
-          <Route
-            path='applicants'
-            element={<Applicant />}
-          />
+            path='/employers-dashboard'
+            element={<Dashboard />}
+          >
+            <Route
+              path=''
+              element={<Overview />}
+            />
+            <Route
+              path='post-job'
+              element={<PostJobs />}
+            />
+            <Route
+              path='job-posted'
+              element={<JobPosted />}
+            />
+            <Route
+              path='messages'
+              element={<Message />}
+            />
+            <Route
+              path='applicants'
+              element={<Applicant />}
+            />
+          </Route>
         </Route>
       </Route>
       <Route

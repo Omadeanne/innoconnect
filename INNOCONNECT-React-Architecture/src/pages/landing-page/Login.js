@@ -48,17 +48,21 @@ const Login = () => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
-      const {user, tokens} = response?.data
 
       setLoading(false);
-      setIsLoggedIn({user, tokens});
+      localStorage.setItem('isLoggedIn', JSON.stringify(response?.data));
+      setIsLoggedIn(response?.data);
       let from =
         location.state?.from?.pathname ||
         `${roles.find((role) => role.name === response?.data?.user?.role)?.to}`;
       Navigate(from, { replace: true });
     } catch (error) {
       setLoading(false);
-      setErrMsg(error.response.data.message);
+      if(!error?.response){
+        setErrMsg('No Server Response');
+      }else {
+        setErrMsg(error?.response?.data?.message);
+      }
     }
   };
   return (
@@ -153,27 +157,23 @@ const Login = () => {
                 type='submit'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2 my-2  transition duration-300 flex justify-center items-center gap-x-4'
               >
-                {/* <img
-                  src='images/Google.png'
-                  className
-                  alt='google sign up'
-                /> */}
+                <i class="fa-brands fa-google text-[25px]"></i>
+               {/* <a href="https://imgbb.com/"><img src="https://i.ibb.co/3F2NfCH/Google-Logo.png" 
+               alt="Google-Logo" border="0" /></a> */}
                 <span>Sign up with Google</span>
               </button>
               <button
                 type='submit'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2  transition duration-300 mt-1 flex justify-center items-center gap-x-4'
               >
-                {/* <img
-                  src='images/apple.svg'
-                  alt='apple signup'
-                /> */}
+                <i class="fa-brands fa-apple text-[30px]"></i>
+
                 <span>signup with Apple</span>
               </button>
-              <p className='text-base text-center mt-2'>
-                Don't have an account?{' '}
+              <p className='text-base text-center mt-2 text-primary-04 cursor-pointer'>
+                Don't have an account? 
                 <span className='text-[#234270] font-medium'>
-                  <Link to='/register'>Register</Link>
+                  <Link to='/register'><span class='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>Register</span></Link>
                 </span>
               </p>
             </form>

@@ -52,7 +52,11 @@ const MenteeRegister = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setErrMsg(error.response.data.message);
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else {
+        setErrMsg(error?.response?.data?.message);
+      }
     }
   };
   return (
