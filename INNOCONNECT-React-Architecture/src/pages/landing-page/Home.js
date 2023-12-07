@@ -368,36 +368,22 @@ const Home = () => {
                   src='assets/Dell.png'
                   alt=''
                 />
-                <img
-                  src='assets/Google.png'
-                  alt=''
-                />
-                <img
-                  src='assets/Instagram.png'
-                  alt=''
-                />
-                <img
-                  src='assets/Ubuntu.png'
-                  alt=''
-                />
+
+                <a href="https://imgbb.com/"><img src="https://i.ibb.co/Rpd5Tbt/Google.png" alt="Google" border="0" /></a>
+
+            <a href="https://imgbb.com/"><img src="https://i.ibb.co/Y8fjftc/Instagram.png" alt="Instagram" border="0" /></a>
+
+                <a href="https://imgbb.com/"><img src="https://i.ibb.co/h1wSb1f/Ubuntu.png" alt="Ubuntu" border="0" /></a>
               </div>
             </div>
-            <div className='w-[100%] hidden xmd:w-[30%] m-auto'>
-              <div className='flex pb-10 gap-6 justify-around'>
-                <img
-                  src='assets/flutterwave.png'
-                  alt=''
-                />
-                <img
-                  src='assets/Microsoft.png'
-                  alt=''
-                />
+            <div className='w-[100%] xmd:w-[30%] m-auto'>
+              <div className='flex pb-10 gap-6 justify-around'> 
+                <a href="https://imgbb.com/"><img src="https://i.ibb.co/N6LcHPB/Microsoft.png" alt="Microsoft" border="0" /></a> 
+                <a href="https://imgbb.com/"><img src="https://i.ibb.co/7XZbg4G/Twitter-logo.png" alt="Twitter-logo" border="0" /></a>
+
               </div>
-              <div className='flex pb-10 gap-6 justify-around'>
-                <img
-                  src='assets/Twitter logo.png'
-                  alt=''
-                />
+              <div className='flex pb-10 gap-6 justify-around'> 
+               
                 <img
                   src='assets/netflix.png'
                   alt=''
