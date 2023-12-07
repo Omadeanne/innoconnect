@@ -6,7 +6,7 @@ const useLogout = () => {
     const { setIsLoggedIn, isLoggedIn } = useAuthProvider();
     const refreshToken = isLoggedIn?.tokens?.refresh?.token
     const logout = async () => {
-        setIsLoggedIn({})
+        setIsLoggedIn(null)
         try {
             await axios.post('http://localhost:5000/v1/auth/logout', refreshToken);
         } catch (error) {

@@ -88,7 +88,7 @@ const BecomeMentor = () => {
             </div>
           </div>
         </section>
-        <section className=' w-[90%] m-auto mb-24'>
+        <section className='hidden lg:block w-[90%] m-auto mb-24'>
           <div className='text-center py-14'>
             <h1 className='text-[64px] text-[#222C2C] font-semibold'>
               How It works
@@ -200,7 +200,7 @@ const BecomeMentor = () => {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className ='hidden lg:block'>
               <img
                 src={book}
                 alt=''
@@ -210,7 +210,7 @@ const BecomeMentor = () => {
         </section>
         <section className='bg-[#FCFEFC] container mx-auto'>
           <div className='py-16 flex justify-center items-center gap-x-10'>
-            <div>
+            <div className ='hidden lg:block'>
               <img
                 src={benefits}
                 alt=''
@@ -237,7 +237,7 @@ const BecomeMentor = () => {
             </div>
           </div>
         </section>
-        <section className='bg-[#FCFEFC] h-[1000px] mb-60'>
+        <section className='hidden lg:block bg-[#FCFEFC] h-[1000px] mb-60'>
           <div>
             <div className='text-center pb-24'>
               <h1 className='text-[40px] text-[#222C2C] font-semibold'>
@@ -251,7 +251,7 @@ const BecomeMentor = () => {
                 <br /> leadership qualities.
               </p>
             </div>
-            <div className='flex justify-center gap-6 relative'>
+            <div className='flex  justify-center gap-6 relative'>
               <div className='w-[18%] bg-[#37627E] rounded-md absolute left-80'>
                 <img
                   src={test5}
@@ -376,7 +376,7 @@ const BecomeMentor = () => {
               You Get To :
             </p>
           </div>
-          <div className='grid  grid-cols-2 grid-rows-2 gap-5'>
+          <div className='grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 grid-rows-2 gap-5'>
             <div className='flex gap-4'>
               <div className='bg-[#DAE5EB] h-10 px-4 py-2'>
                 <i className='fa-regular fa-clock text-[#172A46] text-[20px]' />

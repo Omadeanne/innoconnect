@@ -1,4 +1,42 @@
+import axios from '../../axios/axios';
+import { useState } from 'react';
+import useAuthProvider from '../../context/useAuthProvider';
+import { Link } from 'react-router-dom';
+
 export default function PostJobs() {
+  const [success, setSuccess] = useState(false);
+  const { isLoggedIn } = useAuthProvider();
+
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [location, setLocation] = useState("")
+  const [workSetup, setWorkSetup] = useState("")
+  const [type, setType] = useState("")
+  const [experience, setExperience] = useState("")
+  const [requirements, setRequirements] = useState("")
+
+  const handlePostJob = async (e) => {
+    e.preventDefault()
+    try {
+      const postJobData = {
+        title,
+        description,
+        location,
+        workSetup,
+        type,
+        experience,
+        requirements
+      };
+      const response = await axios.post('/jobs/', JSON.stringify(postJobData),
+        {
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
+        })
+        setSuccess(true);
+      console.log(response)
+    } catch (error) {
+      console.log(error.response.message)
+    }
+  }
   return (
     <div className='px-10 z-0 mt-10'>
       <div className='w-full bg-white p-10 shadow-card'>
@@ -18,6 +56,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <input
+                onChange={(event) => setTitle(event.target.value)}
+                value={title}
                 type='text'
                 name='first-name'
                 id='title'
@@ -37,6 +77,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2 relative'>
               <select
+                onChange={(event) => setType(event.target.value)}
+                value={type}
                 aria-label='job-type'
                 const
                 type
@@ -65,6 +107,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2 relative'>
               <select
+                onChange={(event) => setWorkSetup(event.target.value)}
+                value={workSetup}
                 aria-label='onsite/remote'
                 className='appearance-none block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                           placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
@@ -129,6 +173,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2 relative'>
               <select
+                onChange={(event) => setExperience(event.target.value)}
+                value={experience}
                 aria-label='experience'
                 className='appearance-none block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                           placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
@@ -161,6 +207,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <input
+                onChange={(event) => setLocation(event.target.value)}
+                value={location}
                 type='text'
                 name='location'
                 id='location'
@@ -233,6 +281,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <textarea
+                onChange={(event) => setRequirements(event.target.value)}
+                value={requirements}
                 placeholder='requirements'
                 name='requirements'
                 id='requirements'
@@ -269,6 +319,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <textarea
+                onChange={(event) => setDescription(event.target.value)}
+                value={description}
                 placeholder='about'
                 name='about'
                 id='about'
@@ -280,6 +332,7 @@ export default function PostJobs() {
           </div>
           <div className>
             <button
+              onClick={handlePostJob}
               type='submit'
               className='bg-primary-07 w-full text-lg rounded-md border py-3 px-4 text-white shadow-sm hover:bg-blue-600 font-medium'
             >
@@ -287,6 +340,51 @@ export default function PostJobs() {
             </button>
           </div>
         </form>
+      </div>
+      <div
+        id='success-modal'
+        className={
+          success
+            ? 'fixed inset-0  w-full h-screen flex items-center justify-center z-50 bg-gray-800 bg-opacity-50'
+            : 'hidden'
+        }
+      >
+        <div className='container w-[464px] bg-white p-8 rounded-3xl text-center hover:shadow-lg'>
+          <div className='content'>
+            <div className='flex justify-center items-center'>
+              {/* <img
+                src='./assets/partypopper.png'
+                alt=""
+              /> */}
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 24 24'
+                fill='currentColor'
+                className='w-12 h-12 animate-bounce'
+              >
+                <path
+                  fillRule='evenodd'
+                  d='M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z'
+                  clipRule='evenodd'
+                />
+              </svg>
+            </div>
+            <div className='px-10'>
+              <h1 className='text-xl font-bold my-3'>
+                Job Posted Successfully
+              </h1>
+              <p className='text-[#777676] '>
+                Your Job has been created.
+              </p>
+            </div>
+            <Link
+              to='/employers-dashboard/job-posted'
+              className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-primary-05 text-white px-4 py-2 shadow-sm ring-1 ring-inset ring-primary-05 mt-2 '
+            >
+              View Job
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
