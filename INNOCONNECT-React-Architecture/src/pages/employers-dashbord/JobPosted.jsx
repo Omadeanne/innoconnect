@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from '../../axios/axios';
+import useAuthProvider from '../../context/useAuthProvider';
 
 export default function JobPosted() {
+  const { isLoggedIn } = useAuthProvider();
+  const [myJobs, setMyJobs] = useState([])
+
+  useEffect(() => {
+
+    const getJobs = async () => {
+      try {
+        const response = await axios.get('/jobs/employer/',
+          {
+            headers: { Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
+          })
+
+        console.log(response.data)
+        setMyJobs(response?.data)
+      } catch (error) {
+        console.log(error.response.message)
+      }
+    }
+    getJobs()
+  }, [isLoggedIn])
+
   return (
     <div className='md:px-10 z-0 mt-10'>
       <div className='w-full bg-white p-5 md:p-10 shadow-card'>
@@ -9,15 +32,24 @@ export default function JobPosted() {
           <h1 className='ml-4 font-bold text-primary-05'>My Job listings</h1>
         </div>
         <hr className='border-slate-300' />
-        <div id='dynamic' />
-        <div className='flex justify-between items-center py-4 md:p-4 border-b border-b-slate-300'>
+
+
+        {myJobs.map((job) =>(<div key={job.id} className='flex justify-between items-center py-4 md:p-4 border-b border-b-slate-300'>
           <div>
-            <h1 className='text-lg font-medium'>
-              Full Stack Software Engineer
+
+            <h1 className='text-lg font-medium list-none'>
+            {job.title}
             </h1>
-            <div className='text-gray-500 my-2'>
+            <div>
+              <p className='text-lg font-base list-none'>
+              {job.workSetup}
+              </p>
+            </div>
+            <div className='text-gray-500 my-2 flex items-center list-none'>
               <i className='fa-solid fa-location-dot text-primary-05' />
-              <span className='ml-2'>Lagos, Nigeria</span>
+              <span className='ml-2'>
+              {job.location}
+              </span>
             </div>
             <div className='flex gap-x-3 my-2'>
               <div className='text-gray-500'>
@@ -48,85 +80,8 @@ export default function JobPosted() {
               <i className='fa-solid fa-trash' />
             </button>
           </div>
-        </div>
-        <div className='flex justify-between items-center py-4 md:p-4 border-b border-b-slate-300'>
-          <div>
-            <h1 className='text-lg font-medium'>
-              Full Stack Software Engineer
-            </h1>
-            <div className='text-gray-500 my-2'>
-              <i className='fa-solid fa-location-dot text-primary-05' />
-              <span className='ml-2'>Lagos, Nigeria</span>
-            </div>
-            <div className='flex gap-x-3 my-2'>
-              <div className='text-gray-500'>
-                <i className='fa-regular fa-calendar text-primary-05' />
-                <span className='ml-2'>Posted 5 days ago</span>
-              </div>
-              <div className='text-gray-500'>
-                <i className='fa-regular fa-calendar text-primary-05' />
-                <span className='ml-2'>Expiring on 15th December 2023</span>
-              </div>
-            </div>
-            <div className='text-gray-500'>
-              <i className='fa-solid fa-users text-primary-05' />
-              <span className='ml-2'>3 Applicants</span>
-            </div>
-          </div>
-          <div className='mr-4 flex flex-col md:flex-row gap-2'>
-            <button
-              type='button'
-              className='bg-gray-300 w-10 h-10 rounded-full mr-2'
-            >
-              <i className='fa-solid fa-pen-to-square' />
-            </button>
-            <button
-              type='button'
-              className='bg-gray-300 w-10 h-10 rounded-full'
-            >
-              <i className='fa-solid fa-trash' />
-            </button>
-          </div>
-        </div>
-        <div className='flex justify-between items-center py-4 md:p-4'>
-          <div>
-            <h1 className='text-lg font-medium'>
-              Full Stack Software Engineer
-            </h1>
-            <div className='text-gray-500 my-2'>
-              <i className='fa-solid fa-location-dot text-primary-05' />
-              <span className='ml-2'>Lagos, Nigeria</span>
-            </div>
-            <div className='flex gap-x-3 my-2'>
-              <div className='text-gray-500'>
-                <i className='fa-regular fa-calendar text-primary-05' />
-                <span className='ml-2'>Posted 5 days ago</span>
-              </div>
-              <div className='text-gray-500'>
-                <i className='fa-regular fa-calendar text-primary-05' />
-                <span className='ml-2'>Expiring on 15th December 2023</span>
-              </div>
-            </div>
-            <div className='text-gray-500'>
-              <i className='fa-solid fa-users text-primary-05' />
-              <span className='ml-2'>3 Applicants</span>
-            </div>
-          </div>
-          <div className='mr-4 flex flex-col md:flex-row gap-2'>
-            <button
-              type='button'
-              className='bg-gray-300 w-10 h-10 rounded-full mr-2'
-            >
-              <i className='fa-solid fa-pen-to-square' />
-            </button>
-            <button
-              type='button'
-              className='bg-gray-300 w-10 h-10 rounded-full'
-            >
-              <i className='fa-solid fa-trash' />
-            </button>
-          </div>
-        </div>
+        </div>))}
+        
       </div>
     </div>
   );
