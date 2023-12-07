@@ -33,6 +33,7 @@ import MenteeOverview from './pages/mentees-dashboard/MenteeOverview';
 import Courses from './pages/mentees-dashboard/courses/Courses';
 import MyMentors from './pages/mentees-dashboard/MyMentors';
 import PersistLogin from './PersistLogin';
+import ResetPassword from './pages/landing-page/ResetPassword';
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
       <Route
         path='/login'
         element={<Login />}
+      />
+      <Route
+        path='/reset-password'
+        element={<ResetPassword />}
       />
       <Route
         path='/register'
