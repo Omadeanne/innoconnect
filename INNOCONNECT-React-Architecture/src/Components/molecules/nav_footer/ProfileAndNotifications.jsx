@@ -12,18 +12,22 @@ const ProfileAndNotifications = () => {
     { name: 'mentee', to: '/mentees-dashboard', current: false },
     { name: 'employer', to: '/employers-dashboard', current: false },
   ];
-
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
 
   const { isLoggedIn } = useAuthProvider();
-  const logout = useLogout()
+
+  const activeRole = roles.find((role) => role.name === isLoggedIn?.user?.role);
+  const logout = useLogout();
 
   const handleLogout = async () => {
-    await logout()
-    console.log('logged out');
-    Navigate('/register')
+    try {
+      await logout();
+      Navigate('/login', { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -56,7 +60,7 @@ const ProfileAndNotifications = () => {
                   src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
                   alt=''
                 />
-                <span className='font-semibold mx-4'>Patience</span>
+                <span className='font-semibold mx-4'>{isLoggedIn?.user?.firstName}</span>
                 <ChevronDownIcon
                   className={`${
                     open ? 'rotate-180' : ''
@@ -75,40 +79,35 @@ const ProfileAndNotifications = () => {
               leaveTo='transform opacity-0 scale-95'
             >
               <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                {roles.map((role) => {
-                  if (role.name === isLoggedIn?.user?.role) {
-                    return (
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to={role.to}
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm text-gray-700'
-                            )}
-                          >
-                            <svg
-                              xmlns='http://www.w3.org/2000/svg'
-                              fill='none'
-                              viewBox='0 0 24 24'
-                              strokeWidth={1.5}
-                              stroke='currentColor'
-                              className='w-6 h-6 inline-block mr-2'
-                            >
-                              <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                d='M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z'
-                              />
-                            </svg>
-                            Dashboard
-                          </Link>
+                {activeRole && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        to={activeRole.to}
+                        className={classNames(
+                          active ? 'bg-gray-100' : '',
+                          'block px-4 py-2 text-sm text-gray-700'
                         )}
-                      </Menu.Item>
-                    );
-                  }
-                  return null;
-                })}
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          strokeWidth={1.5}
+                          stroke='currentColor'
+                          className='w-6 h-6 inline-block mr-2'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            d='M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z'
+                          />
+                        </svg>
+                        Dashboard
+                      </Link>
+                    )}
+                  </Menu.Item>
+                )}
                 <Menu.Item>
                   {({ active }) => (
                     <Link
@@ -142,7 +141,7 @@ const ProfileAndNotifications = () => {
                       onClick={handleLogout}
                       className={classNames(
                         active ? 'bg-gray-100' : '',
-                        'block px-4 py-2 text-sm text-gray-700'
+                        'block px-4 py-2 text-sm text-gray-700 w-full text-left'
                       )}
                     >
                       <svg

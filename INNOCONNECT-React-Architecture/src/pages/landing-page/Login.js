@@ -48,17 +48,21 @@ const Login = () => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
-      const {user, tokens} = response?.data
 
       setLoading(false);
-      setIsLoggedIn({user, tokens});
+      localStorage.setItem('isLoggedIn', JSON.stringify(response?.data));
+      setIsLoggedIn(response?.data);
       let from =
         location.state?.from?.pathname ||
         `${roles.find((role) => role.name === response?.data?.user?.role)?.to}`;
       Navigate(from, { replace: true });
     } catch (error) {
       setLoading(false);
-      setErrMsg(error.response.data.message);
+      if(!error?.response){
+        setErrMsg('No Server Response');
+      }else {
+        setErrMsg(error?.response?.data?.message);
+      }
     }
   };
   return (
