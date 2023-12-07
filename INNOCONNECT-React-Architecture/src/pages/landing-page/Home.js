@@ -376,7 +376,7 @@ const Home = () => {
                 <a href="https://imgbb.com/"><img src="https://i.ibb.co/h1wSb1f/Ubuntu.png" alt="Ubuntu" border="0" /></a>
               </div>
             </div>
-            <div className='w-[100%] xmd:w-[30%] m-auto'>
+            {/* <div className='w-[100%] xmd:w-[30%] m-auto'>
               <div className='flex pb-10 gap-6 justify-around'> 
                 <a href="https://imgbb.com/"><img src="https://i.ibb.co/N6LcHPB/Microsoft.png" alt="Microsoft" border="0" /></a> 
                 <a href="https://imgbb.com/"><img src="https://i.ibb.co/7XZbg4G/Twitter-logo.png" alt="Twitter-logo" border="0" /></a>
@@ -409,7 +409,7 @@ const Home = () => {
                   alt=''
                 />
               </div>
-            </div>
+            </div> */}
           </section>
           <section className='mt-16 pb-14 pt-14 bg-[#F6F9FA]'>
             <div className='py-8 max-w-[1440px] mx-auto px-4 sm:px-10'>
