@@ -49,6 +49,7 @@ import salami from './salami.png'
 import blog_illustration from './blog_illustration.svg'
 import carr from './carr.jpg'
 import edet from './edet.jpg'
+import findamentor_img from './findamentor_img.jpg'
 
 export {
   logo,
@@ -100,5 +101,6 @@ export {
   salami,
   blog_illustration,
   carr,
-  edet
+  edet,
+  findamentor_img
 };
