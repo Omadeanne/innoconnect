@@ -45,7 +45,6 @@ const MenteeRegister = () => {
         JSON.stringify(data),
         {
           headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
         }
       );
       setSuccess(true);
