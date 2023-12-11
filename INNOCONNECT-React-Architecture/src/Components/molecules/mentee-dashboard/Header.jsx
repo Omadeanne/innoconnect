@@ -1,14 +1,8 @@
-import {
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
-import { Input } from '@material-tailwind/react';
 import ProfileAndNotifications from '../nav_footer/ProfileAndNotifications';
 import useAuthProvider from '../../../context/useAuthProvider';
 
 const Header = () => {
   const { isLoggedIn } = useAuthProvider();
-  console.log(isLoggedIn)
-
 
   return (
     <header className='sticky top-0 right-0 z-50'>
@@ -34,7 +28,7 @@ const Header = () => {
         </div>
 
         <div className='p-2 ml-4'>
-          <h1>Welcome {isLoggedIn?.user?.firstName}</h1>
+          <h1 className='text-2xl font-bold'>Welcome {isLoggedIn?.user?.firstName}</h1>
           
         </div>
 

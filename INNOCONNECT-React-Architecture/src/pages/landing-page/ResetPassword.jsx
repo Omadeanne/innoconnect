@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { logo, registerpageimage } from '../../assets';
 import { Link, useLocation } from 'react-router-dom';
 import axios from '../../axios/axios';
@@ -59,7 +59,7 @@ const ResetPassword = () => {
   };
   return (
     <>
-      <div class='flex flex-col md:flex-row min-h-screen'>
+      <div className='flex flex-col md:flex-row min-h-screen'>
         <div className='md:absolute h-20 left-4 top-4 p-4 bg-[#112034]'>
           <Link to='/'>
             <img

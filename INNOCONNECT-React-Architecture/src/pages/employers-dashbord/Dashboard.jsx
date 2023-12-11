@@ -31,11 +31,6 @@ const links = [
     to: '/employers-dashboard/messages',
     icon: messages,
   },
-  {
-    name: 'Applicants',
-    to: '/employers-dashboard/applicants',
-    icon: applicants,
-  },
 ];
 
 export default function Dashboard() {

@@ -1,57 +1,89 @@
-import axios from '../../axios/axios';
-import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import useAuthProvider from '../../context/useAuthProvider';
-import { Link } from 'react-router-dom';
+import axios from '../../axios/axios';
+import { useEffect, useState } from 'react';
+import { Spinner } from '@material-tailwind/react';
 
-export default function PostJobs() {
-  const [success, setSuccess] = useState(false);
-  const { isLoggedIn } = useAuthProvider();
-
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [location, setLocation] = useState("")
-  const [workSetup, setWorkSetup] = useState("")
-  const [type, setType] = useState("")
-  const [experience, setExperience] = useState("")
-  const [requirements, setRequirements] = useState("")
-  const [benefits, setBenefits] = useState("")
-  const [minSalary, setMinSalary] = useState("")
-  const [maxSalary, setMaxSalary] = useState("")
-  const [endDate, setEndDate] = useState("")
-
-  const handlePostJob = async (e) => {
-    e.preventDefault()
-    try {
-      const postJobData = {
-        title,
-        description,
-        location,
-        workSetup,
-        type,
-        experience,
-        requirements,
-        benefits,
-        minSalary,
-        maxSalary,
-        endDate
-      };
-      const response = await axios.post('/jobs/', JSON.stringify(postJobData),
-        {
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
-        })
-        setSuccess(true);
-      console.log(response)
-    } catch (error) {
-      console.log(error.response.message)
+const EditJob = () => {
+  function spreadWithoutKeys(obj, excludedKeys) {
+    const { ...rest } = obj;
+    for (const key of excludedKeys) {
+      delete rest[key];
     }
+    return rest;
   }
+
+  const { isLoggedIn } = useAuthProvider();
+  const { id } = useParams();
+
+  const [job, setJob] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    const getJob = async () => {
+      try {
+        const response = await axios.get(`/jobs/${id}`, {
+          headers: {
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        });
+        setIsLoading(false);
+        setJob(response?.data);
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error.response.message);
+      }
+    };
+    getJob();
+  }, [id, isLoggedIn]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setJob((prevJob) => ({
+      ...prevJob,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    console.log(job);
+  }, [job]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const data = spreadWithoutKeys(job, [
+      'id',
+      'createdAt',
+      'updatedAt',
+      'employerId',
+    ]);
+
+    console.log(data);
+    try {
+      const response = await axios.patch(`/jobs/${id}`, JSON.stringify(data), {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+        },
+      });
+
+      console.log(response.data);
+
+      setIsLoading(false);
+      setSuccess(true);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.response.message);
+    }
+  };
   return (
     <div className='px-10 z-0 mt-10'>
       <div className='w-full bg-white p-10 shadow-card'>
         <h1 className='text-4xl font-bold text-primary-05 py-4'>Post Job</h1>
         <hr className='border-slate-300' />
         <form
-          action
           id='form'
           className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-4'
         >
@@ -64,8 +96,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <input
-                onChange={(event) => setTitle(event.target.value)}
-                value={title}
+                onChange={handleChange}
+                value={job?.title}
                 type='text'
                 name='title'
                 id='title'
@@ -85,12 +117,12 @@ export default function PostJobs() {
             </label>
             <div className='mt-2 relative'>
               <select
-                onChange={(event) => setType(event.target.value)}
-                value={type}
+                onChange={handleChange}
+                value={job?.type}
                 aria-label='job-type'
                 className='appearance-none block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                           placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                name='Job-type'
+                name='type'
                 id='Job-type'
               >
                 <option value>Select a type</option>
@@ -106,22 +138,28 @@ export default function PostJobs() {
           </div>
           <div className>
             <label
-              htmlFor='onsite'
+              htmlFor='workSetup'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               One-site/Remote
             </label>
             <div className='mt-2 relative'>
               <select
-                onChange={(event) => setWorkSetup(event.target.value)}
-                value={workSetup}
-                aria-label='onsite/remote'
+                onChange={handleChange}
+                value={job?.workSetup}
+                aria-label='workSetup'
                 className='appearance-none block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                           placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                name='onsite'
-                id='onsite'
+                name='workSetup'
+                id='workSetup'
               >
-                <option value>Select one</option>
+                <option
+                  value
+                  disabled
+                  selected
+                >
+                  Select one
+                </option>
                 <option value='One-site'>On-site</option>
                 <option value='Remote'>Remote</option>
                 <option value='Hybrid'>Hybrid</option>
@@ -179,8 +217,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2 relative'>
               <select
-                onChange={(event) => setExperience(event.target.value)}
-                value={experience}
+                onChange={handleChange}
+                value={job?.experience}
                 aria-label='experience'
                 className='appearance-none block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                           placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
@@ -188,6 +226,7 @@ export default function PostJobs() {
                 id='experience'
               >
                 <option
+                  value
                   disabled
                   selected
                 >
@@ -212,8 +251,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <input
-                onChange={(event) => setLocation(event.target.value)}
-                value={location}
+                onChange={handleChange}
+                value={job?.location}
                 type='text'
                 name='location'
                 id='location'
@@ -224,7 +263,7 @@ export default function PostJobs() {
               />
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='endDate'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -233,31 +272,30 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <input
-                onChange={(event) => setEndDate(event.target.value)}
-                value={endDate}
+                onChange={handleChange}
+                value={job?.endDate}
                 type='datetime-local'
                 name='endDate'
                 id='endDate'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
-                              placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+                            focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
               />
             </div>
           </div>
           <div className>
             <label
-              htmlFor='min-salary'
+              htmlFor='minSalary'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               Min salary
             </label>
             <div className='mt-2'>
               <input
-                
-                onChange={(event) => setMinSalary(event.target.value)}
-                value={minSalary}
+                onChange={handleChange}
+                value={job?.minSalary}
                 type='text'
-                name='min-salary'
-                id='min-salary'
+                name='minSalary'
+                id='minSalary'
                 placeholder='Min salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
@@ -266,18 +304,18 @@ export default function PostJobs() {
           </div>
           <div className>
             <label
-              htmlFor='max-salary'
+              htmlFor='maxSalary'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               Max salary
             </label>
             <div className='mt-2'>
               <input
-                onChange={(event) => setMaxSalary(event.target.value)}
-                value={maxSalary}
+                onChange={handleChange}
+                value={job?.maxSalary}
                 type='text'
-                name='max-salary'
-                id='max-salary'
+                name='maxSalary'
+                id='maxSalary'
                 placeholder='Max salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
@@ -293,8 +331,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <textarea
-                onChange={(event) => setRequirements(event.target.value)}
-                value={requirements}
+                onChange={handleChange}
+                value={job?.requirements}
                 placeholder='requirements'
                 name='requirements'
                 id='requirements'
@@ -313,6 +351,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <textarea
+                onChange={handleChange}
+                value={job?.responsibilty}
                 placeholder='responsibilty'
                 name='responsibilty'
                 id='responsibilty'
@@ -331,8 +371,8 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <textarea
-                onChange={(event) => setDescription(event.target.value)}
-                value={description}
+                onChange={handleChange}
+                value={job?.description}
                 placeholder='about'
                 name='about'
                 id='about'
@@ -351,24 +391,24 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <textarea
-                onChange={(event) => setBenefits(event.target.value)}
-                value={benefits}
+                onChange={handleChange}
+                value={job?.benefits}
                 placeholder='benefits'
                 name='benefits'
                 id='benefits'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue=' '
+                defaultValue=''
               />
             </div>
           </div>
           <div className>
             <button
-              onClick={handlePostJob}
+              onClick={handleSubmit}
               type='submit'
               className='bg-primary-07 w-full text-lg rounded-md border py-3 px-4 text-white shadow-sm hover:bg-blue-600 font-medium'
             >
-              Submit
+              {isLoading ? <Spinner className='mx-auto block' /> : 'Update'}
             </button>
           </div>
         </form>
@@ -405,9 +445,7 @@ export default function PostJobs() {
               <h1 className='text-xl font-bold my-3'>
                 Job Posted Successfully
               </h1>
-              <p className='text-[#777676] '>
-                Your Job has been created.
-              </p>
+              <p className='text-[#777676] '>Your Job has been created.</p>
             </div>
             <Link
               to='/employers-dashboard/job-posted'
@@ -420,4 +458,6 @@ export default function PostJobs() {
       </div>
     </div>
   );
-}
+};
+
+export default EditJob;

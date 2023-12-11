@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Testimonial = ({ test }) => {
   return (
     <div className='mx-auto w-full max-w-[70%] flex items-center gap-10'>

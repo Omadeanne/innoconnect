@@ -175,7 +175,7 @@ const ArticleDetails = () => {
           <p className="mb-3 font-semibold">Recommended for you</p>
           <a href="#" className="flex gap-5 my-4">
             <div>
-              {/* <img src="assets/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="thumbnail" className="rounded-md w-20" /> */}
+              <img src="assets/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="thumbnail" className="rounded-md w-20" />
             </div>
             <div>
               <h4 className="font-semibold">France in Pictures</h4>
@@ -184,7 +184,7 @@ const ArticleDetails = () => {
           </a>
           <a href="#" className="flex gap-5 my-4">
             <div>
-              {/* <img src="assets/technology.jpg" alt="thumbnail" className="rounded-md w-20" /> */}
+              <img src="assets/technology.jpg" alt="thumbnail" className="rounded-md w-20" />
             </div>
             <div>
               <h4 className="font-semibold">France in Pictures</h4>
@@ -193,7 +193,7 @@ const ArticleDetails = () => {
           </a>
           <a href="#" className="flex gap-5 mt-4">
             <div>
-              {/* <img src="assets/blog_illustration1.svg" alt="thumbnail" className="rounded-md w-20" /> */}
+              <img src="assets/blog_illustration1.svg" alt="thumbnail" className="rounded-md w-20" />
             </div>
             <div>
               <h4 className="font-semibold">France in Pictures</h4>
@@ -209,7 +209,7 @@ const ArticleDetails = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="flex flex-col gap-4">
           <div>
-            {/* <img src="./assets/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="thumbnail" className="w-full rounded-lg object-cover" /> */}
+            <img src="./assets/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="thumbnail" className="w-full rounded-lg object-cover" />
           </div>
           <div>
             <div className="flex items-center text-error-04 font-medium mb-3">
@@ -237,7 +237,7 @@ const ArticleDetails = () => {
         </div>
         <div className="flex flex-col gap-4">
           <div>
-            {/* <img src="./assets/blog_illustration1.svg" alt="thumbnail" className="w-full rounded-lg object-cover" /> */}
+            <img src="./assets/blog_illustration1.svg" alt="thumbnail" className="w-full rounded-lg object-cover" />
           </div>
           <div>
             <div className="flex items-center text-error-04 font-medium mb-3">

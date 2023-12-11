@@ -98,8 +98,8 @@ const Article = () => {
             >
               <div class="flex flex-col gap-4">
       <div>
-        {/* <img src="./assets/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="thumbnail"
-          class="w-full rounded-lg object-cover"/> */}
+        <img src="./assets/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="thumbnail"
+          class="w-full rounded-lg object-cover"/>
       </div>
       <div>
         <div class="flex items-center text-error-04 font-medium mb-3">
@@ -124,8 +124,8 @@ const Article = () => {
     </div>
     <div class="flex flex-col gap-4">
       <div>
-        {/* <img src="./assets/blog_illustration1.svg" alt="thumbnail"
-          class="w-full rounded-lg object-cover"/> */}
+        <img src="./assets/blog_illustration1.svg" alt="thumbnail"
+          class="w-full rounded-lg object-cover"/>
       </div>
       <div>
         <div class="flex items-center text-error-04 font-medium mb-3">
@@ -150,7 +150,7 @@ const Article = () => {
     </div>
     <div class="flex flex-col gap-4">
       <div>
-        {/* <img src="./assets/technology-customer-support1.jpg" alt="thumbnail" class="w-full rounded-lg object-cover"/> */}
+        <img src="./assets/technology-customer-support1.jpg" alt="thumbnail" class="w-full rounded-lg object-cover"/>
       </div>
       <div>
         <div class="flex items-center text-error-04 font-medium mb-3">

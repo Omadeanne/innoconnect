@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Card from '../../Components/molecules/card/Card';
 import { Rating } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';

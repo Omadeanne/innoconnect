@@ -1,4 +1,3 @@
-
 const MentorCard = ({ mentor }) => {
   return (
     <li>

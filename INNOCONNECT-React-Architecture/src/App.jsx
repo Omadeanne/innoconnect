@@ -34,6 +34,7 @@ import Courses from './pages/mentees-dashboard/courses/Courses';
 import MyMentors from './pages/mentees-dashboard/MyMentors';
 import PersistLogin from './PersistLogin';
 import ResetPassword from './pages/landing-page/ResetPassword';
+import EditJob from './pages/employers-dashbord/EditJob';
 
 function App() {
   return (
@@ -162,11 +163,15 @@ function App() {
               element={<JobPosted />}
             />
             <Route
+              path='job-posted/edit/:id'
+              element={<EditJob />}
+            />
+            <Route
               path='messages'
               element={<Message />}
             />
             <Route
-              path='applicants'
+              path='job-posted/:id/applications'
               element={<Applicant />}
             />
           </Route>

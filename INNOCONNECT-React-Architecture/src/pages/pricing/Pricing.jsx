@@ -1,4 +1,3 @@
-import React from 'react';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 
