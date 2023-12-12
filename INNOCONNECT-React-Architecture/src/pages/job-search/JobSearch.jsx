@@ -295,12 +295,11 @@ const JobSearch = () => {
                     Recommended Jobs
                   </h2>
                   <hr />
-                  {filteredJobs.map((job, index) => (
+                  
                     <JobCard
-                      key={index}
-                      job={job}
+                      
                     />
-                  ))}
+                  
                 </div>
               </div>
             </div>

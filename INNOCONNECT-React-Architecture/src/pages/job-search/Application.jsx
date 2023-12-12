@@ -2,11 +2,62 @@ import { useParams } from 'react-router-dom';
 import jobs from './jobs';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
+import axios from '../../axios/axios';
+import React, {useState, useEffect} from 'react';
+import useAuthProvider from '../../context/useAuthProvider';
 
 const Application = () => {
   const { id } = useParams();
   const job = jobs.find((job) => job.id === +id);
 
+  const [applySuccess, setApplySuccess] = useState(false);
+  const { isLoggedIn } = useAuthProvider();
+
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [cv, setCv] = useState("")
+ 
+
+  const applyJobs = async(e)=>{
+    e.preventDefault()
+    try{
+      const applyData ={
+        firstName,
+        lastName,
+        email,
+        phone,
+        cv
+      }
+      const response = await axios.post(`/application/${id}`, JSON.stringify(applyData),
+        {
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
+        })
+        console.log(response)
+        setApplySuccess(response)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  const [getjob, setJob] =useState([])
+
+  useEffect(()=>{
+    const getJobDetails = async ()=>{
+      try{
+        const response = await axios.get(`/jobs/${id}`, {
+          
+        });
+        // setIsLoading(false);
+        console.log(response.data)
+        setJob(response.data)
+      }catch(error){
+        console.log(error.response.data.message)
+      }
+    }
+    getJobDetails()
+  }, [])
   return (
     <>
       <Nav />
@@ -64,6 +115,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
+                      onChange={(event) => setFirstName(event.target.value)}
+                      value={firstName}
                         type='text'
                         name='first-name'
                         id='first-name'
@@ -83,6 +136,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
+                      onChange={(event) => setLastName(event.target.value)}
+                      value={lastName}
                         type='text'
                         placeholder='Last Name'
                         name='last-name'
@@ -102,6 +157,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
+                      onChange={(event) => setEmail(event.target.value)}
+                      value={email}
                         type='text'
                         placeholder='xxx@email.com'
                         name='email'
@@ -121,6 +178,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
+                      onChange={(event) => setPhone(event.target.value)}
+                      value={phone}
                         type='text'
                         placeholder='xxx-xxx-xxxx'
                         name='phone'
@@ -145,6 +204,8 @@ const Application = () => {
                           >
                             <span>Upload a file</span>
                             <input
+                            onChange={(event) => setCv(event.target.value)}
+                            value={cv}
                               id='file-upload'
                               name='file-upload'
                               accept='png, jpg, jpeg, pdf'
@@ -162,8 +223,8 @@ const Application = () => {
                   </div>
                 </div>
                 <button
+                onClick={applyJobs}
                   type='submit'
-                  href='Application.html'
                   className='text-white font-semibold w-28 border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 block active:bg-secondary-07 hover:shadow-btn mt-8'
                 >
                   Submit
@@ -177,17 +238,17 @@ const Application = () => {
               >
                 <div className='mb-4'>
                   <h2 className='text-xl md:text-xl font-bold text-primary-06'>
-                    {job.title}
+                    {getjob.title}
                   </h2>
-                  <p className='mt-2'>
-                    <i className='fa-solid fa-building mr-1' /> {job.company}
-                  </p>
+                  {/* <p className='mt-2'>
+                    <i className='fa-solid fa-building mr-1' /> {getjob.company}
+                  </p> */}
                   <p className='mt-2'>
                     <i className='fa-solid fa-location-dot mr-1' />{' '}
-                    {job.location}
+                    {getjob.location}
                   </p>
                   <p className='mt-2'>
-                    <i className='fa-solid fa-briefcase mr-1' /> {job.type}
+                    <i className='fa-solid fa-briefcase mr-1' /> {getjob.type}
                   </p>
                 </div>
                 <hr />
@@ -197,32 +258,18 @@ const Application = () => {
                   </p>
                   <div className='text-lg md:col-span-3'>
                     <ul className='list-disc list-inside'>
-                      {job.requirements?.map((requirement, index) => (
-                        <li key={index}>{requirement}</li>
-                      ))}
+                    {getjob.requirements}
                     </ul>
                   </div>
                 </div>
                 <hr />
                 <div className='my-4'>
                   <p className='font-bold text-lg uppercase md:col-span-1'>
-                    Responsibilities:
+                    Benefits:
                   </p>
                   <div className='text-lg md:col-span-3'>
                     <ul className='list-disc list-inside'>
-                      <li>
-                        Develop new features and enhancements to existing
-                        applications.
-                      </li>
-                      <li>
-                        Collaborate with cross-functional teams to define,
-                        design, and ship new features.
-                      </li>
-                      <li>
-                        Identify opportunities for process improvements and
-                        automation.
-                      </li>
-                      <li>Write well-designed, testable, efficient code.</li>
+                    {getjob.benefits}
                     </ul>
                   </div>
                 </div>
