@@ -52,7 +52,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div className="bg-[#eff9ff] stroke-2 my-8 lg:my-0 rounded-lg shadow-inno  hover:drop-shadow-xl w-[310px] mx-4 h-[350px] lg:h-[290px]">
+          <div className="bg-[#eff9ff] stroke-2 my-8 lg:my-0 rounded-lg hover:drop-shadow-xl w-[310px] mx-4 h-[350px] lg:h-[290px]">
             {/* <i class="fa fa-phone-square fa-3x bg-midnight" aria-hidden="true" ></i> */}
             <div className="m-3 ">
               {/* <svg xmlns="http://www.w3.org/2000/svg" width={43} height={43} className="bg-pri-color p-1 mb-6 rounded" viewBox="0 0 34 34" fill="none">
