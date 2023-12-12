@@ -81,7 +81,7 @@ const EditJob = () => {
   return (
     <div className='px-10 z-0 mt-10'>
       <div className='w-full bg-white p-10 shadow-card'>
-        <h1 className='text-4xl font-bold text-primary-05 py-4'>Post Job</h1>
+        <h1 className='text-4xl font-bold text-primary-05 py-4'>Edit Job</h1>
         <hr className='border-slate-300' />
         <form
           id='form'
