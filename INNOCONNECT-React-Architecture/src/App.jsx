@@ -39,87 +39,87 @@ import EditJob from './pages/employers-dashbord/EditJob';
 function App() {
   return (
     <Routes>
-      <Route
-        path='/'
-        element={<Home />}
-      />
-      <Route
-        path='/login'
-        element={<Login />}
-      />
-      <Route
-        path='/reset-password'
-        element={<ResetPassword />}
-      />
-      <Route
-        path='/register'
-        element={<Signup />}
-      />
-      <Route
-        path='/community'
-        element={<Community />}
-      />
-      <Route
-        path='/job-search'
-        element={<JobSearch />}
-      />
-      <Route
-        path='/job-details/:id'
-        element={<JobDetails />}
-      />
-      <Route
-        path='/blog-details/:id'
-        element={<JobDetails />}
-      />
-      <Route
-        path='/faq'
-        element={<Faq />}
-      />
-      <Route
-        path='/blog'
-        element={<Article />}
-      />
-      <Route
-        path='/mentors'
-        element={<Smartmatch />}
-      />
-      <Route
-        path='/mentors/:id'
-        element={<MentorProfile />}
-      />
-      <Route
-        path='/pricing'
-        element={<Pricing />}
-      />
-      <Route
-        path='/about'
-        element={<About />}
-      />
-      <Route
-        path='/forgot-password'
-        element={<ForgotPassword />}
-      />
-      <Route
-        path='/become-mentor'
-        element={<BecomeMentor />}
-      />
-      <Route
-        path='/terms-and-conditions'
-        element={<TermsCondition />}
-      />
-      <Route
-        path='/mentor-form'
-        element={<MentorForm />}
-      />
-      <Route
-        path='/mentors-faq'
-        element={<MentorsFaq />}
-      />
-      <Route
-        path='/personality-test'
-        element={<PersonalityTest />}
-      />
       <Route element={<PersistLogin />}>
+        <Route
+          path='/'
+          element={<Home />}
+        />
+        <Route
+          path='/login'
+          element={<Login />}
+        />
+        <Route
+          path='/reset-password'
+          element={<ResetPassword />}
+        />
+        <Route
+          path='/register'
+          element={<Signup />}
+        />
+        <Route
+          path='/community'
+          element={<Community />}
+        />
+        <Route
+          path='/job-search'
+          element={<JobSearch />}
+        />
+        <Route
+          path='/job-details/:id'
+          element={<JobDetails />}
+        />
+        <Route
+          path='/blog-details/:id'
+          element={<JobDetails />}
+        />
+        <Route
+          path='/faq'
+          element={<Faq />}
+        />
+        <Route
+          path='/blog'
+          element={<Article />}
+        />
+        <Route
+          path='/mentors'
+          element={<Smartmatch />}
+        />
+        <Route
+          path='/mentors/:id'
+          element={<MentorProfile />}
+        />
+        <Route
+          path='/pricing'
+          element={<Pricing />}
+        />
+        <Route
+          path='/about'
+          element={<About />}
+        />
+        <Route
+          path='/forgot-password'
+          element={<ForgotPassword />}
+        />
+        <Route
+          path='/become-mentor'
+          element={<BecomeMentor />}
+        />
+        <Route
+          path='/terms-and-conditions'
+          element={<TermsCondition />}
+        />
+        <Route
+          path='/mentor-form'
+          element={<MentorForm />}
+        />
+        <Route
+          path='/mentors-faq'
+          element={<MentorsFaq />}
+        />
+        <Route
+          path='/personality-test'
+          element={<PersonalityTest />}
+        />
         <Route element={<Layout />}>
           <Route
             path='/apply/:id'
@@ -176,15 +176,15 @@ function App() {
             />
           </Route>
         </Route>
+        <Route
+          path='/contact'
+          element={<Contact />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
       </Route>
-      <Route
-        path='/contact'
-        element={<Contact />}
-      />
-      <Route
-        path='*'
-        element={<NotFound />}
-      />
     </Routes>
   );
 }
