@@ -1,5 +1,8 @@
 import axios from 'axios';
-const BASE_URL = 'https://innoconnect-backend.onrender.com/v1';
+const local = 'http://localhost:5000/v1';
+const remote = 'https://innoconnect-backend.onrender.com/v1';
+
+const BASE_URL = remote;
 
 export default axios.create({
   baseURL: BASE_URL,

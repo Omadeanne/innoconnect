@@ -1,10 +1,9 @@
-import {
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
-import { Input } from '@material-tailwind/react';
 import ProfileAndNotifications from '../nav_footer/ProfileAndNotifications';
+import useAuthProvider from '../../../context/useAuthProvider';
 
 const Header = () => {
+  const { isLoggedIn } = useAuthProvider();
+
   return (
     <header className='sticky top-0 right-0 z-50'>
       <div className='py-2 items-center justify-between drop-shadow-sm bg-[#ffffff] flex'>
@@ -27,12 +26,10 @@ const Header = () => {
             />
           </svg>
         </div>
-        {/* search bar */}
+
         <div className='p-2 ml-4'>
-          <Input
-            icon={<MagnifyingGlassIcon className='h-5 w-5' />}
-            label='Search'
-          />
+          <h1 className='text-2xl font-bold'>Welcome {isLoggedIn?.user?.firstName}</h1>
+          
         </div>
 
         {/* notification bell and profile */}
