@@ -3,11 +3,37 @@ import jobs from './jobs';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import { defaultImg } from '../../assets';
+import axios from '../../axios/axios';
+import React, {useState, useEffect} from 'react';
+import formatDistance from 'date-fns/formatDistance';
+import format from 'date-fns/format';
+
 const JobDetails = () => {
   const { id } = useParams();
 
-  const job = jobs.find((job) => job.id === +id);
-  console.log(job);
+  // const job = jobs.find((job) => job.id === +id);
+  // console.log(job);
+
+  const [job, setJob] =useState([])
+
+
+  useEffect(()=>{
+    const getJobDetails = async ()=>{
+      try{
+        const response = await axios.get(`/jobs/${id}`, {
+          
+        });
+        // setIsLoading(false);
+        console.log(response.data)
+        setJob(response.data)
+      }catch(error){
+        console.log(error.response.data.message)
+      }
+    }
+    getJobDetails()
+  }, [])
+
+  console.log(job)
   return (
     <>
       <Nav />
@@ -20,25 +46,29 @@ const JobDetails = () => {
                 <h2 className='text-xl md:text-3xl font-bold text-primary-06'>
                   {job.title}
                 </h2>
-                <p className='mt-2'>
+                {/* <p className='mt-2'>
                   <i className='fa-solid fa-building mr-1' /> {job.company}
-                </p>
+                </p> */}
                 <p className='mt-2'>
                   <i className='fa-solid fa-location-dot mr-1' /> {job.location}
                 </p>
                 <p className='mt-2'>
-                  <i className='fa-solid fa-briefcase mr-1' /> {job.site}
+                  <i className='fa-solid fa-briefcase mr-1' /> {job.workSetup}
                 </p>
                 <p className='mt-2'>
                   <i className='fa-solid fa-clock mr-1' /> Job posted:{' '}
-                  <span>{job.date}</span>
+                  {/* <span className='ml-2'>{`${formatDistance(
+                        new Date(job?.createdAt),
+                        new Date(),
+                        { addSuffix: true }
+                      )}`}</span> */}
                 </p>
                 <div className='my-2 flex gap-3'>
                   <button className='w-20 bg-red-400 px-2 py-1 text-white rounded-sm text-sm'>
                     {job.type}
                   </button>
                   <button className='w-20 bg-green-400 px-2 py-1 text-white rounded-sm text-sm'>
-                    {job.site}
+                    {job.workSetup}
                   </button>
                 </div>
               </div>
@@ -54,7 +84,7 @@ const JobDetails = () => {
             <div className='mt-8 text-primary-05'>
               <div className='grid grid-cols-1 md:grid-cols-4 gap-y-8'>
                 <p className='font-bold text-lg uppercase md:col-span-1'>
-                  About:
+                  About: 
                 </p>
                 <p className='text-lg md:col-span-3'>{job.description}</p>
                 <hr className='col-span-full' />
@@ -63,41 +93,17 @@ const JobDetails = () => {
                 </p>
                 <div className='text-lg md:col-span-3'>
                   <ul className='list-disc list-inside'>
-                    {job.requirements?.map((requirement) => (
-                      <li key={requirement}>{requirement}</li>
-                    ))}
+                    {job.requirements}
                   </ul>
                 </div>
-                <hr className='col-span-full' />
-                <p className='font-bold text-lg uppercase md:col-span-1'>
-                  Responsibilities:
-                </p>
-                <div className='text-lg md:col-span-3'>
-                  <ul className='list-disc list-inside'>
-                    <li>
-                      Develop new features and enhancements to existing
-                      applications.
-                    </li>
-                    <li>
-                      Collaborate with cross-functional teams to define, design,
-                      and ship new features.
-                    </li>
-                    <li>
-                      Identify opportunities for process improvements and
-                      automation.
-                    </li>
-                    <li>Write well-designed, testable, efficient code.</li>
-                  </ul>
-                </div>
+                
                 <hr className='col-span-full' />
                 <p className='font-bold text-lg uppercase md:col-span-1'>
                   Benefits:
                 </p>
                 <div className='text-lg md:col-span-3'>
                   <ul className='list-disc list-inside'>
-                    <li>Competitive salary</li>
-                    <li>Flexible working hours</li>
-                    <li>Remote work</li>
+                    {job.benefits}
                   </ul>
                 </div>
               </div>
