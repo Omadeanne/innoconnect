@@ -1,11 +1,15 @@
 import axios from '../../axios/axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import useAuthProvider from '../../context/useAuthProvider';
 import { Link } from 'react-router-dom';
+import { Spinner } from '@material-tailwind/react';
 
 export default function PostJobs() {
   const [success, setSuccess] = useState(false);
   const { isLoggedIn } = useAuthProvider();
+  const [loading, setLoading] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
+  const errRef = useRef();
 
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -21,7 +25,12 @@ export default function PostJobs() {
 
   const handlePostJob = async (e) => {
     e.preventDefault()
+    if (!title || !description || !location || !workSetup || !type || !experience || !requirements || !benefits) {
+      setErrMsg('All fields are required');
+      return;
+    }
     try {
+      setLoading(true);
       const postJobData = {
         title,
         description,
@@ -39,10 +48,13 @@ export default function PostJobs() {
         {
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
         })
+        setLoading(false);
         setSuccess(true);
       console.log(response)
     } catch (error) {
+      setLoading(false);
       console.log(error.response.message)
+      setErrMsg(error?.response?.data?.message);
     }
   }
   return (
@@ -362,13 +374,25 @@ export default function PostJobs() {
               />
             </div>
           </div>
+          <p
+                ref={errRef}
+                className={
+                  errMsg
+                    ? 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2 col-span-full'
+                    : 'hidden'
+                }
+                aria-live='assertive'
+                role='alert'
+              >
+                {errMsg}
+              </p>
           <div className>
             <button
               onClick={handlePostJob}
               type='submit'
               className='bg-primary-07 w-full text-lg rounded-md border py-3 px-4 text-white shadow-sm hover:bg-blue-600 font-medium'
             >
-              Submit
+              {loading ? <Spinner className='block mx-auto' /> : 'Submit'}
             </button>
           </div>
         </form>

@@ -3,8 +3,9 @@ import jobs from './jobs';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import axios from '../../axios/axios';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import useAuthProvider from '../../context/useAuthProvider';
+import { Spinner } from '@material-tailwind/react';
 
 const Application = () => {
   const { id } = useParams();
@@ -12,17 +13,25 @@ const Application = () => {
 
   const [applySuccess, setApplySuccess] = useState(false);
   const { isLoggedIn } = useAuthProvider();
+  const [loading, setLoading] = useState(false);
+  const errRef = useRef();
 
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [cv, setCv] = useState("")
+  const [errMsg, setErrMsg] = useState('');
  
 
   const applyJobs = async(e)=>{
     e.preventDefault()
+    if (!firstName || !lastName || !email || !phone) {
+      setErrMsg('All fields are required');
+      return;
+    }
     try{
+      setLoading(true);
       const applyData ={
         firstName,
         lastName,
@@ -34,10 +43,13 @@ const Application = () => {
         {
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
         })
+        setLoading(false);
         console.log(response)
         setApplySuccess(response)
     }catch(error){
+      setLoading(false);
       console.log(error)
+      setErrMsg(error?.response?.data?.message);
     }
   }
 
@@ -45,15 +57,19 @@ const Application = () => {
 
   useEffect(()=>{
     const getJobDetails = async ()=>{
+      
       try{
+        
         const response = await axios.get(`/jobs/${id}`, {
           
         });
-        // setIsLoading(false);
+        
         console.log(response.data)
         setJob(response.data)
       }catch(error){
+        
         console.log(error.response.data.message)
+        
       }
     }
     getJobDetails()
@@ -222,12 +238,24 @@ const Application = () => {
                     </div>
                   </div>
                 </div>
+                <p
+                ref={errRef}
+                className={
+                  errMsg
+                    ? 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2 col-span-full'
+                    : 'hidden'
+                }
+                aria-live='assertive'
+                role='alert'
+              >
+                {errMsg}
+              </p>
                 <button
                 onClick={applyJobs}
                   type='submit'
                   className='text-white font-semibold w-28 border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 block active:bg-secondary-07 hover:shadow-btn mt-8'
                 >
-                  Submit
+                  {loading ? <Spinner className='block mx-auto' /> : 'Submit'}
                 </button>
               </form>
             </div>
@@ -277,7 +305,12 @@ const Application = () => {
             </div>
             <div
               id='success-modal'
-              className='fixed hidden inset-0 items-center justify-center z-50 bg-gray-800 bg-opacity-50'
+              // className='fixed hidden inset-0 items-center justify-center z-50 bg-gray-800 bg-opacity-50'
+              className={
+                applySuccess
+                  ? 'fixed inset-0  w-full h-screen flex items-center justify-center z-50 bg-gray-800 bg-opacity-50'
+                  : 'hidden'
+              }
             >
               <div className='container w-[464px] bg-white p-8 rounded-3xl text-center hover:shadow-lg'>
                 <div className='content'>
@@ -292,7 +325,7 @@ const Application = () => {
                     <p>You'll be contacted shortly</p>
                   </div>
                   <a
-                    href='jobSearch.html'
+                    href='jobSearch'
                     className='bg-[#234270] inline-block text-white w-full font-semibold rounded p-3 mt-5 hover:bg-[#0d304c] transition duration-300'
                   >
                     continue
