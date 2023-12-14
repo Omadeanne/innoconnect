@@ -202,7 +202,7 @@ const Home = () => {
                     Post a job, Find &amp; Hire Top talents on InnoConnect.
                   </p>
                   <a
-                    href='jobSearch.html'
+                    href='/register'
                     className='text-white my-2 font-medium border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 inline-block active:bg-secondary-07 hover:shadow-btn'
                   >
                     Create an Employer account
