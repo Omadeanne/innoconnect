@@ -19,6 +19,7 @@ function classNames(...classes) {
 
 export default function Nav() {
   const { isLoggedIn } = useAuthProvider();
+  console.log(isLoggedIn);
   return (
     <Disclosure
       as='nav'
@@ -216,7 +217,9 @@ export default function Nav() {
                   </div>
                 </div>
               </div>
-              {!isLoggedIn ? (
+              {isLoggedIn ? (
+                <ProfileAndNotifications />
+              ) : (
                 <div className='lg:flex lg:px-0 hidden gap-4 absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
                   <Link
                     to='/login'
@@ -231,8 +234,6 @@ export default function Nav() {
                     Register
                   </Link>
                 </div>
-              ) : (
-                <ProfileAndNotifications />
               )}
             </div>
           </div>

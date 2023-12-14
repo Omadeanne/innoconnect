@@ -58,6 +58,7 @@ const EditJob = () => {
       'createdAt',
       'updatedAt',
       'employerId',
+      'applications',
     ]);
 
     console.log(data);
@@ -299,6 +300,7 @@ const EditJob = () => {
                 placeholder='Min salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -319,6 +321,7 @@ const EditJob = () => {
                 placeholder='Max salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -358,7 +361,7 @@ const EditJob = () => {
                 id='responsibilty'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={''}
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -378,7 +381,7 @@ const EditJob = () => {
                 id='about'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={''}
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -398,7 +401,7 @@ const EditJob = () => {
                 id='benefits'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue=''
+                defaultValue=' '
               />
             </div>
           </div>

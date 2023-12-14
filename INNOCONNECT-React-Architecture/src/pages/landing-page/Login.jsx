@@ -64,11 +64,13 @@ const Login = () => {
   return (
     <div className='flex flex-col md:flex-row min-h-screen'>
       <div className='md:absolute h-20 left-4 top-4 p-4 bg-[#112034]'>
-        <img
-          className
-          src={logo}
-          alt='logo'
-        />
+        <Link to='/'>
+          <img
+            className
+            src={logo}
+            alt='logo'
+          />
+        </Link>
       </div>
       <div className='hidden md:flex  bg-[#112034] flex-1 justify-center items-center p-10'>
         <img
