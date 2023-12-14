@@ -21,7 +21,7 @@ export default function Smartmatch() {
           <p className='text-white text-6xl font-bold text-center my-[20px] p-[10px] '>
             Discover Your Mentorship Match
           </p>
-          <p className='font-font text-white text-lg font-bold text-center my-[20px] max-w-3xl mx-auto'>
+          <p className='font-font text-white text-xl px-3 font-bold text-center my-[20px] max-w-3xl mx-auto'>
             Explore the possibilities of mentorship with us! Whether you're
             seeking technical guidance or professional growth, we're here to
             connect you with the mentor who's perfectly suited to your unique
@@ -31,7 +31,7 @@ export default function Smartmatch() {
           </div>
         </div>
         </div>
-        <div className='grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-10 w-[75%] m-auto pt-[30px]'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
           {mentors.map((mentor) => (
             <MentorCard
               key={mentor.id}
