@@ -35,6 +35,9 @@ import MyMentors from './pages/mentees-dashboard/MyMentors';
 import PersistLogin from './PersistLogin';
 import ResetPassword from './pages/landing-page/ResetPassword';
 import EditJob from './pages/employers-dashbord/EditJob';
+import MentorOverview from './pages/mentors-dashboard/MentorOverview'
+import MentorMentee from './pages/mentors-dashboard/MentorMentee'
+import MentorAppointment from './pages/mentors-dashboard/MentorAppointment'
 
 function App() {
   return (
@@ -145,7 +148,20 @@ function App() {
           <Route
             path='/mentors-dashboard'
             element={<MentorsDashboard />}
-          />
+          >
+            <Route
+              path=''
+              element={<MentorOverview />}
+            />
+            <Route
+              path='all-mentees'
+              element={<MentorMentee />}
+            />
+            <Route
+              path='appointments'
+              element={<MentorAppointment />}
+            />
+          </Route>
           <Route
             path='/employers-dashboard'
             element={<Dashboard />}
