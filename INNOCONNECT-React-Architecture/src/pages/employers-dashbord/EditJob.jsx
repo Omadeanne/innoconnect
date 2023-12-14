@@ -58,6 +58,7 @@ const EditJob = () => {
       'createdAt',
       'updatedAt',
       'employerId',
+      'applications',
     ]);
 
     console.log(data);
@@ -81,7 +82,7 @@ const EditJob = () => {
   return (
     <div className='px-10 z-0 mt-10'>
       <div className='w-full bg-white p-10 shadow-card'>
-        <h1 className='text-4xl font-bold text-primary-05 py-4'>Post Job</h1>
+        <h1 className='text-4xl font-bold text-primary-05 py-4'>Edit Job</h1>
         <hr className='border-slate-300' />
         <form
           id='form'
@@ -299,6 +300,7 @@ const EditJob = () => {
                 placeholder='Min salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -319,6 +321,7 @@ const EditJob = () => {
                 placeholder='Max salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -358,7 +361,7 @@ const EditJob = () => {
                 id='responsibilty'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={''}
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -378,7 +381,7 @@ const EditJob = () => {
                 id='about'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={''}
+                defaultValue={' '}
               />
             </div>
           </div>
@@ -398,7 +401,7 @@ const EditJob = () => {
                 id='benefits'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue=''
+                defaultValue=' '
               />
             </div>
           </div>

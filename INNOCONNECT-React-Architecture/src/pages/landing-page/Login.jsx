@@ -41,13 +41,9 @@ const Login = () => {
         email,
         password,
       };
-      const response = await axios.post(
-        '/auth/login',
-        JSON.stringify(data),
-        {
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
+      const response = await axios.post('/auth/login', JSON.stringify(data), {
+        headers: { 'Content-Type': 'application/json' },
+      });
 
       setLoading(false);
       localStorage.setItem('isLoggedIn', JSON.stringify(response?.data));
@@ -58,9 +54,9 @@ const Login = () => {
       Navigate(from, { replace: true });
     } catch (error) {
       setLoading(false);
-      if(!error?.response){
+      if (!error?.response) {
         setErrMsg('No Server Response');
-      }else {
+      } else {
         setErrMsg(error?.response?.data?.message);
       }
     }
@@ -68,11 +64,13 @@ const Login = () => {
   return (
     <div className='flex flex-col md:flex-row min-h-screen'>
       <div className='md:absolute h-20 left-4 top-4 p-4 bg-[#112034]'>
-        <img
-          className
-          src={logo}
-          alt='logo'
-        />
+        <Link to='/'>
+          <img
+            className
+            src={logo}
+            alt='logo'
+          />
+        </Link>
       </div>
       <div className='hidden md:flex  bg-[#112034] flex-1 justify-center items-center p-10'>
         <img
@@ -157,8 +155,8 @@ const Login = () => {
                 type='submit'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2 my-2  transition duration-300 flex justify-center items-center gap-x-4'
               >
-                <i class="fa-brands fa-google text-[25px]"></i>
-               {/* <a href="https://imgbb.com/"><img src="https://i.ibb.co/3F2NfCH/Google-Logo.png" 
+                <i class='fa-brands fa-google text-[25px]'></i>
+                {/* <a href="https://imgbb.com/"><img src="https://i.ibb.co/3F2NfCH/Google-Logo.png" 
                alt="Google-Logo" border="0" /></a> */}
                 <span>Sign up with Google</span>
               </button>
@@ -166,14 +164,18 @@ const Login = () => {
                 type='submit'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2  transition duration-300 mt-1 flex justify-center items-center gap-x-4'
               >
-                <i class="fa-brands fa-apple text-[30px]"></i>
+                <i class='fa-brands fa-apple text-[30px]'></i>
 
                 <span>signup with Apple</span>
               </button>
               <p className='text-base text-center mt-2 text-primary-04 cursor-pointer'>
-                Don't have an account? 
+                Don't have an account?
                 <span className='text-[#234270] font-medium'>
-                  <Link to='/register'><span class='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>Register</span></Link>
+                  <Link to='/register'>
+                    <span class='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>
+                      Register
+                    </span>
+                  </Link>
                 </span>
               </p>
             </form>

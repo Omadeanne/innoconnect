@@ -14,7 +14,7 @@ const useLogout = () => {
       });
 
       localStorage.removeItem('isLoggedIn');
-      setIsLoggedIn(null);
+      setIsLoggedIn(false);
     } catch (error) {
       console.log(error);
     }
