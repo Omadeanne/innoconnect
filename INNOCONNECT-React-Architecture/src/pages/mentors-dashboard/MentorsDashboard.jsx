@@ -29,13 +29,13 @@ const links = [
   },
   {
     name: 'Messages',
-    to: '/messages',
+    to: '/mentors-dashboard/messages',
     icon: messages,
   },
   {
-    name: 'Applicants',
-    to: '/applicant',
-    icon: applicants,
+    name: 'Courses',
+    to: '/mentors-dashboard/courses',
+    icon: postJobs,
   },
 ];
 
