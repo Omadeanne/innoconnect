@@ -1,4 +1,3 @@
-import React from 'react';
 import Card from '../../Components/molecules/card/Card';
 
 const Overview = () => {
