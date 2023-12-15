@@ -46,10 +46,6 @@ const EditJob = () => {
     }));
   };
 
-  useEffect(() => {
-    console.log(job);
-  }, [job]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -79,6 +75,14 @@ const EditJob = () => {
       console.log(error.response.message);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className='flex items-center justify-center h-[calc(100vh-100px)]'>
+        <Spinner className='block mx-auto' />
+      </div>
+    );
+  }
   return (
     <div className='px-10 z-0 mt-10'>
       <div className='w-full bg-white p-10 shadow-card'>

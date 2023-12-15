@@ -1,8 +1,10 @@
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import { Link } from 'react-router-dom';
+import useAuthProvider from '../../context/useAuthProvider';
 
 const Pricing = () => {
+  const { isLoggedIn } = useAuthProvider();
   return (
     <div>
       <Nav />
@@ -37,9 +39,19 @@ const Pricing = () => {
               </li>
             </ul>
             <hr />
-            <button className='my-4 w-full text-gray-500 font-semibold border border-secondary-06 text-center rounded-lg px-4 py-2 block  transition-all cursor-not-allowed'>
-              Current plan
-            </button>
+            {!isLoggedIn ? (
+              <Link to='/login'>
+                <button className='my-4 w-full text-primary-05 font-semibold border border-secondary-06 text-center rounded-lg px-4 py-2 block  transition-all hover:bg-[#6A95B1] hover:bg-opacity-20'>
+                  Get Started
+                </button>
+              </Link>
+            ) : (
+              <button className='my-4 w-full text-primary-05 font-semibold border border-secondary-06 text-center rounded-lg px-4 py-2 block  transition-all hover:bg-[#6A95B1] hover:bg-opacity-20'>
+                {isLoggedIn?.user?.subscription === 'free'
+                  ? 'Active'
+                  : 'Get Started'}
+              </button>
+            )}
           </div>
           <div className='border border-primary-05 shadow-btn rounded-xl p-8 w-11/12 sm:w-80'>
             <div className='text-center text-primary-05'>
@@ -47,7 +59,7 @@ const Pricing = () => {
               <p className='text-gray-500 font-semibold mt-4'>
                 Billed Annually ₦ 12,000
               </p>
-              <p className='text-2xl font-semibold my-2'>₦ 1000/month</p>
+              <p className='text-2xl font-semibold my-2'>₦ 2000/month</p>
               <p className='text-lg my-4 font-semibold'>14 days free trial</p>
             </div>
             <hr />
@@ -66,12 +78,21 @@ const Pricing = () => {
               </li>
             </ul>
             <hr />
-            <Link
-              to = {`/payment/1`}
-              className='text-center text-white w-full block my-4 font-semibold border bg-secondary-06 border-secondary-06 rounded-lg px-4 py-2 active:bg-secondary-07 hover:shadow-btn'
-            >
-              Get started
-            </Link>
+            {isLoggedIn?.user?.subscription === 'premium' ? (
+              <button
+                disabled
+                className='text-center text-white w-full block my-4 font-semibold border bg-secondary-06 border-secondary-06 rounded-lg px-4 py-2 active:bg-secondary-07 hover:shadow-btn'
+              >
+                Current
+              </button>
+            ) : (
+              <Link
+                to={`/payment/1`}
+                className='text-center text-white w-full block my-4 font-semibold border bg-secondary-06 border-secondary-06 rounded-lg px-4 py-2 active:bg-secondary-07 hover:shadow-btn'
+              >
+                Get Started
+              </Link>
+            )}
           </div>
           <div className='border border-primary-05 shadow-btn rounded-xl p-8 w-11/12 sm:w-80'>
             <div className='text-center text-primary-05'>

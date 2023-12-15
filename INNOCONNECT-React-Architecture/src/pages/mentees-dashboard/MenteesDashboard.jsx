@@ -1,12 +1,9 @@
-import { BookmarkOutlined, Work, WorkOutline } from '@mui/icons-material';
-import Aside from '../../Components/molecules/mentee-dashboard/Aside';
+import { WorkOutline } from '@mui/icons-material';
 import Header from '../../Components/molecules/mentee-dashboard/Header';
 import {
-  home,
   community,
   course,
   mentor,
-  messages,
 } from '../../Components/molecules/mentee-dashboard/icons';
 import { Link, Outlet } from 'react-router-dom';
 import {
@@ -15,23 +12,21 @@ import {
   AccordionHeader,
   Alert,
   Card,
-  Chip,
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
   Typography,
 } from '@material-tailwind/react';
 import {
   ChevronDownIcon,
   ChevronRightIcon,
-  Cog6ToothIcon,
   CubeTransparentIcon,
   InboxIcon,
   PowerIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import AsideButton from '../../Components/molecules/mentee-dashboard/AsideButton';
+import useAuthProvider from '../../context/useAuthProvider';
 
 const links = [
   {
@@ -54,6 +49,7 @@ const links = [
 export default function MenteesDashboard() {
   const [open, setOpen] = useState(0);
   const [openAlert, setOpenAlert] = useState(true);
+  const { isLoggedIn } = useAuthProvider();
 
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
@@ -147,9 +143,9 @@ export default function MenteesDashboard() {
               );
             })}
           </List>
-          <Alert
+          {isLoggedIn?.user?.subscription === 'free' &&<Alert
             open={openAlert}
-            className='mt-auto'
+            className='mt-auto bg-[#2c3850]'
             onClose={() => setOpenAlert(false)}
           >
             <CubeTransparentIcon className='mb-4 h-12 w-12' />
@@ -186,7 +182,7 @@ export default function MenteesDashboard() {
                 </Typography>
               </Link>
             </div>
-          </Alert>
+          </Alert>}
           <ListItem className='text-white mt-2 hover:bg-[#fff] hover:bg-opacity-90 hover:text-primary-05 group'>
             <ListItemPrefix>
               <PowerIcon className='h-5 w-5' />

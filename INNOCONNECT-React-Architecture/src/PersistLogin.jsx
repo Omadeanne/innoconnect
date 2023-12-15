@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useAuthProvider from './context/useAuthProvider';
 import useRefreshToken from './hooks/useRefresh';
+import { Spinner } from '@material-tailwind/react';
 
 const PersistLogin = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,9 +32,9 @@ const PersistLogin = () => {
   return (
     <>
       {isLoading ? (
-        <div className='flex justify-center items-center h-screen w-full'>
-          Loading...
-        </div>
+       <div className='flex items-center justify-center h-screen'>
+       <Spinner className='block mx-auto' />
+     </div>
       ) : (
         <Outlet />
       )}

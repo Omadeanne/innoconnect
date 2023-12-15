@@ -1,5 +1,6 @@
 import ProfileAndNotifications from '../nav_footer/ProfileAndNotifications';
 import useAuthProvider from '../../../context/useAuthProvider';
+import { Chip } from '@mui/material';
 
 const Header = () => {
   const { isLoggedIn } = useAuthProvider();
@@ -28,13 +29,20 @@ const Header = () => {
         </div>
 
         <div className='p-2 ml-4'>
-          <h1 className='text-2xl font-bold'>Welcome {isLoggedIn?.user?.firstName}</h1>
-          
+          <h1 className='text-2xl font-bold'>
+            Welcome {isLoggedIn?.user?.firstName}
+          </h1>
         </div>
+
+        {isLoggedIn.user.subscription !== 'free' && (
+          <div className='p-2 ml-4 capitalize'>
+             <Chip label={isLoggedIn.user.subscription} variant="outlined" />
+          </div>
+        )}
 
         {/* notification bell and profile */}
         <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 mr-7'>
-            <ProfileAndNotifications />
+          <ProfileAndNotifications />
         </div>
       </div>
     </header>

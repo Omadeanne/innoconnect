@@ -44,6 +44,7 @@ const JobCard = ({ job }) => {
       console.log(error);
     }
   };
+
   return (
     <div className='job-cards'>
       <div
@@ -103,6 +104,7 @@ const JobCard = ({ job }) => {
 
 JobCard.propTypes = {
   job: Proptypes.object,
+  setIsLoading: Proptypes.func,
 };
 
 export default JobCard;
