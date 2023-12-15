@@ -94,7 +94,9 @@ export default function MentorProfile() {
 
       <div className='flex justify-center mt-3 items-center h-[calc(100vh-100px)]'>
         {Loading ? (
-          'loading...'
+          <div className='flex items-center justify-center h-[calc(100vh-100px)]'>
+            <Spinner className='block mx-auto' />
+          </div>
         ) : (
           <>
             <div className='flex flex-1 justify-center items-center'>
