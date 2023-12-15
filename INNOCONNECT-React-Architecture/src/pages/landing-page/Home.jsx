@@ -32,7 +32,7 @@ const Home = () => {
                     Land your dream career.
                   </h2>
                   <h4 className='mb-6 text-l font-light'>
-                    Learn a new skill, launch a project, land your dream career
+                    Guiding Careers, Building Bridges
                   </h4>
                   <div className='flex justify-center gap-3 xmd:flex-col xmd:w-[50%] xmd:m-auto'>
                     <a
