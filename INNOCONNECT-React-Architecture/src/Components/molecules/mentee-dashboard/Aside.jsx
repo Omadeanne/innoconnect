@@ -10,8 +10,10 @@ import { CubeTransparentIcon } from '@heroicons/react/24/outline';
 import AsideButton from './AsideButton';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useAuthProvider from '../../../context/useAuthProvider';
 
 export default function Aside({ links }) {
+  const { isLoggedIn } = useAuthProvider();
   const [openAlert, setOpenAlert] = useState(true);
 
   return (
@@ -35,7 +37,7 @@ export default function Aside({ links }) {
           );
         })}
       </List>
-      <Alert
+      {isLoggedIn?.user?.subscription === 'free' && <Alert
         open={openAlert}
         className='mt-auto bg-[#2c3850]'
         onClose={() => setOpenAlert(false)}
@@ -72,7 +74,7 @@ export default function Aside({ links }) {
             Upgrade Now
           </Typography>
         </div>
-      </Alert>
+      </Alert>}
       <List>
         <ListItem className='text-white mt-2 hover:bg-[#fff] hover:bg-opacity-90 hover:text-primary-05 group'>
           <ListItemPrefix>

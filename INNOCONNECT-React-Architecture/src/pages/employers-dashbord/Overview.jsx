@@ -1,13 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Card from '../../Components/molecules/card/Card';
 import axios from '../../axios/axios';
 import useAuthProvider from '../../context/useAuthProvider';
 import { format, formatDistance } from 'date-fns';
+import { Link } from 'react-router-dom';
+import { BellAlertIcon } from '@heroicons/react/24/outline';
+import Delete from '@mui/icons-material/Delete';
+import DeleteModal from './DeleteModal';
+import RemoveRedEye from '@mui/icons-material/RemoveRedEye';
 
 const Overview = () => {
   const { isLoggedIn } = useAuthProvider();
   const [allJobs, setAllJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [applications, setApplications] = useState([]);
   const details = [
     {
       title: 'Jobs posted',
@@ -29,8 +35,8 @@ const Overview = () => {
       ),
     },
     {
-      title: 'Candidates Applied',
-      count: 0,
+      title: 'Applications',
+      count: applications.length,
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -68,32 +74,52 @@ const Overview = () => {
     },
     {
       title: 'Notifications',
-      count: 4,
-      icon: (
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          viewBox='0 0 24 24'
-          fill='currentColor'
-          className='w-9 h-9'
-        >
-          <path
-            fillRule='evenodd'
-            d='M5.25 9.75a.75.75 0 011.5 0v2.25h7.5a.75.75 0 010 1.5h-7.5v7.5a.75.75 0 01-1.5 0v-2.25H3.75a.75.75 0 010-1.5h2.25V9.75z'
-            clipRule='evenodd'
-          />
-          <path
-            fillRule='evenodd'
-            d='M5.25 9.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5z'
-            clipRule='evenodd'
-          />
-        </svg>
-      ),
+      count: 0,
+      icon: <BellAlertIcon className='w-9 h-9 text-primary-05' />,
     },
   ];
+  const [open, setOpen] = useState(false);
+  const cancelButtonRef = useRef(null);
+
+  const handleDelete = async (id) => {
+    try {
+      setIsLoading(true);
+      await axios.delete(`/jobs/${id}`, {
+        headers: {
+          Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+        },
+      });
+
+      setIsLoading(false);
+      const newJobs = allJobs.filter((job) => job.id !== id);
+      setAllJobs(newJobs);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.response.message);
+    }
+  };
+  useEffect(() => {
+    const applications = async () => {
+      try {
+        const response = await axios.get('/employer/applicants', {
+          headers: {
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        });
+
+        console.log(response.data);
+        setApplications(response.data);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    applications();
+  }, [isLoggedIn]);
+
   useEffect(() => {
     const displayJobs = async () => {
       try {
-        const response = await axios.get(`/jobs/employer`, {
+        const response = await axios.get(`/jobs/employer?limit=${3}`, {
           headers: {
             Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
           },
@@ -133,7 +159,16 @@ const Overview = () => {
             <h2 className='text-primary-05 font-bold ml-2'>Notifications</h2>
           </div>
           <hr className='border-slate-300' />
-          <div className='p-4 border-b border-b-slate-300'>
+          <div className='flex justify-center items-center h-full'>
+            <div className='text-center'>
+              <BellAlertIcon className='w-10 h-10 mx-auto text-primary-05' />
+
+              <p className='text-primary-05 font-semibold my-2'>
+                No Notifications yet
+              </p>
+            </div>
+          </div>
+          {/* <div className='p-4 border-b border-b-slate-300'>
             <div className='flex items-center'>
               <i className='fa-regular fa-bell bg-gray-300 p-3 rounded-full' />
               <p className='ml-3 text-sm'>
@@ -171,146 +206,109 @@ const Overview = () => {
                 message
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className='w-full my-4 shadow-md pt-2'>
-        <div className='w-full bg-white'>
-          <div className='flex items-center p-4'>
-            <i className='fa-solid fa-briefcase text-gray-700' />
-            <h2 className='text-primary-05 font-bold ml-2'>My Job listings</h2>
+      <div className='w-full bg-white my-4 shadow-md pt-2'>
+        <div className='flex items-center justify-between p-4'>
+          <div className='flex items-center'>
+            <h2 className='text-primary-05 font-bold ml-2'>Jobs Posted</h2>
           </div>
-          <hr className='border-slate-300' />
-          {isLoading ? (
-            <div className='flex justify-center items-center h-full w-full'>
-              Loading...
-            </div>
-          ) : allJobs.length > 0 ? (
-            allJobs.map((job, index) => (
-              <div
-                key={index}
-                className='flex justify-between items-center p-4 border-b border-b-slate-300'
+          <div>
+            <Link
+              to='/employers-dashboard/job-posted'
+              className='inline-flex items-center justify-center text-primary-05 font-medium hover:bg-primary-05 hover:text-white rounded-md gap-x-1.5 rounded-m px-3 text-sm py-2 mr-2 transition-all'
+            >
+              View more
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={2}
+                stroke='currentColor'
+                className='h-5 w-5'
               >
-                <div>
-                  <h1 className='text-lg font-medium'>{job.title}</h1>
-                  <div className='text-gray-500 my-2'>
-                    <i className='fa-solid fa-location-dot text-primary-05' />
-                    <span className='ml-2'>{job.location}</span>
-                  </div>
-                  <div className='flex gap-x-3 my-2'>
-                    <div className='text-gray-500'>
-                      <i className='fa-regular fa-calendar text-primary-05' />
-                      <span className='ml-2'>
-                        Posted:{' '}
-                        {formatDistance(new Date(job?.createdAt), new Date(), {
-                          addSuffix: true,
-                        })}
-                      </span>
-                    </div>
-                    <div className='text-gray-500'>
-                      <i className='fa-regular fa-calendar text-primary-05' />
-                      <span className='ml-2'>
-                      Deadline:{' '}
-                        {format(
-                          new Date(job?.endDate),
-                          'dd MMM yyyy'
-                        )}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className='mr-4 flex flex-col md:flex-row gap-2'>
-                  <button
-                    type='button'
-                    className='bg-gray-300 w-10 h-10 rounded-full'
-                  >
-                    <i className='fa-solid fa-pen-to-square' />
-                  </button>
-                  <button
-                    type='button'
-                    className='bg-gray-300 w-10 h-10 rounded-full'
-                  >
-                    <i className='fa-solid fa-trash' />
-                  </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className='flex justify-center items-center h-full w-full'>
-              No Jobs Found
-            </div>
-          )}
-          <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
-            <div>
-              <h1 className='text-lg font-medium'>
-                Full Stack Software Engineer
-              </h1>
-              <div className='text-gray-500 my-2'>
-                <i className='fa-solid fa-location-dot text-primary-05' />
-                <span className='ml-2'>Lagos, Nigeria</span>
-              </div>
-              <div className='flex gap-x-3 my-2'>
-                <div className='text-gray-500'>
-                  <i className='fa-regular fa-calendar text-primary-05' />
-                  <span className='ml-2'>Posted 5 days ago</span>
-                </div>
-                <div className='text-gray-500'>
-                  <i className='fa-regular fa-calendar text-primary-05' />
-                  <span className='ml-2'>Expiring on 15th December 2023</span>
-                </div>
-              </div>
-            </div>
-            <div className='mr-4 flex flex-col md:flex-row gap-2'>
-              <button
-                type='button'
-                className='bg-gray-300 w-10 h-10 rounded-full'
-              >
-                <i className='fa-solid fa-pen-to-square' />
-              </button>
-              <button
-                type='button'
-                className='bg-gray-300 w-10 h-10 rounded-full'
-              >
-                <i className='fa-solid fa-trash' />
-              </button>
-            </div>
-          </div>
-          <div className='flex justify-between items-center p-4'>
-            <div>
-              <h1 className='text-lg font-medium'>
-                Full Stack Software Engineer
-              </h1>
-              <div className='text-gray-500 my-2'>
-                <i className='fa-solid fa-location-dot text-primary-05' />
-                <span className='ml-2'>Lagos, Nigeria</span>
-              </div>
-              <div className='flex gap-x-3 my-2'>
-                <div className='text-gray-500'>
-                  <i className='fa-regular fa-calendar text-primary-05' />
-                  <span className='ml-2'>Posted 5 days ago</span>
-                </div>
-                <div className='text-gray-500'>
-                  <i className='fa-regular fa-calendar text-primary-05' />
-                  <span className='ml-2'>Expiring on 15th December 2023</span>
-                </div>
-              </div>
-            </div>
-            <div className='mr-4 flex flex-col md:flex-row gap-2'>
-              <button
-                type='button'
-                className='bg-gray-300 w-10 h-10 rounded-full'
-              >
-                <i className='fa-solid fa-pen-to-square' />
-              </button>
-              <button
-                type='button'
-                className='bg-gray-300 w-10 h-10 rounded-full'
-              >
-                <i className='fa-solid fa-trash' />
-              </button>
-            </div>
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
+                />
+              </svg>
+            </Link>
           </div>
         </div>
+        <hr className='border-slate-300' />
+        {isLoading ? (
+          <div className='flex justify-center items-center h-full w-full'>
+            Loading...
+          </div>
+        ) : allJobs.length > 0 ? (
+          allJobs.map((job, index) => (
+            <div
+              key={index}
+              className='flex justify-between items-center p-4 border-b border-b-slate-300 h-full'
+            >
+              <div>
+                <h1 className='text-lg font-medium'>{job.title}</h1>
+                <div className='text-gray-500 my-2'>
+                  <i className='fa-solid fa-location-dot text-primary-05' />
+                  <span className='ml-2'>{job.location}</span>
+                </div>
+                <div className='flex gap-x-3 my-2'>
+                  <div className='text-gray-500'>
+                    <i className='fa-regular fa-calendar text-primary-05' />
+                    <span className='ml-2'>
+                      Posted:{' '}
+                      {formatDistance(new Date(job?.createdAt), new Date(), {
+                        addSuffix: true,
+                      })}
+                    </span>
+                  </div>
+                  <div className='text-gray-500'>
+                    <i className='fa-regular fa-calendar text-primary-05' />
+                    <span className='ml-2'>
+                      Deadline: {format(new Date(job?.endDate), 'dd MMM yyyy')}
+                    </span>
+                  </div>
+                </div>
+                <div className='text-gray-500'>
+                  <i className='fa-solid fa-users text-primary-05' />
+                  <span className='ml-2'>{job?.applications?.length}</span>
+                </div>
+              </div>
+              <div className='mr-4 flex flex-col md:flex-row gap-2'>
+                <Link
+                  to={`/employers-dashboard/job-posted/${job.id}/applications`}
+                >
+                  <button
+                    type='button'
+                    className='bg-gray-300 w-10 h-10 rounded-full mr-2'
+                  >
+                    <RemoveRedEye />
+                  </button>
+                </Link>
+                <button
+                  onClick={() => setOpen(true)}
+                  type='button'
+                  className='bg-gray-300 w-10 h-10 rounded-full'
+                >
+                  <Delete />
+                </button>
+              </div>
+              <DeleteModal
+                id={job.id}
+                open={open}
+                setOpen={setOpen}
+                cancelButtonRef={cancelButtonRef}
+                handleDelete={handleDelete}
+              />
+            </div>
+          ))
+        ) : (
+          <div className='flex justify-center items-center h-full w-full'>
+            No Jobs Found
+          </div>
+        )}
       </div>
     </div>
   );
