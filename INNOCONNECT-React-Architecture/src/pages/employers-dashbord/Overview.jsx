@@ -1,4 +1,7 @@
+import React, {useEffect} from 'react';
 import Card from '../../Components/molecules/card/Card';
+import axios from '../../axios/axios';
+import useAuthProvider from '../../context/useAuthProvider';
 
 const Overview = () => {
   const details = [
@@ -83,6 +86,27 @@ const Overview = () => {
       ),
     },
   ];
+  const { isLoggedIn } = useAuthProvider();
+  const [allJobs, setAllJobs] =useState([])
+  const [isLoading, setIsLoading] = useState(true);
+useEffect(()=>{
+  const displayJobs = async ()=>{
+    try{
+      const response = await axios.get(`/jobs/employer`, {
+        headers: {
+          Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+        },
+      });
+      // setIsLoading(false);
+      console.log(response.data)
+      setJob(response.data)
+    }catch(error){
+      console.log(error.response)
+    }
+  }
+  displayJobs()
+},[])
+  
   return (
     <div className='px-6 mb-4 z-0 '>
       <Card details={details} />
@@ -154,7 +178,13 @@ const Overview = () => {
             <h2 className='text-primary-05 font-bold ml-2'>My Job listings</h2>
           </div>
           <hr className='border-slate-300' />
-          <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
+          {isLoading ? (
+          <div className='flex justify-center items-center h-full w-full'>
+            Loading...
+          </div>
+        ) : myJobs.length > 0 ? (
+          myJobs.map((job) => (
+            <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
             <div>
               <h1 className='text-lg font-medium'>
                 Full Stack Software Engineer
@@ -174,7 +204,7 @@ const Overview = () => {
                 </div>
               </div>
             </div>
-            <div className='mr-4 flex flex-col md:flex-row gap-2 '>
+            <div className='mr-4 flex flex-col md:flex-row gap-2'>
               <button
                 type='button'
                 className='bg-gray-300 w-10 h-10 rounded-full'
@@ -189,6 +219,12 @@ const Overview = () => {
               </button>
             </div>
           </div>
+          ))
+        ) : (
+          <div className='flex justify-center items-center h-full w-full'>
+            No Jobs Found
+          </div>
+        )}
           <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
             <div>
               <h1 className='text-lg font-medium'>
