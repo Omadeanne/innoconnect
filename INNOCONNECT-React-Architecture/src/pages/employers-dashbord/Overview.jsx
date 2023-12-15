@@ -1,13 +1,17 @@
-import React, {useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../../Components/molecules/card/Card';
 import axios from '../../axios/axios';
 import useAuthProvider from '../../context/useAuthProvider';
+import { format, formatDistance } from 'date-fns';
 
 const Overview = () => {
+  const { isLoggedIn } = useAuthProvider();
+  const [allJobs, setAllJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const details = [
     {
       title: 'Jobs posted',
-      count: 0,
+      count: allJobs.length,
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -86,27 +90,26 @@ const Overview = () => {
       ),
     },
   ];
-  const { isLoggedIn } = useAuthProvider();
-  const [allJobs, setAllJobs] =useState([])
-  const [isLoading, setIsLoading] = useState(true);
-useEffect(()=>{
-  const displayJobs = async ()=>{
-    try{
-      const response = await axios.get(`/jobs/employer`, {
-        headers: {
-          Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
-        },
-      });
-      // setIsLoading(false);
-      console.log(response.data)
-      setJob(response.data)
-    }catch(error){
-      console.log(error.response)
-    }
-  }
-  displayJobs()
-},[])
-  
+  useEffect(() => {
+    const displayJobs = async () => {
+      try {
+        const response = await axios.get(`/jobs/employer`, {
+          headers: {
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        });
+
+        console.log(response.data);
+        setAllJobs(response.data);
+      } catch (error) {
+        console.log(error.response);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    displayJobs();
+  }, [isLoggedIn]);
+
   return (
     <div className='px-6 mb-4 z-0 '>
       <Card details={details} />
@@ -179,52 +182,64 @@ useEffect(()=>{
           </div>
           <hr className='border-slate-300' />
           {isLoading ? (
-          <div className='flex justify-center items-center h-full w-full'>
-            Loading...
-          </div>
-        ) : myJobs.length > 0 ? (
-          myJobs.map((job) => (
-            <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
-            <div>
-              <h1 className='text-lg font-medium'>
-                Full Stack Software Engineer
-              </h1>
-              <div className='text-gray-500 my-2'>
-                <i className='fa-solid fa-location-dot text-primary-05' />
-                <span className='ml-2'>Lagos, Nigeria</span>
-              </div>
-              <div className='flex gap-x-3 my-2'>
-                <div className='text-gray-500'>
-                  <i className='fa-regular fa-calendar text-primary-05' />
-                  <span className='ml-2'>Posted 5 days ago</span>
-                </div>
-                <div className='text-gray-500'>
-                  <i className='fa-regular fa-calendar text-primary-05' />
-                  <span className='ml-2'>Expiring on 15th December 2023</span>
-                </div>
-              </div>
+            <div className='flex justify-center items-center h-full w-full'>
+              Loading...
             </div>
-            <div className='mr-4 flex flex-col md:flex-row gap-2'>
-              <button
-                type='button'
-                className='bg-gray-300 w-10 h-10 rounded-full'
+          ) : allJobs.length > 0 ? (
+            allJobs.map((job, index) => (
+              <div
+                key={index}
+                className='flex justify-between items-center p-4 border-b border-b-slate-300'
               >
-                <i className='fa-solid fa-pen-to-square' />
-              </button>
-              <button
-                type='button'
-                className='bg-gray-300 w-10 h-10 rounded-full'
-              >
-                <i className='fa-solid fa-trash' />
-              </button>
+                <div>
+                  <h1 className='text-lg font-medium'>{job.title}</h1>
+                  <div className='text-gray-500 my-2'>
+                    <i className='fa-solid fa-location-dot text-primary-05' />
+                    <span className='ml-2'>{job.location}</span>
+                  </div>
+                  <div className='flex gap-x-3 my-2'>
+                    <div className='text-gray-500'>
+                      <i className='fa-regular fa-calendar text-primary-05' />
+                      <span className='ml-2'>
+                        Posted:{' '}
+                        {formatDistance(new Date(job?.createdAt), new Date(), {
+                          addSuffix: true,
+                        })}
+                      </span>
+                    </div>
+                    <div className='text-gray-500'>
+                      <i className='fa-regular fa-calendar text-primary-05' />
+                      <span className='ml-2'>
+                      Deadline:{' '}
+                        {format(
+                          new Date(job?.endDate),
+                          'dd MMM yyyy'
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className='mr-4 flex flex-col md:flex-row gap-2'>
+                  <button
+                    type='button'
+                    className='bg-gray-300 w-10 h-10 rounded-full'
+                  >
+                    <i className='fa-solid fa-pen-to-square' />
+                  </button>
+                  <button
+                    type='button'
+                    className='bg-gray-300 w-10 h-10 rounded-full'
+                  >
+                    <i className='fa-solid fa-trash' />
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className='flex justify-center items-center h-full w-full'>
+              No Jobs Found
             </div>
-          </div>
-          ))
-        ) : (
-          <div className='flex justify-center items-center h-full w-full'>
-            No Jobs Found
-          </div>
-        )}
+          )}
           <div className='flex justify-between items-center p-4 border-b border-b-slate-300'>
             <div>
               <h1 className='text-lg font-medium'>
