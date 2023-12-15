@@ -1,79 +1,76 @@
+import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import jobs from './jobs';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import axios from '../../axios/axios';
-import React, {useState, useRef, useEffect} from 'react';
 import useAuthProvider from '../../context/useAuthProvider';
 import { Spinner } from '@material-tailwind/react';
 
 const Application = () => {
   const { id } = useParams();
-  const job = jobs.find((job) => job.id === +id);
 
   const [applySuccess, setApplySuccess] = useState(false);
   const { isLoggedIn } = useAuthProvider();
   const [loading, setLoading] = useState(false);
   const errRef = useRef();
 
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [cv, setCv] = useState("")
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [cv, setCv] = useState('');
   const [errMsg, setErrMsg] = useState('');
- 
 
-  const applyJobs = async(e)=>{
-    e.preventDefault()
+  const applyJobs = async (e) => {
+    e.preventDefault();
     if (!firstName || !lastName || !email || !phone) {
       setErrMsg('All fields are required');
       return;
     }
-    try{
+    try {
       setLoading(true);
-      const applyData ={
+      const applyData = {
         firstName,
         lastName,
         email,
         phone,
-        cv
-      }
-      const response = await axios.post(`/application/${id}`, JSON.stringify(applyData),
+        cv,
+      };
+      const response = await axios.post(
+        `/application/${id}`,
+        JSON.stringify(applyData),
         {
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
-        })
-        setLoading(false);
-        console.log(response)
-        setApplySuccess(response)
-    }catch(error){
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        }
+      );
       setLoading(false);
-      console.log(error)
+      console.log(response);
+      setApplySuccess(response);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
       setErrMsg(error?.response?.data?.message);
     }
-  }
+  };
 
-  const [getjob, setJob] =useState([])
+  const [getjob, setJob] = useState([]);
 
-  useEffect(()=>{
-    const getJobDetails = async ()=>{
-      
-      try{
-        
-        const response = await axios.get(`/jobs/${id}`, {
-          
-        });
-        
-        console.log(response.data)
-        setJob(response.data)
-      }catch(error){
-        
-        console.log(error.response.data.message)
-        
+  useEffect(() => {
+    const getJobDetails = async () => {
+      try {
+        const response = await axios.get(`/jobs/${id}`, {});
+
+        console.log(response.data);
+        setJob(response.data);
+      } catch (error) {
+        console.log(error.response.data.message);
       }
-    }
-    getJobDetails()
-  }, [])
+    };
+    getJobDetails();
+  }, [id]);
   return (
     <>
       <Nav />
@@ -85,8 +82,8 @@ const Application = () => {
               <div className='text-center'>
                 <h1 className='font-bold text-2xl mb-2'>APPLICATION FORM</h1>
                 <p className='mb-4'>
-                  Provide the required information and we'll get back to you if
-                  you're qualified
+                  Provide the required information and we will get back to you if
+                  you are qualified
                 </p>
               </div>
               <div className='lg:hidden mx-auto w-full max-w-xl'>
@@ -131,8 +128,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
-                      onChange={(event) => setFirstName(event.target.value)}
-                      value={firstName}
+                        onChange={(event) => setFirstName(event.target.value)}
+                        value={firstName}
                         type='text'
                         name='first-name'
                         id='first-name'
@@ -152,8 +149,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
-                      onChange={(event) => setLastName(event.target.value)}
-                      value={lastName}
+                        onChange={(event) => setLastName(event.target.value)}
+                        value={lastName}
                         type='text'
                         placeholder='Last Name'
                         name='last-name'
@@ -173,8 +170,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
-                      onChange={(event) => setEmail(event.target.value)}
-                      value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        value={email}
                         type='text'
                         placeholder='xxx@email.com'
                         name='email'
@@ -194,8 +191,8 @@ const Application = () => {
                     </label>
                     <div className='mt-2'>
                       <input
-                      onChange={(event) => setPhone(event.target.value)}
-                      value={phone}
+                        onChange={(event) => setPhone(event.target.value)}
+                        value={phone}
                         type='text'
                         placeholder='xxx-xxx-xxxx'
                         name='phone'
@@ -220,8 +217,8 @@ const Application = () => {
                           >
                             <span>Upload a file</span>
                             <input
-                            onChange={(event) => setCv(event.target.value)}
-                            value={cv}
+                              onChange={(event) => setCv(event.target.value)}
+                              value={cv}
                               id='file-upload'
                               name='file-upload'
                               accept='png, jpg, jpeg, pdf'
@@ -239,19 +236,19 @@ const Application = () => {
                   </div>
                 </div>
                 <p
-                ref={errRef}
-                className={
-                  errMsg
-                    ? 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2 col-span-full'
-                    : 'hidden'
-                }
-                aria-live='assertive'
-                role='alert'
-              >
-                {errMsg}
-              </p>
+                  ref={errRef}
+                  className={
+                    errMsg
+                      ? 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2 col-span-full'
+                      : 'hidden'
+                  }
+                  aria-live='assertive'
+                  role='alert'
+                >
+                  {errMsg}
+                </p>
                 <button
-                onClick={applyJobs}
+                  onClick={applyJobs}
                   type='submit'
                   className='text-white font-semibold w-28 border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 block active:bg-secondary-07 hover:shadow-btn mt-8'
                 >
@@ -261,11 +258,11 @@ const Application = () => {
             </div>
             <div className='col-span-1 my-8 hidden lg:block'>
               <div
-                className='border border-gray-300 shadow rounded-lg p-4 max-w-3xl mx-auto max-h-[50rem] overflow-y-auto scrollbar-track-slate-100 scrollbar-thumb-slate-400
+                className='border text-primary-06 border-gray-300 shadow rounded-lg p-4 max-w-3xl mx-auto max-h-[50rem] overflow-y-auto scrollbar-track-slate-100 scrollbar-thumb-slate-400
           scrollbar-thin'
               >
                 <div className='mb-4'>
-                  <h2 className='text-xl md:text-xl font-bold text-primary-06'>
+                  <h2 className='capitalize text-xl md:text-xl font-bold text-primary-06'>
                     {getjob.title}
                   </h2>
                   {/* <p className='mt-2'>
@@ -286,7 +283,7 @@ const Application = () => {
                   </p>
                   <div className='text-lg md:col-span-3'>
                     <ul className='list-disc list-inside'>
-                    {getjob.requirements}
+                      {getjob.requirements}
                     </ul>
                   </div>
                 </div>
@@ -296,9 +293,7 @@ const Application = () => {
                     Benefits:
                   </p>
                   <div className='text-lg md:col-span-3'>
-                    <ul className='list-disc list-inside'>
-                    {getjob.benefits}
-                    </ul>
+                    <ul className='list-disc list-inside'>{getjob.benefits}</ul>
                   </div>
                 </div>
               </div>

@@ -35,6 +35,8 @@ import MyMentors from './pages/mentees-dashboard/MyMentors';
 import PersistLogin from './PersistLogin';
 import ResetPassword from './pages/landing-page/ResetPassword';
 import EditJob from './pages/employers-dashbord/EditJob';
+import Payment from './pages/pricing/Payment';
+import PaymentConfirmation from './pages/pricing/PaymentConfirmation';
 import MentorOverview from './pages/mentors-dashboard/MentorOverview'
 import MentorMentee from './pages/mentors-dashboard/MentorMentee'
 import MentorAppointment from './pages/mentors-dashboard/MentorAppointment'
@@ -124,6 +126,14 @@ function App() {
           element={<PersonalityTest />}
         />
         <Route element={<Layout />}>
+          <Route
+            path='/payment/:id'
+            element={<Payment />}
+          />
+          <Route
+            path='/confirm-payment'
+            element={<PaymentConfirmation />}
+          />
           <Route
             path='/apply/:id'
             element={<Application />}
