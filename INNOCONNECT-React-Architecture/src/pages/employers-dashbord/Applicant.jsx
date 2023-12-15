@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import CheckIcon from '@mui/icons-material/Check';
 import ReplayIcon from '@mui/icons-material/Replay';
+import { Spinner } from '@material-tailwind/react';
 
 export default function Applicant() {
   const { isLoggedIn } = useAuthProvider();
@@ -55,7 +56,6 @@ export default function Applicant() {
         }
       );
 
-      console.log(response.data);
       setIsLoading(false);
       setApplicants((prevApplicants) =>
         prevApplicants.map((app) => {
@@ -86,9 +86,9 @@ export default function Applicant() {
         </div>
         <hr className='border-slate-300' />
         {isLoading ? (
-          <div className='flex justify-center items-center h-full w-full'>
-            Loading...
-          </div>
+          <div className='flex items-center justify-center h-full'>
+          <Spinner className='block mx-auto' />
+        </div>
         ) : applicants.length > 0 ? (
           applicants?.map((app) => (
             <div

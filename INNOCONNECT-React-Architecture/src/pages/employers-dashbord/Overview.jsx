@@ -8,6 +8,7 @@ import { BellAlertIcon } from '@heroicons/react/24/outline';
 import Delete from '@mui/icons-material/Delete';
 import DeleteModal from './DeleteModal';
 import RemoveRedEye from '@mui/icons-material/RemoveRedEye';
+import { Spinner } from '@material-tailwind/react';
 
 const Overview = () => {
   const { isLoggedIn } = useAuthProvider();
@@ -135,6 +136,14 @@ const Overview = () => {
     };
     displayJobs();
   }, [isLoggedIn]);
+
+  if (isLoading) {
+    return (
+      <div className='flex items-center justify-center h-screen'>
+        <Spinner className='block mx-auto' />
+      </div>
+    );
+  }
 
   return (
     <div className='px-6 mb-4 z-0 '>

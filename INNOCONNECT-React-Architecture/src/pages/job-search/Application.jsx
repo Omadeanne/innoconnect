@@ -5,7 +5,6 @@ import Footer from '../../Components/molecules/nav_footer/Footer';
 import axios from '../../axios/axios';
 import useAuthProvider from '../../context/useAuthProvider';
 import { Spinner } from '@material-tailwind/react';
-import { logo } from '../../assets';
 
 const Application = () => {
   const { id } = useParams();
@@ -13,6 +12,7 @@ const Application = () => {
   const [applySuccess, setApplySuccess] = useState(false);
   const { isLoggedIn } = useAuthProvider();
   const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const errRef = useRef();
 
   const [firstName, setFirstName] = useState('');
@@ -47,13 +47,12 @@ const Application = () => {
           },
         }
       );
-      setLoading(false);
-      console.log(response);
       setApplySuccess(response);
     } catch (error) {
-      setLoading(false);
       console.log(error);
       setErrMsg(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,10 +63,11 @@ const Application = () => {
       try {
         const response = await axios.get(`/jobs/${id}`);
 
-        console.log(response.data);
         setJob(response.data);
       } catch (error) {
         console.log(error.response.data.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     getJobDetails();
@@ -84,8 +84,8 @@ const Application = () => {
               <div className='text-center'>
                 <h1 className='font-bold text-2xl mb-2'>APPLICATION FORM</h1>
                 <p className='mb-4'>
-                  Provide the required information and we will get back to you if
-                  you are qualified
+                  Provide the required information and we will get back to you
+                  if you are qualified
                 </p>
               </div>
               <div className='lg:hidden mx-auto w-full max-w-xl'>
@@ -261,43 +261,55 @@ const Application = () => {
             <div className='col-span-1 my-8 hidden lg:block'>
               <div
                 className='border text-primary-06 border-gray-300 shadow rounded-lg p-4 max-w-3xl mx-auto max-h-[50rem] overflow-y-auto scrollbar-track-slate-100 scrollbar-thumb-slate-400
-          scrollbar-thin'
+        scrollbar-thin'
               >
-                <div className='mb-4'>
-                  <h2 className='capitalize text-xl md:text-xl font-bold text-primary-06'>
-                    {getjob.title}
-                  </h2>
-                  <p className='mt-2'>
-                    <i className='fa-solid fa-building mr-1' /> {getjob?.employer?.name}
-                  </p>
-                  <p className='mt-2'>
-                    <i className='fa-solid fa-location-dot mr-1' />{' '}
-                    {getjob.location}
-                  </p>
-                  <p className='mt-2'>
-                    <i className='fa-solid fa-briefcase mr-1' /> {getjob.type}
-                  </p>
-                </div>
-                <hr />
-                <div className='my-4'>
-                  <p className='font-bold text-lg uppercase md:col-span-1'>
-                    Requirements:
-                  </p>
-                  <div className='text-lg md:col-span-3'>
-                    <ul className='list-disc list-inside'>
-                      {getjob.requirements}
-                    </ul>
+                {isLoading ? (
+                  <div className='flex items-center justify-center h-full'>
+                    <Spinner className='block mx-auto' />
                   </div>
-                </div>
-                <hr />
-                <div className='my-4'>
-                  <p className='font-bold text-lg uppercase md:col-span-1'>
-                    Benefits:
-                  </p>
-                  <div className='text-lg md:col-span-3'>
-                    <ul className='list-disc list-inside'>{getjob.benefits}</ul>
-                  </div>
-                </div>
+                ) : (
+                  <>
+                    <div className='mb-4'>
+                      <h2 className='capitalize text-xl md:text-xl font-bold text-primary-06'>
+                        {getjob.title}
+                      </h2>
+                      <p className='mt-2'>
+                        <i className='fa-solid fa-building mr-1' />{' '}
+                        {getjob?.employer?.name}
+                      </p>
+                      <p className='mt-2'>
+                        <i className='fa-solid fa-location-dot mr-1' />{' '}
+                        {getjob.location}
+                      </p>
+                      <p className='mt-2'>
+                        <i className='fa-solid fa-briefcase mr-1' />{' '}
+                        {getjob.type}
+                      </p>
+                    </div>
+                    <hr />
+                    <div className='my-4'>
+                      <p className='font-bold text-lg uppercase md:col-span-1'>
+                        Requirements:
+                      </p>
+                      <div className='text-lg md:col-span-3'>
+                        <ul className='list-disc list-inside'>
+                          {getjob.requirements}
+                        </ul>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className='my-4'>
+                      <p className='font-bold text-lg uppercase md:col-span-1'>
+                        Benefits:
+                      </p>
+                      <div className='text-lg md:col-span-3'>
+                        <ul className='list-disc list-inside'>
+                          {getjob.benefits}
+                        </ul>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <div
@@ -320,10 +332,10 @@ const Application = () => {
                     <h1 className='text-xl font-bold my-3'>Application sent</h1>
                     <p>You will be contacted shortly</p>
                   </div>
-                  <Link to='/job-search'
-                    
+                  <Link
+                    to='/job-search'
                     className='bg-[#234270] inline-block text-white w-full font-semibold rounded p-3 mt-5 hover:bg-[#0d304c] transition duration-300'
-                    >
+                  >
                     continue
                   </Link>
                 </div>

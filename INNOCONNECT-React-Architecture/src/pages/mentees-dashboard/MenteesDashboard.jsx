@@ -145,7 +145,7 @@ export default function MenteesDashboard() {
           </List>
           {isLoggedIn?.user?.subscription === 'free' &&<Alert
             open={openAlert}
-            className='mt-auto'
+            className='mt-auto bg-[#2c3850]'
             onClose={() => setOpenAlert(false)}
           >
             <CubeTransparentIcon className='mb-4 h-12 w-12' />

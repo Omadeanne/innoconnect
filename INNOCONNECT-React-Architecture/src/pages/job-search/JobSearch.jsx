@@ -8,6 +8,7 @@ import useAuthProvider from '../../context/useAuthProvider';
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid';
+import { Spinner } from '@material-tailwind/react';
 
 const filters = [
   {
@@ -41,7 +42,7 @@ const filters = [
 ];
 const JobSearch = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [filteredJobs, setFilteredJobs] = useState(jobs);
+  // const [filteredJobs, setFilteredJobs] = useState(jobs);
   const [allJobs, setAllJobs] = useState([]);
   const { isLoggedIn } = useAuthProvider();
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +55,6 @@ const JobSearch = () => {
             Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
           },
         });
-        console.log(response.data.rows);
         setAllJobs(response.data.rows);
       } catch (error) {
         console.log(error.response.data.message);
@@ -64,7 +64,6 @@ const JobSearch = () => {
     };
     findAllJobs();
   }, [isLoggedIn]);
-  console.log(allJobs);
 
   return (
     <>
@@ -315,15 +314,15 @@ const JobSearch = () => {
                   />
                   <span className='font-medium'>Filters</span>
                 </button>
-                <div className='border shadow rounded-lg py-3 px-6 w-full'>
+                <div className='border shadow rounded-lg py-3 px-6 w-full h-full'>
                   <h2 className='text-primary-06 text-lg mb-2 font-bold'>
                     Recommended Jobs
                   </h2>
                   <hr />
                   {isLoading ? (
-                    <div className='flex justify-center items-center h-full w-full'>
-                      Loading...
-                    </div>
+                    <div className='flex items-center justify-center h-full'>
+                    <Spinner className='block mx-auto' />
+                  </div>
                   ) : allJobs.length > 0 ? (
                     allJobs.map((job) => (
                       <JobCard

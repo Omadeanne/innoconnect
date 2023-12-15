@@ -59,7 +59,7 @@ const Pricing = () => {
               <p className='text-gray-500 font-semibold mt-4'>
                 Billed Annually ₦ 12,000
               </p>
-              <p className='text-2xl font-semibold my-2'>₦ 1000/month</p>
+              <p className='text-2xl font-semibold my-2'>₦ 2000/month</p>
               <p className='text-lg my-4 font-semibold'>14 days free trial</p>
             </div>
             <hr />

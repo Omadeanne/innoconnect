@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { Link } from 'react-router-dom';
 import DeleteModal from './DeleteModal';
+import { Spinner } from '@material-tailwind/react';
 
 export default function JobPosted() {
   const { isLoggedIn } = useAuthProvider();
@@ -63,9 +64,9 @@ export default function JobPosted() {
         <hr className='border-slate-300' />
 
         {isLoading ? (
-          <div className='flex justify-center items-center h-full w-full'>
-            Loading...
-          </div>
+          <div className='flex items-center justify-center h-full'>
+          <Spinner className='block mx-auto' />
+        </div>
         ) : myJobs.length > 0 ? (
           myJobs.map((job) => (
             <>

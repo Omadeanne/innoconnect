@@ -49,7 +49,7 @@ export default function Smartmatch() {
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[75%] m-auto pt-[30px]'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[75%] m-auto pt-[30px] mb-10'>
         {loading ? <p>Loading...</p> : mentors.map((mentor) => (
           <MentorCard
             key={mentor.id}
@@ -57,7 +57,7 @@ export default function Smartmatch() {
           />
         ))}
       </div>
-      <div
+      {/* <div
         className='max-w-fit mx-auto my-20'
         aria-label='Page navigation'
       >
@@ -88,7 +88,7 @@ export default function Smartmatch() {
             </button>
           </li>
         </ul>
-      </div>
+      </div> */}
 
       <Footer />
     </>

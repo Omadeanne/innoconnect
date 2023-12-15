@@ -35,7 +35,7 @@ const Header = () => {
         </div>
 
         {isLoggedIn.user.subscription !== 'free' && (
-          <div className='p-2 ml-4'>
+          <div className='p-2 ml-4 capitalize'>
              <Chip label={isLoggedIn.user.subscription} variant="outlined" />
           </div>
         )}
