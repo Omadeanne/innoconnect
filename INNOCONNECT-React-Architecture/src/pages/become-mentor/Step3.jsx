@@ -1,12 +1,10 @@
-import React from 'react';
-
 const Step3 = ({ data, handleChange, next, back }) => {
   return (
     <>
     <div className='tab'>
       <div className='px-5 py-2 bg-primary-04 mt-12 rounded-lg'>
         <p className='text-white'>
-          Complete and Submit your Application and we'll get back to you via
+          Complete and Submit your Application and we will get back to you via
           E-mail
         </p>
       </div>
@@ -19,6 +17,8 @@ const Step3 = ({ data, handleChange, next, back }) => {
         </label>
         <div className='mt-2'>
           <textarea
+            onChange={handleChange}
+            value={data.why}
             name='why'
             id='why'
             className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
@@ -36,6 +36,8 @@ const Step3 = ({ data, handleChange, next, back }) => {
         </label>
         <div className='mt-2'>
           <textarea
+            onChange={handleChange}
+            value={data.achievement}
             name='achievement'
             id='achievement'
             className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200

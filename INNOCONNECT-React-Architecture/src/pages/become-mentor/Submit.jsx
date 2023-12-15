@@ -1,8 +1,8 @@
-import React from 'react';
+import { Spinner } from "@material-tailwind/react";
 
-const Submit = ({ data, back }) => {
+const Submit = ({ data, back, handleSubmit, Loading }) => {
   const listItems = Object.entries(data).map(([key, value]) => (
-    <li className='sm:col-span-3'>
+    <li key={key} className='sm:col-span-3'>
       <label
         htmlFor={key}
         className='block text-sm font-medium leading-6 text-gray-900'
@@ -39,11 +39,12 @@ const Submit = ({ data, back }) => {
           Previous
         </button>
         <button
+          onClick={handleSubmit}
           id='nextBtn'
           type='submit'
           className='text-white font-semibold w-32 border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 block active:bg-secondary-07 hover:shadow-btn'
         >
-          Submit
+          {Loading ? <Spinner className="block mx-auto" /> : 'Submit'}
         </button>
       </div>
     </div>

@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import axios from '../../axios/axios';
 import useAuthProvider from '../../context/useAuthProvider';
 import { Spinner } from '@material-tailwind/react';
+import { logo } from '../../assets';
 
 const Application = () => {
   const { id } = useParams();
@@ -61,7 +62,7 @@ const Application = () => {
   useEffect(() => {
     const getJobDetails = async () => {
       try {
-        const response = await axios.get(`/jobs/${id}`, {});
+        const response = await axios.get(`/jobs/${id}`);
 
         console.log(response.data);
         setJob(response.data);
@@ -71,6 +72,7 @@ const Application = () => {
     };
     getJobDetails();
   }, [id]);
+
   return (
     <>
       <Nav />
@@ -265,9 +267,9 @@ const Application = () => {
                   <h2 className='capitalize text-xl md:text-xl font-bold text-primary-06'>
                     {getjob.title}
                   </h2>
-                  {/* <p className='mt-2'>
-                    <i className='fa-solid fa-building mr-1' /> {getjob.company}
-                  </p> */}
+                  <p className='mt-2'>
+                    <i className='fa-solid fa-building mr-1' /> {getjob?.employer?.name}
+                  </p>
                   <p className='mt-2'>
                     <i className='fa-solid fa-location-dot mr-1' />{' '}
                     {getjob.location}
@@ -300,7 +302,6 @@ const Application = () => {
             </div>
             <div
               id='success-modal'
-              // className='fixed hidden inset-0 items-center justify-center z-50 bg-gray-800 bg-opacity-50'
               className={
                 applySuccess
                   ? 'fixed inset-0  w-full h-screen flex items-center justify-center z-50 bg-gray-800 bg-opacity-50'
@@ -317,14 +318,14 @@ const Application = () => {
                   </div>
                   <div className='px-10'>
                     <h1 className='text-xl font-bold my-3'>Application sent</h1>
-                    <p>You'll be contacted shortly</p>
+                    <p>You will be contacted shortly</p>
                   </div>
-                  <a
-                    href='jobSearch'
+                  <Link to='/job-search'
+                    
                     className='bg-[#234270] inline-block text-white w-full font-semibold rounded p-3 mt-5 hover:bg-[#0d304c] transition duration-300'
-                  >
+                    >
                     continue
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

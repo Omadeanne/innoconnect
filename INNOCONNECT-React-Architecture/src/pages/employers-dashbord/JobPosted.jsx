@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 
-function DeleteModal({ open, setOpen, cancelButtonRef, handleDelete, id }) {
+function DeleteModal({ open, setOpen, cancelButtonRef, func, id }) {
   return (
     <Transition.Root
       show={open}
@@ -74,7 +74,7 @@ function DeleteModal({ open, setOpen, cancelButtonRef, handleDelete, id }) {
                     type='button'
                     className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
                     onClick={() => {
-                      handleDelete(id);
+                      func(id);
                       setOpen(false);
                     }}
                   >

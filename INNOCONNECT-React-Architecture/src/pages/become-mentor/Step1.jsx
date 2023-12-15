@@ -1,13 +1,14 @@
-const Step1 = ({ data, handleChange, next }) => {
+const Step1 = ({ data, handleChange, next, confirmPassword, setConfirmPassword }) => {
   return (
     <>
       <div className='transition-all ease-in-out'>
         <div className='px-5 py-2 bg-primary-04 mt-12 rounded-lg'>
           <p className='text-white'>
-            Filling out the form only takes a couple minutes. We'd love to learn
-            more about your background and the ins-and-outs of why you'd like to
-            become a mentor. Keep things personal and talk directly to us and
-            your mentees. We don't need jargon and polished cover letters here
+            Filling out the form only takes a couple minutes. We{"'"}d love to
+            learn more about your background and the ins-and-outs of why you
+            {"'"}d like to become a mentor. Keep things personal and talk
+            directly to us and your mentees. We don{"'"}t need jargon and
+            polished cover letters here
           </p>
         </div>
         <div className='my-10'>
@@ -22,18 +23,20 @@ const Step1 = ({ data, handleChange, next }) => {
               alt='img'
             />
             <label
-              htmlFor='photo'
+              htmlFor='profileImg'
               className='input border cursor-pointer rounded-md py-2 px-3  text-sm font-semibold text-primary-06 bg-gray-200 hover:bg-secondary-01'
             >
               <span>
                 <i className='fa-solid fa-upload mr-1' /> Upload
               </span>
               <input
-                id='photo'
-                name='photo'
+                id='profileImg'
+                name='profileImg'
                 type='file'
                 accept='.jpg, .jpeg, .png'
                 className='sr-only'
+                onChange={handleChange}
+                value={data.profileImg}
               />
             </label>
           </div>
@@ -41,16 +44,18 @@ const Step1 = ({ data, handleChange, next }) => {
         <div className='grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 my-5'>
           <div className='sm:col-span-3'>
             <label
-              htmlFor='first-name'
+              htmlFor='firstName'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               First name
             </label>
             <div className='mt-2'>
               <input
+                onChange={handleChange}
+                value={data.firstName}
                 type='text'
-                name='first-name'
-                id='first-name'
+                name='firstName'
+                id='firstName'
                 placeholder='First Name'
                 autoComplete='given-name'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
@@ -60,17 +65,19 @@ const Step1 = ({ data, handleChange, next }) => {
           </div>
           <div className='sm:col-span-3'>
             <label
-              htmlFor='last-name'
+              htmlFor='lastName'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               Last name
             </label>
             <div className='mt-2'>
               <input
+                onChange={handleChange}
+                value={data.lastName}
                 type='text'
                 placeholder='Last Name'
-                name='last-name'
-                id='last-name'
+                name='lastName'
+                id='lastName'
                 autoComplete='family-name'
                 className='block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                        placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
@@ -86,6 +93,8 @@ const Step1 = ({ data, handleChange, next }) => {
             </label>
             <div className='mt-2'>
               <input
+                onChange={handleChange}
+                value={data.password}
                 type='password'
                 placeholder='xxxxxx'
                 name='password'
@@ -105,6 +114,10 @@ const Step1 = ({ data, handleChange, next }) => {
             </label>
             <div className='mt-2'>
               <input
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
+                value={confirmPassword}
                 type='password'
                 placeholder='xxxxxx'
                 name='confirm-password'
@@ -130,6 +143,8 @@ const Step1 = ({ data, handleChange, next }) => {
             </label>
             <div className='mt-2'>
               <input
+                onChange={handleChange}
+                value={data.email}
                 type='text'
                 placeholder='xxx@email.com'
                 name='email'
@@ -148,62 +163,62 @@ const Step1 = ({ data, handleChange, next }) => {
           </div>
           <div className='sm:col-span-3'>
             <label
-              htmlFor='job'
+              htmlFor='location'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               Job Title
             </label>
             <div className='mt-2'>
               <input
+                onChange={handleChange}
+                value={data.jobTitle}
                 type='text'
                 placeholder='Senior Software Engineer'
-                name='job'
-                id='job'
+                name='jobTitle'
+                id='jobTitle'
                 autoComplete='family-name'
                 className='block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                        placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
               />
             </div>
           </div>
-          <div className=' sm:col-span-3'>
+          <div className='sm:col-span-3'>
             <label
               htmlFor='location'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               Location
             </label>
-            <div className='mt-2 relative'>
-              <select
-                aria-label='location'
-                className='appearance-none block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
-                          placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+            <div className='mt-2'>
+              <input
+                onChange={handleChange}
+                value={data.location}
+                type='text'
+                placeholder='Senior Software Engineer'
                 name='location'
                 id='location'
-              >
-                <option value>Select ocation</option>
-                <option value={1}>New York</option>
-                <option value={2}>Lagos</option>
-                <option value={3}>London</option>
-                <option value={4}>Abuja</option>
-              </select>
-              <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-                <i className='text-xs fa-solid fa-chevron-down' />
-              </div>
+                autoComplete='family-name'
+                className='block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
+                       placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+              />
             </div>
           </div>
+
           <div className='sm:col-span-3'>
             <label
-              htmlFor='company'
+              htmlFor='phone'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
-              Company
+              Phone
             </label>
             <div className='mt-2'>
               <input
+                onChange={handleChange}
+                value={data.phone}
                 type='text'
-                placeholder='Company Name'
-                name='company'
-                id='company'
+                placeholder='080XXXXXXXX'
+                name='phone'
+                id='phone'
                 autoComplete='family-name'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                        placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'

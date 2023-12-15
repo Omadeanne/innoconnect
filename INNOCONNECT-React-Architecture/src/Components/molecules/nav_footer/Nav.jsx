@@ -19,7 +19,6 @@ function classNames(...classes) {
 
 export default function Nav() {
   const { isLoggedIn } = useAuthProvider();
-  console.log(isLoggedIn);
   return (
     <Disclosure
       as='nav'

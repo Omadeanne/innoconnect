@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import useAuthProvider from '../../context/useAuthProvider';
 import axios from '../../axios/axios';
 import { Link } from 'react-router-dom';
+import Nav from '../../Components/molecules/nav_footer/Nav';
+import Footer from '../../Components/molecules/nav_footer/Footer';
 
 const PaymentConfirmation = () => {
   const { isLoggedIn } = useAuthProvider();
@@ -36,18 +38,27 @@ const PaymentConfirmation = () => {
     confirmPayment();
   }, [isLoggedIn]);
   return (
-    <div className='flex justify-center items-center h-screen flex-col'>
-      {isLoading ? (
-        'confirming payment...'
-      ) : success ? (
-        <>
-          <p>Payment Successful</p>
-          <Link to='/' className='text-blue-500 mt-2 block'>Home</Link>
-        </>
-      ) : (
-        'Payment Failed'
-      )}
-    </div>
+    <>
+      <Nav />
+      <div className='flex justify-center items-center h-screen flex-col'>
+        {isLoading ? (
+          'confirming payment...'
+        ) : success ? (
+          <>
+            <p>Payment Successful</p>
+            <Link
+              to='/'
+              className='text-blue-500 mt-2 block'
+            >
+              Home
+            </Link>
+          </>
+        ) : (
+          'Payment Failed'
+        )}
+      </div>
+      <Footer />
+    </>
   );
 };
 

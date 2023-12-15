@@ -75,7 +75,7 @@ const Signup = () => {
             {activeTab === 1 && <MenteeRegister />}
             {activeTab === 2 && <EmployerRegister />}
             <span className='text-[#526786] p-10 font-medium'>Want to become a Mentor? 
-                  <Link to='/mentor-form'> <span class='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>Click here </span></Link>
+                  <Link to='/mentor-form'> <span className='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>Click here </span></Link>
                 </span>
             <p className='text-center my-2 text-[#234270] text-base font-bold col-span-full'>
               Or
@@ -90,14 +90,14 @@ const Signup = () => {
                   className
                   alt=''
                 /> */}
-                  <i class="fa-brands fa-google text-[25px]"></i>
+                  <i className="fa-brands fa-google text-[25px]"></i>
                 <span>Sign up with Google</span>
               </button>
               <button
                 type='button'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2 my-2 transition duration-300 flex justify-center items-center gap-x-4'
               >
-                  <i class="fa-brands fa-apple text-[30px]"></i>
+                  <i className="fa-brands fa-apple text-[30px]"></i>
                 {/* <img
                   src='assets/apple.svg'
                   alt=""

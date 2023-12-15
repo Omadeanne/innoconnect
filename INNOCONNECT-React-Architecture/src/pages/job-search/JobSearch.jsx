@@ -2,10 +2,13 @@ import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import jobs from './jobs';
 import JobCard from './JobCard';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
+import axios from '../../axios/axios';
+import useAuthProvider from '../../context/useAuthProvider';
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid';
+
 const filters = [
   {
     id: 'DatePosted',
@@ -39,6 +42,29 @@ const filters = [
 const JobSearch = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [filteredJobs, setFilteredJobs] = useState(jobs);
+  const [allJobs, setAllJobs] = useState([]);
+  const { isLoggedIn } = useAuthProvider();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const findAllJobs = async () => {
+      try {
+        const response = await axios.get(`/jobs/`, {
+          headers: {
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        });
+        console.log(response.data.rows);
+        setAllJobs(response.data.rows);
+      } catch (error) {
+        console.log(error.response.data.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    findAllJobs();
+  }, [isLoggedIn]);
+  console.log(allJobs);
 
   return (
     <>
@@ -259,7 +285,6 @@ const JobSearch = () => {
                                   defaultChecked={option.checked}
                                   className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
                                   aria-labelledby={`filter-${section.id}-${optionIdx}`}
-                                 
                                 />
                                 <label
                                   htmlFor={`filter-${section.id}-${optionIdx}`}
@@ -295,11 +320,21 @@ const JobSearch = () => {
                     Recommended Jobs
                   </h2>
                   <hr />
-                  
-                    <JobCard
-                      
-                    />
-                  
+                  {isLoading ? (
+                    <div className='flex justify-center items-center h-full w-full'>
+                      Loading...
+                    </div>
+                  ) : allJobs.length > 0 ? (
+                    allJobs.map((job) => (
+                      <JobCard
+                        key={job.id}
+                        job={job}
+                        setIsLoading={setIsLoading}
+                      />
+                    ))
+                  ) : (
+                    <p>No jobs available.</p>
+                  )}
                 </div>
               </div>
             </div>

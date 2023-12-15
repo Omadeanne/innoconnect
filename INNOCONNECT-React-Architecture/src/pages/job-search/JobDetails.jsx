@@ -1,39 +1,29 @@
 import { Link, useParams } from 'react-router-dom';
-import jobs from './jobs';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import { defaultImg } from '../../assets';
 import axios from '../../axios/axios';
-import React, {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import formatDistance from 'date-fns/formatDistance';
-import format from 'date-fns/format';
 
 const JobDetails = () => {
   const { id } = useParams();
+  const [job, setJob] = useState([]);
 
-  // const job = jobs.find((job) => job.id === +id);
-  // console.log(job);
-
-  const [job, setJob] =useState([])
-
-
-  useEffect(()=>{
-    const getJobDetails = async ()=>{
-      try{
-        const response = await axios.get(`/jobs/${id}`, {
-          
-        });
+  useEffect(() => {
+    const getJobDetails = async () => {
+      try {
+        const response = await axios.get(`/jobs/${id}`, {});
         // setIsLoading(false);
-        console.log(response.data)
-        setJob(response.data)
-      }catch(error){
-        console.log(error.response.data.message)
+        console.log(response.data);
+        setJob(response.data);
+      } catch (error) {
+        console.log(error.response.data.message);
       }
-    }
-    getJobDetails()
-  }, [])
+    };
+    getJobDetails();
+  }, [id]);
 
-  console.log(job)
   return (
     <>
       <Nav />
@@ -46,23 +36,24 @@ const JobDetails = () => {
                 <h2 className='text-xl md:text-3xl font-bold text-primary-06'>
                   {job.title}
                 </h2>
-                {/* <p className='mt-2'>
-                  <i className='fa-solid fa-building mr-1' /> {job.company}
-                </p> */}
+                <p className='mt-2'>
+                  <i className='fa-solid fa-building mr-1' />{' '}
+                  {job?.employer?.name}
+                </p>
                 <p className='mt-2'>
                   <i className='fa-solid fa-location-dot mr-1' /> {job.location}
                 </p>
                 <p className='mt-2'>
                   <i className='fa-solid fa-briefcase mr-1' /> {job.workSetup}
                 </p>
-                <p className='mt-2'>
+                {/* <p className='mt-2'>
                   <i className='fa-solid fa-clock mr-1' /> Job posted:{' '}
-                  {/* <span className='ml-2'>{`${formatDistance(
-                        new Date(job?.createdAt),
-                        new Date(),
-                        { addSuffix: true }
-                      )}`}</span> */}
-                </p>
+                  <span className='ml-2'>{`${formatDistance(
+                    new Date(job?.createdAt),
+                    new Date(),
+                    { addSuffix: true }
+                  )}`}</span>
+                </p> */}
                 <div className='my-2 flex gap-3'>
                   <button className='w-20 bg-red-400 px-2 py-1 text-white rounded-sm text-sm'>
                     {job.type}
@@ -74,7 +65,11 @@ const JobDetails = () => {
               </div>
               <div>
                 <img
-                  src={!job.companyLogo ? defaultImg : job.companyLogo}
+                  src={
+                    !job?.employer?.user?.profileImg
+                      ? defaultImg
+                      : job?.employer?.user?.profileImg
+                  }
                   alt=''
                   className='object-cover h-52 w-h-52 rounded-md'
                 />
@@ -84,7 +79,7 @@ const JobDetails = () => {
             <div className='mt-8 text-primary-05'>
               <div className='grid grid-cols-1 md:grid-cols-4 gap-y-8'>
                 <p className='font-bold text-lg uppercase md:col-span-1'>
-                  About: 
+                  About:
                 </p>
                 <p className='text-lg md:col-span-3'>{job.description}</p>
                 <hr className='col-span-full' />
@@ -92,19 +87,15 @@ const JobDetails = () => {
                   Requirements:
                 </p>
                 <div className='text-lg md:col-span-3'>
-                  <ul className='list-disc list-inside'>
-                    {job.requirements}
-                  </ul>
+                  <ul className='list-disc list-inside'>{job.requirements}</ul>
                 </div>
-                
+
                 <hr className='col-span-full' />
                 <p className='font-bold text-lg uppercase md:col-span-1'>
                   Benefits:
                 </p>
                 <div className='text-lg md:col-span-3'>
-                  <ul className='list-disc list-inside'>
-                    {job.benefits}
-                  </ul>
+                  <ul className='list-disc list-inside'>{job.benefits}</ul>
                 </div>
               </div>
             </div>

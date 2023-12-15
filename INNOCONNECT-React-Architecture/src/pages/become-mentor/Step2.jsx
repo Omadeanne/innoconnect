@@ -1,32 +1,7 @@
-import React from 'react';
-
 const Step2 = ({ data, handleChange, next, back }) => {
   return (
     <>
       <div className='w-full'>
-        <div className='mt-10'>
-          <label
-            htmlFor='category'
-            className='block text-sm font-medium leading-6 text-gray-900'
-          >
-            Category
-          </label>
-          <div className='mt-2 relative'>
-            <select
-              aria-label='category'
-              className='input appearance-none block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
-                  placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-              name='category'
-              id='category'
-            >
-              <option value>Select Category</option>
-              <option value={1}>Frontend</option>
-            </select>
-            <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-              <i className='text-xs fa-solid fa-chevron-down' />
-            </div>
-          </div>
-        </div>
         <div className=' mt-8'>
           <label
             htmlFor='skills'
@@ -35,19 +10,16 @@ const Step2 = ({ data, handleChange, next, back }) => {
             skills
           </label>
           <div className='mt-2 relative'>
-            <select
-              aria-label='skills'
-              className='input appearance-none block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
-                  placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+            <input
+              onChange={handleChange}
+              value={data.skills}
+              type='text'
               name='skills'
               id='skills'
-            >
-              <option value>Select skills</option>
-              <option value={1}>HTML</option>
-            </select>
-            <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-              <i className='text-xs fa-solid fa-chevron-down' />
-            </div>
+              className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
+               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+              defaultValue={''}
+            />
           </div>
         </div>
         <div className='mt-8'>
@@ -59,6 +31,8 @@ const Step2 = ({ data, handleChange, next, back }) => {
           </label>
           <div className='mt-2'>
             <textarea
+              onChange={handleChange}
+              value={data.bio}
               placeholder='Bio'
               name='bio'
               id='bio'
@@ -78,6 +52,9 @@ const Step2 = ({ data, handleChange, next, back }) => {
             </label>
             <div className='mt-2'>
               <input
+                placeholder='Linkedin URL'
+                onChange={handleChange}
+                value={data.linkedin}
                 type='text'
                 name='linkedin'
                 id='linkedin'
@@ -88,33 +65,60 @@ const Step2 = ({ data, handleChange, next, back }) => {
           </div>
           <div className='sm:col-span-3'>
             <label
-              htmlFor='x.com'
+              htmlFor='twitter'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
               X.com URL
             </label>
             <div className='mt-2'>
               <input
+                placeholder='X.com URL'
+                onChange={handleChange}
+                value={data.twitter}
                 type='text'
-                name='x.com'
-                id='x.com'
+                name='twitter'
+                id='twitter'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                        placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
               />
             </div>
           </div>
-          <div className='sm:col-span-6'>
+          <div className='sm:col-span-3'>
             <label
-              htmlFor='website'
+              htmlFor='portfolio'
               className='block text-sm font-medium leading-6 text-gray-900'
             >
-              Personal Website URL(optional)
+              Personal portfolio URL(optional)
             </label>
             <div className='mt-2'>
               <input
+                placeholder='Personal portfolio URL'
+                onChange={handleChange}
+                value={data.portfolio}
                 type='text'
-                name='website'
-                id='website'
+                name='portfolio'
+                id='portfolio'
+                className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
+                       placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
+              />
+            </div>
+          </div>
+          <div className='sm:col-span-3'>
+            <label
+              htmlFor='github'
+              className='block text-sm font-medium leading-6 text-gray-900'
+            >
+              Github URL(optional)
+            </label>
+            <div className='mt-2'>
+              <input
+                placeholder='Github URL'
+                aria-label='Github URL'
+                onChange={handleChange}
+                value={data.github}
+                type='text'
+                name='github'
+                id='github'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                        placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
               />

@@ -1,9 +1,10 @@
 import { Menu, Transition } from '@headlessui/react';
 import { BellIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthProvider from '../../../context/useAuthProvider';
 import useLogout from '../../../hooks/useLogout';
+import { defaultImg } from '../../../assets';
 
 const ProfileAndNotifications = () => {
   const Navigate = useNavigate();
@@ -57,7 +58,7 @@ const ProfileAndNotifications = () => {
                 <span className='sr-only'>Open user menu</span>
                 <img
                   className='h-10 w-10 rounded-full'
-                  src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+                  src={defaultImg}
                   alt=''
                 />
                 {/* <span className='font-semibold mx-4'>Patience</span> */}

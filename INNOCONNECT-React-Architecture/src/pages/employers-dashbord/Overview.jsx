@@ -4,7 +4,7 @@ const Overview = () => {
   const details = [
     {
       title: 'Jobs posted',
-      count: 100,
+      count: 0,
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -23,7 +23,7 @@ const Overview = () => {
     },
     {
       title: 'Candidates Applied',
-      count: 100,
+      count: 0,
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -42,7 +42,7 @@ const Overview = () => {
     },
     {
       title: 'Profile view',
-      count: 100,
+      count: 0,
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'

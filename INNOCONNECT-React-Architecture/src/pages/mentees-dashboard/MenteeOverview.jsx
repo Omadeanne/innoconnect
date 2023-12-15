@@ -570,9 +570,11 @@ const MenteeOverview = () => {
             ) : (
               todos.map((todo, index) => {
                 return (
-                  <ul className='w-full'>
+                  <ul
+                    className='w-full'
+                    key={index}
+                  >
                     <TodoWidget
-                      key={index}
                       todo={todo}
                       toggleCheck={toggleCheck}
                       deleteTodo={deleteTodo}
