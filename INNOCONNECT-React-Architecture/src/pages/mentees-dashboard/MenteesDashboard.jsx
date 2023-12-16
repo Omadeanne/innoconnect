@@ -29,15 +29,16 @@ import AsideButton from '../../Components/molecules/mentee-dashboard/AsideButton
 import useAuthProvider from '../../context/useAuthProvider';
 
 const links = [
-  {
-    name: 'Courses',
-    to: '/mentees-dashboard/courses',
-    icon: course,
-  },
+  
   {
     name: 'Mentors',
     to: '/mentees-dashboard/my-mentors',
     icon: mentor,
+  },
+  {
+    name: 'Todos',
+    to: '/mentees-dashboard/todos',
+    icon: course,
   },
   {
     name: 'community',
@@ -76,12 +77,12 @@ export default function MenteesDashboard() {
                 Dashboard
               </ListItem>
             </Link>
-            <ListItem>
+            {/* <ListItem>
               <ListItemPrefix>
                 <InboxIcon className='h-5 w-5' />
               </ListItemPrefix>
               Messages
-            </ListItem>
+            </ListItem> */}
             <Accordion
               open={open === 1}
               icon={

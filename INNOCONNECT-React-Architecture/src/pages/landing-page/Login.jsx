@@ -48,6 +48,7 @@ const Login = () => {
       setLoading(false);
       localStorage.setItem('isLoggedIn', JSON.stringify(response?.data));
       setIsLoggedIn(response?.data);
+      setErrMsg('')
       let from =
         location.state?.from?.pathname ||
         `${roles.find((role) => role.name === response?.data?.user?.role)?.to}`;
