@@ -511,6 +511,22 @@ const MenteeOverview = () => {
           <hr className='border-slate-300' />
           <div className='mt-4 flex justify-center flex-col items-center'>
             {getTodos.length <= 0 ? (
+              getTodos.map((todo, index) => {
+                return (
+                  <ul
+                    className='w-full'
+                    key={index}
+                  >
+                    <TodoWidget
+                      todo={todo}
+                      toggleCheck={toggleCheck}
+                      deleteTodo={deleteTodo}
+                    />
+                  </ul>
+                );
+              })
+              
+            ) : (
               <div className='my-auto'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -531,21 +547,6 @@ const MenteeOverview = () => {
                   Nothing here
                 </h1>
               </div>
-            ) : (
-              getTodos.map((todo, index) => {
-                return (
-                  <ul
-                    className='w-full'
-                    key={index}
-                  >
-                    <TodoWidget
-                      todo={todo}
-                      toggleCheck={toggleCheck}
-                      deleteTodo={deleteTodo}
-                    />
-                  </ul>
-                );
-              })
             )}
           </div>
         </div>
