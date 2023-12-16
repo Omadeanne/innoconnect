@@ -30,7 +30,7 @@ import About from './pages/about-us/AboutUs';
 import Overview from './pages/employers-dashbord/Overview';
 import Message from './pages/employers-dashbord/Message';
 import MenteeOverview from './pages/mentees-dashboard/MenteeOverview';
-import Courses from './pages/mentees-dashboard/courses/Courses';
+// import Courses from './pages/mentees-dashboard/courses/Courses';
 import MyMentors from './pages/mentees-dashboard/MyMentors';
 import PersistLogin from './PersistLogin';
 import ResetPassword from './pages/landing-page/ResetPassword';
@@ -42,6 +42,7 @@ import MentorMentee from './pages/mentors-dashboard/MentorMentee';
 import MentorAppointment from './pages/mentors-dashboard/MentorAppointment';
 import Bookmarks from './pages/mentees-dashboard/Bookmarks';
 import Applications from './pages/mentees-dashboard/Applications';
+import Todos from './pages/mentees-dashboard/Todos';
 
 function App() {
   return (
@@ -157,8 +158,8 @@ function App() {
               element={<Applications />}
             />
             <Route
-              path='courses'
-              element={<Courses />}
+              path='todos'
+              element={<Todos />}
             />
             <Route
               path='my-mentors'

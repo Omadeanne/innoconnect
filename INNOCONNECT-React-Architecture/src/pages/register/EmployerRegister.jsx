@@ -46,6 +46,7 @@ const EmployerRegister = () => {
       console.log(response.data);
       setLoading(false);
       setSuccess(true);
+      setErrMsg('');
     } catch (error) {
       setLoading(false);
       if (!error?.response) {

@@ -11,10 +11,22 @@ import AsideButton from './AsideButton';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuthProvider from '../../../context/useAuthProvider';
+import useLogout from '../../../hooks/useLogout';
 
 export default function Aside({ links }) {
   const { isLoggedIn } = useAuthProvider();
   const [openAlert, setOpenAlert] = useState(true);
+
+  const logout = useLogout();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      Navigate('/login', { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Card className='fixed z-50 top-0 left-0 h-[100vh] w-full max-w-[20rem] rounded-none p-4 shadow-xl bg-[#1c2434] shadow-blue-gray-900/5'>
@@ -93,7 +105,10 @@ export default function Aside({ links }) {
               />
             </svg>
           </ListItemPrefix>
+          <button onClick={handleLogout}>
+
           Sign Out
+          </button>
         </ListItem>
       </List>
     </Card>

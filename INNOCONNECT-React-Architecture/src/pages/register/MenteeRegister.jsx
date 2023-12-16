@@ -50,6 +50,7 @@ const MenteeRegister = () => {
       setSuccess(true);
       console.log(response.data);
       setLoading(false);
+      setErrMsg('')
     } catch (error) {
       setLoading(false);
       if (!error?.response) {

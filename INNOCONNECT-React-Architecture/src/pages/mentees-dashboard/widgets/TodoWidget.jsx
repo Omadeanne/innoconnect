@@ -12,7 +12,7 @@ const TodoWidget = ({ todo, toggleCheck, deleteTodo }) => {
         style={{ textDecoration: todo.checked ? 'line-through' : 'none' }}
         className='w-full'
       >
-        {todo.text}
+        {todo.title}
       </span>
       <button onClick={() => deleteTodo(todo.id)}>
         <svg

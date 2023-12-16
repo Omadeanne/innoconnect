@@ -16,6 +16,7 @@ const MenteeOverview = () => {
   const [newTodo, setNewTodo] = useState('');
   const [loading, setLoading] = useState(true);
   const { isLoggedIn } = useAuthProvider();
+  const [getTodos, setGetTodos] = useState([]);
   
   const details = [
     {
@@ -125,6 +126,25 @@ const MenteeOverview = () => {
       }
     };
     fetchMentors();
+  }, [isLoggedIn]);
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const res = await axios.get('todos', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        });
+        console.log(res.data.rows)
+        setGetTodos(res.data.rows);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTodos();
   }, [isLoggedIn]);
 
   const addTodo = () => {
@@ -490,7 +510,23 @@ const MenteeOverview = () => {
           </div>
           <hr className='border-slate-300' />
           <div className='mt-4 flex justify-center flex-col items-center'>
-            {todos.length <= 0 ? (
+            {getTodos.length <= 0 ? (
+              getTodos.map((todo, index) => {
+                return (
+                  <ul
+                    className='w-full'
+                    key={index}
+                  >
+                    <TodoWidget
+                      todo={todo}
+                      toggleCheck={toggleCheck}
+                      deleteTodo={deleteTodo}
+                    />
+                  </ul>
+                );
+              })
+              
+            ) : (
               <div className='my-auto'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -511,21 +547,6 @@ const MenteeOverview = () => {
                   Nothing here
                 </h1>
               </div>
-            ) : (
-              todos.map((todo, index) => {
-                return (
-                  <ul
-                    className='w-full'
-                    key={index}
-                  >
-                    <TodoWidget
-                      todo={todo}
-                      toggleCheck={toggleCheck}
-                      deleteTodo={deleteTodo}
-                    />
-                  </ul>
-                );
-              })
             )}
           </div>
         </div>
