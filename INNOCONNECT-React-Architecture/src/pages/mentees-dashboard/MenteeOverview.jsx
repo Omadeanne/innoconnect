@@ -510,7 +510,7 @@ const MenteeOverview = () => {
           </div>
           <hr className='border-slate-300' />
           <div className='mt-4 flex justify-center flex-col items-center'>
-            {getTodos.length <= 0 ? (
+            {getTodos.length > 0 ? (
               getTodos.map((todo, index) => {
                 return (
                   <ul
