@@ -107,9 +107,8 @@ const Overview = () => {
             Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
           },
         });
-
-        console.log(response.data);
-        setApplications(response.data);
+        const applicants = response.data.map((job) => job.jobApplications);
+        setApplications(applicants);
       } catch (error) {
         console.log(error.response);
       }
@@ -126,7 +125,6 @@ const Overview = () => {
           },
         });
 
-        console.log(response.data);
         setAllJobs(response.data);
       } catch (error) {
         console.log(error.response);
@@ -136,7 +134,8 @@ const Overview = () => {
     };
     displayJobs();
   }, [isLoggedIn]);
-
+ 
+  console.log(applications);
   if (isLoading) {
     return (
       <div className='flex items-center justify-center h-screen'>

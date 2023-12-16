@@ -183,7 +183,7 @@ export default function MenteesDashboard() {
               </Link>
             </div>
           </Alert>}
-          <ListItem className='text-white mt-2 hover:bg-[#fff] hover:bg-opacity-90 hover:text-primary-05 group'>
+          <ListItem className='text-white mt-auto hover:bg-[#fff] hover:bg-opacity-90 hover:text-primary-05 group'>
             <ListItemPrefix>
               <PowerIcon className='h-5 w-5' />
             </ListItemPrefix>

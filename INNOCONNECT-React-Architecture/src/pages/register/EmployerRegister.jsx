@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from '../../axios/axios';
 import { Spinner } from '@material-tailwind/react';
 
@@ -55,6 +55,10 @@ const EmployerRegister = () => {
       }
     }
   };
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [name, phone, email, password, confirmPassword]);
   return (
     <>
       <form

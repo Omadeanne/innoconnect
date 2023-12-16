@@ -25,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     setErrMsg('');
-  }, [email]);
+  }, [email, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -150,29 +150,29 @@ const Login = () => {
               <div className='text-right text-sm text-[#234270] mt-2'>
                 <a href='/forgot-password'>Forgot Password?</a>
               </div>
-              <p className='text-center my-2 text-[#234270] text-base'>Or</p>
+              {/* <p className='text-center my-2 text-[#234270] text-base'>Or</p>
               <button
                 type='submit'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2 my-2  transition duration-300 flex justify-center items-center gap-x-4'
               >
-                <i class='fa-brands fa-google text-[25px]'></i>
-                {/* <a href="https://imgbb.com/"><img src="https://i.ibb.co/3F2NfCH/Google-Logo.png" 
-               alt="Google-Logo" border="0" /></a> */}
+                <i className='fa-brands fa-google text-sm'></i>
+                <a href="https://imgbb.com/"><img src="https://i.ibb.co/3F2NfCH/Google-Logo.png" 
+               alt="Google-Logo" border="0" /></a>
                 <span>Sign up with Google</span>
               </button>
               <button
                 type='submit'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2  transition duration-300 mt-1 flex justify-center items-center gap-x-4'
               >
-                <i class='fa-brands fa-apple text-[30px]'></i>
+                <i className='fa-brands fa-apple text-sm'></i>
 
                 <span>signup with Apple</span>
-              </button>
+              </button> */}
               <p className='text-base text-center mt-2 text-primary-04 cursor-pointer'>
-                Don't have an account?
+                Don{"'"}t have an account?
                 <span className='text-[#234270] font-medium'>
                   <Link to='/register'>
-                    <span class='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>
+                    <span className='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>
                       Register
                     </span>
                   </Link>

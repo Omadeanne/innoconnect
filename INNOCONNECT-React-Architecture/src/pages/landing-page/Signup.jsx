@@ -77,7 +77,7 @@ const Signup = () => {
             <span className='text-[#526786] p-10 font-medium'>Want to become a Mentor? 
                   <Link to='/mentor-form'> <span className='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>Click here </span></Link>
                 </span>
-            <p className='text-center my-2 text-[#234270] text-base font-bold col-span-full'>
+            {/* <p className='text-center my-2 text-[#234270] text-base font-bold col-span-full'>
               Or
             </p>
             <div className='w-full max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4  px-8'>
@@ -85,11 +85,6 @@ const Signup = () => {
                 type='button'
                 className='border border-[#234270] text-[#234270] w-full rounded p-2 my-2  transition duration-300 flex justify-center items-center gap-x-4'
               >
-                {/* <img
-                  src='assets/GoogleLogo.png'
-                  className
-                  alt=''
-                /> */}
                   <i className="fa-brands fa-google text-[25px]"></i>
                 <span>Sign up with Google</span>
               </button>
@@ -98,13 +93,9 @@ const Signup = () => {
                 className='border border-[#234270] text-[#234270] w-full rounded p-2 my-2 transition duration-300 flex justify-center items-center gap-x-4'
               >
                   <i className="fa-brands fa-apple text-[30px]"></i>
-                {/* <img
-                  src='assets/apple.svg'
-                  alt=""
-                /> */}
                 <span>signup with Apple</span>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
