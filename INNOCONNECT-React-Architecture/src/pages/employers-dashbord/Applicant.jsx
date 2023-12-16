@@ -43,7 +43,7 @@ export default function Applicant() {
   const updateApplicationStatus = async (jobId, id, status) => {
     try {
       setIsLoading(true);
-      const response = await axios.patch(
+      await axios.patch(
         `/application/${jobId}/${id}`,
         JSON.stringify({
           status,
