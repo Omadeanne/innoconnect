@@ -133,7 +133,7 @@ function App() {
             element={<Payment />}
           />
           <Route
-            path='/confirm-payment'
+            path='/confirmation'
             element={<PaymentConfirmation />}
           />
           <Route

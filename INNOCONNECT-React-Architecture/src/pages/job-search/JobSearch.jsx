@@ -1,6 +1,5 @@
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
-import jobs from './jobs';
 import JobCard from './JobCard';
 import { Fragment, useState, useEffect } from 'react';
 import axios from '../../axios/axios';

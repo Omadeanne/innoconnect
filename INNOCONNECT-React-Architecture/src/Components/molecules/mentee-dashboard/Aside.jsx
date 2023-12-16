@@ -75,7 +75,7 @@ export default function Aside({ links }) {
           </Typography>
         </div>
       </Alert>}
-      <List>
+      <List className='mt-auto'>
         <ListItem className='text-white mt-2 hover:bg-[#fff] hover:bg-opacity-90 hover:text-primary-05 group'>
           <ListItemPrefix>
             <svg
