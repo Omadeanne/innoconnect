@@ -15,7 +15,7 @@ const Login = () => {
   const location = useLocation();
   const Navigate = useNavigate();
 
-  const { isLoggedIn, setIsLoggedIn } = useAuthProvider();
+  const { isLoggedIn, setIsLoggedIn, setIsEmailVerified } = useAuthProvider();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -49,6 +49,7 @@ const Login = () => {
       setLoading(false);
       localStorage.setItem('isLoggedIn', JSON.stringify(response?.data));
       setIsLoggedIn(response?.data);
+      setIsEmailVerified(response?.data?.user?.isEmailVerified);
       setErrMsg('');
       let from =
         location.state?.from?.pathname ||
