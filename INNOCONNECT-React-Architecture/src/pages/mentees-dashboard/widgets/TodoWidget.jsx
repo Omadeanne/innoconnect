@@ -1,15 +1,13 @@
-import React from 'react';
-
 const TodoWidget = ({ todo, toggleCheck, deleteTodo }) => {
   return (
     <li className='flex items-center justify-between px-6 gap-4 my-2 border-b border-b-slate-300 py-2'>
       <input
         type='checkbox'
-        checked={todo.checked}
+        checked={todo.isDone}
         onChange={() => toggleCheck(todo.id)}
       />
       <span
-        style={{ textDecoration: todo.checked ? 'line-through' : 'none' }}
+        style={{ textDecoration: todo.isDone ? 'line-through' : 'none' }}
         className='w-full'
       >
         {todo.title}

@@ -4,15 +4,16 @@ import useAuthProvider from './context/useAuthProvider';
 const Layout = () => {
   const { isLoggedIn } = useAuthProvider();
   const location = useLocation();
-  return isLoggedIn ? (
-    <Outlet />
-  ) : (
-    <Navigate
-      to='/login'
-      state={{ from: location }}
-      replace
-    />
-  );
+
+  if (!isLoggedIn) {
+    return <Navigate to='/login' state={{ from: location }} replace />;
+  }
+
+  if (!isLoggedIn.user.isEmailVerified) {
+    return <Navigate to='/verify-email' state={{ from: location }} replace />;
+  }
+
+  return <Outlet />;
 };
 
 export default Layout;

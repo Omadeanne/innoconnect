@@ -43,6 +43,8 @@ import MentorAppointment from './pages/mentors-dashboard/MentorAppointment';
 import Bookmarks from './pages/mentees-dashboard/Bookmarks';
 import Applications from './pages/mentees-dashboard/Applications';
 import Todos from './pages/mentees-dashboard/Todos';
+import VerifyEmail from './pages/verify-email/VerifyEmail';
+import ConfirmVerification from './pages/verify-email/ConfirmVerification';
 
 function App() {
   return (
@@ -111,6 +113,14 @@ function App() {
         <Route
           path='/become-mentor'
           element={<BecomeMentor />}
+        />
+        <Route
+          path='/verify-email'
+          element={<VerifyEmail />}
+        />
+        <Route
+          path='/confirm-verification'
+          element={<ConfirmVerification />}
         />
         <Route
           path='/terms-and-conditions'

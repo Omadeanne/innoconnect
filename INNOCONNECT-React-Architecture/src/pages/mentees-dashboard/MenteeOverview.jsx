@@ -7,17 +7,25 @@ import axios from '../../axios/axios';
 import useAuthProvider from '../../context/useAuthProvider';
 import { format, formatDistance } from 'date-fns';
 import { Chip } from '@mui/material';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const MenteeOverview = () => {
-  
   const [jobs, setJobs] = useState([]);
   const [mentors, setMentors] = useState([]);
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
   const [loading, setLoading] = useState(true);
   const { isLoggedIn } = useAuthProvider();
-  const [getTodos, setGetTodos] = useState([]);
-  
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
+
+  const handleApiError = (error) => {
+    if (!error?.response) {
+      setErrMsg('No Server Response');
+    } else {
+      setErrMsg(error?.response?.data?.message);
+    }
+  };
+
   const details = [
     {
       title: 'Applications',
@@ -60,20 +68,7 @@ const MenteeOverview = () => {
     {
       title: 'Courses',
       count: 0,
-      icon: (
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          viewBox='0 0 24 24'
-          fill='currentColor'
-          className='w-9 h-9'
-        >
-          <path
-            fillRule='evenodd'
-            d='M11.47 4.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06L16.44 12 11.47 4.72z'
-            clipRule='evenodd'
-          />
-        </svg>
-      ),
+      icon: <MenuBookIcon />,
     },
     {
       title: 'Tasks',
@@ -90,7 +85,7 @@ const MenteeOverview = () => {
       ),
     },
   ];
-  
+
   useEffect(() => {
     const getJobs = async () => {
       try {
@@ -120,26 +115,34 @@ const MenteeOverview = () => {
         });
         setMentors(res.data.mentors);
       } catch (error) {
-        console.log(error);
+        if (!error?.response) {
+          setErrMsg('No Server Response');
+        } else {
+          setErrMsg(error?.response?.data?.message);
+        }
       } finally {
         setLoading(false);
       }
     };
     fetchMentors();
   }, [isLoggedIn]);
+
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const res = await axios.get('todos', {
+        const res = await axios.get('todos/user', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
           },
         });
-        console.log(res.data.rows)
-        setGetTodos(res.data.rows);
+        setTodos(res.data);
       } catch (error) {
-        console.log(error);
+        if (!error?.response) {
+          setErrMsg('No Server Response');
+        } else {
+          setErrMsg(error?.response?.data?.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -147,31 +150,72 @@ const MenteeOverview = () => {
     fetchTodos();
   }, [isLoggedIn]);
 
-  const addTodo = () => {
-    if (newTodo.trim() !== '') {
-      setTodos([...todos, { id: Date.now(), text: newTodo, checked: false }]);
-      setNewTodo('');
+  const deleteTodo = async (id) => {
+    try {
+      await axios.delete(`todos/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+        },
+      });
+
+      setTodos(todos.filter((todo) => todo.id !== id));
+    } catch (error) {
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else {
+        setErrMsg(error?.response?.data?.message);
+      }
     }
   };
 
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+  const toggleCheck = async (id) => {
+    try {
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+        )
+      );
+      await axios.patch(
+        `todos/${id}`,
+        { isDone: !todos.find((todo) => todo.id === id).isDone },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        }
+      );
+    } catch (error) {
+      handleApiError(error);
+    }
   };
+  const checkAll = async () => {
+    try {
+      setIsAllChecked(!isAllChecked);
+      if (todos.every((todo) => todo.isDone)) {
+        setTodos((prevTodos) =>
+          prevTodos.map((todo) => ({ ...todo, isDone: false }))
+        );
+      } else {
+        setTodos((prevTodos) =>
+          prevTodos.map((todo) => ({ ...todo, isDone: true }))
+        );
+      }
 
-  const toggleCheck = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
-    );
-  };
-
-  const checkAll = () => {
-    setTodos(todos.map((todo) => ({ ...todo, checked: true })));
-  };
-
-  const uncheckAll = () => {
-    setTodos(todos.map((todo) => ({ ...todo, checked: false })));
+      await axios.patch(
+        'todos/user/checkall',
+        { isDone: !todos.every((todo) => todo.isDone) },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        }
+      );
+    } catch (error) {
+      handleApiError(error);
+    }
   };
 
   if (loading) {
@@ -240,8 +284,8 @@ const MenteeOverview = () => {
                 </div>
                 <div className='flex items-center gap-3'>
                   {mentor?.mentorships.status === 'pending' ? (
-                    <span className='inline-flex items-center rounded-md bg-red-50 px-2 py-1 text font-medium text-red-700 ring-1 ring-inset ring-red-600/10 mr-2'>
-                      Pending
+                    <span>
+                      <Chip label='Pending' />
                     </span>
                   ) : (
                     <span className='inline-flex items-center rounded-full h-9 w-9 bg-blue-gray-100 px-2 py-1 text font-medium ring-1 ring-inset ring-red-600/10 mr-2'>
@@ -487,31 +531,25 @@ const MenteeOverview = () => {
               <h2 className='text-primary-05 font-bold ml-2'>Todo</h2>
             </div>
             <div className='flex items-center'>
-              <button
-                type='button'
-                onClick={checkAll}
-                className='inline-flex items-center justify-center text-primary-05 font-medium hover:bg-primary-05 hover:text-white rounded-md gap-x-1.5 rounded-m px-3 text-sm py-2 mr-2 transition-all'
+              <label
+                htmlFor='checkAll'
+                className='inline-flex items-center justify-center text-primary-05 font-medium rounded-md gap-x-1.5 rounded-m px-3 text-sm py-2 mr-2 transition-all'
               >
                 Check all
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 24 24'
-                  fill='currentColor'
-                  className='w-6 h-6 ml-2'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z'
-                    clipRule='evenodd'
-                  />
-                </svg>
-              </button>
+                <input
+                  className='ml-2'
+                  type='checkbox'
+                  id='checkAll'
+                  checked={isAllChecked}
+                  onChange={checkAll}
+                />
+              </label>
             </div>
           </div>
           <hr className='border-slate-300' />
           <div className='mt-4 flex justify-center flex-col items-center'>
-            {getTodos.length > 0 ? (
-              getTodos.map((todo, index) => {
+            {todos.length > 0 ? (
+              todos.map((todo, index) => {
                 return (
                   <ul
                     className='w-full'
@@ -525,7 +563,6 @@ const MenteeOverview = () => {
                   </ul>
                 );
               })
-              
             ) : (
               <div className='my-auto'>
                 <svg

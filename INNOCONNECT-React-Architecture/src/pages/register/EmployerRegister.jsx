@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import axios from '../../axios/axios';
 import { Spinner } from '@material-tailwind/react';
 
 const EmployerRegister = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -46,6 +47,7 @@ const EmployerRegister = () => {
       console.log(response.data);
       setLoading(false);
       setSuccess(true);
+      navigate('/VerifyEmail');
       setErrMsg('');
     } catch (error) {
       setLoading(false);
@@ -231,7 +233,8 @@ const EmployerRegister = () => {
                 Account successfully created
               </h1>
               <p className='text-[#777676] '>
-                Your account creation process has been completed and successful.
+                We are glad, that you are here with us ? We have sent you a
+                verification link to the email address{' '}
               </p>
             </div>
             <Link

@@ -1,32 +1,51 @@
 import axios from '../../axios/axios';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import useAuthProvider from '../../context/useAuthProvider';
 import { Link } from 'react-router-dom';
 import { Spinner } from '@material-tailwind/react';
+import { Alert, Snackbar } from '@mui/material';
+
+const snackPosition = { vertical: 'bottom', horizontal: 'right' };
 
 export default function PostJobs() {
   const [success, setSuccess] = useState(false);
   const { isLoggedIn } = useAuthProvider();
   const [loading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState('');
-  const errRef = useRef();
+  const [open, setOpen] = useState(false);
 
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [location, setLocation] = useState("")
-  const [workSetup, setWorkSetup] = useState("")
-  const [type, setType] = useState("")
-  const [experience, setExperience] = useState("")
-  const [requirements, setRequirements] = useState("")
-  const [benefits, setBenefits] = useState("")
-  const [minSalary, setMinSalary] = useState("")
-  const [maxSalary, setMaxSalary] = useState("")
-  const [endDate, setEndDate] = useState("")
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [workSetup, setWorkSetup] = useState('');
+  const [type, setType] = useState('');
+  const [experience, setExperience] = useState('');
+  const [requirements, setRequirements] = useState('');
+  const [benefits, setBenefits] = useState('');
+  const [minSalary, setMinSalary] = useState('');
+  const [maxSalary, setMaxSalary] = useState('');
+  const [endDate, setEndDate] = useState('');
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handlePostJob = async (e) => {
-    e.preventDefault()
-    if (!title || !description || !location || !workSetup || !type || !experience || !requirements || !benefits) {
+    e.preventDefault();
+    if (
+      !title ||
+      !description ||
+      !location ||
+      !workSetup ||
+      !type ||
+      !experience ||
+      !requirements ||
+      !benefits ||
+      !minSalary ||
+      !maxSalary ||
+      !endDate
+    ) {
       setErrMsg('All fields are required');
+      setOpen(true);
       return;
     }
     try {
@@ -42,23 +61,44 @@ export default function PostJobs() {
         benefits,
         minSalary,
         maxSalary,
-        endDate
+        endDate,
       };
-      const response = await axios.post('/jobs/', JSON.stringify(postJobData),
-        {
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}` },
-        })
-        setLoading(false);
-        setSuccess(true);
-      console.log(response)
+      await axios.post('/jobs/', JSON.stringify(postJobData), {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+        },
+      });
+      setLoading(false);
+      setSuccess(true);
     } catch (error) {
       setLoading(false);
-      console.log(error.response.message)
-      setErrMsg(error?.response?.data?.message);
+      setOpen(true);
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else {
+        setErrMsg(error?.response?.data?.message);
+      }
     }
-  }
+  };
+
   return (
     <div className='px-10 z-0 mt-10'>
+      <Snackbar
+        autoHideDuration={5000}
+        anchorOrigin={snackPosition}
+        open={open}
+        onClose={handleClose}
+        key={snackPosition.vertical + snackPosition.horizontal}
+      >
+        <Alert
+          onClose={handleClose}
+          severity='error'
+          sx={{ width: '100%' }}
+        >
+          {errMsg}
+        </Alert>
+      </Snackbar>
       <div className='w-full bg-white p-10 shadow-card'>
         <h1 className='text-4xl font-bold text-primary-05 py-4'>Post Job</h1>
         <hr className='border-slate-300' />
@@ -264,7 +304,6 @@ export default function PostJobs() {
             </label>
             <div className='mt-2'>
               <input
-                
                 onChange={(event) => setMinSalary(event.target.value)}
                 value={minSalary}
                 type='text'
@@ -374,18 +413,6 @@ export default function PostJobs() {
               />
             </div>
           </div>
-          <p
-                ref={errRef}
-                className={
-                  errMsg
-                    ? 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2 col-span-full'
-                    : 'hidden'
-                }
-                aria-live='assertive'
-                role='alert'
-              >
-                {errMsg}
-              </p>
           <div className>
             <button
               onClick={handlePostJob}
@@ -429,9 +456,7 @@ export default function PostJobs() {
               <h1 className='text-xl font-bold my-3'>
                 Job Posted Successfully
               </h1>
-              <p className='text-[#777676] '>
-                Your Job has been created.
-              </p>
+              <p className='text-[#777676] '>Your Job has been created.</p>
             </div>
             <Link
               to='/employers-dashboard/job-posted'

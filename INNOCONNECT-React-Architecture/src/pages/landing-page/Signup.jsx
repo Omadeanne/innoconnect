@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MenteeRegister from '../register/MenteeRegister';
 import EmployerRegister from '../register/EmployerRegister';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logo } from '../../assets';
 import { businessman, registerpageimage, mentee } from '../../assets';
+import useAuthProvider from '../../context/useAuthProvider';
 
 const Signup = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const { isLoggedIn } = useAuthProvider();
+  const Navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
 
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      Navigate(from, { replace: true });
+    }
+  }, [isLoggedIn, from, Navigate]);
 
   return (
     <div>
@@ -52,7 +63,13 @@ const Signup = () => {
                       alt=''
                     />
                     <span className='ml-2'>Mentee</span>
-                    <div className={`${activeTab === 1 ? 'bg-black h-[2px] group-hover:scale-x-100 transition-all duration-100' : 'bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'}`}></div>
+                    <div
+                      className={`${
+                        activeTab === 1
+                          ? 'bg-black h-[2px] group-hover:scale-x-100 transition-all duration-100'
+                          : 'bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'
+                      }`}
+                    ></div>
                   </button>
                 </li>
                 <li className='group w-1/2'>
@@ -67,16 +84,28 @@ const Signup = () => {
                       alt=''
                     />
                     <span className='ml-2'>Employer</span>
-                    <div className={`${activeTab === 2 ? 'bg-black h-[2px] group-hover:scale-x-100 transition-all duration-100' : 'bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'}`}></div>
+                    <div
+                      className={`${
+                        activeTab === 2
+                          ? 'bg-black h-[2px] group-hover:scale-x-100 transition-all duration-100'
+                          : 'bg-black scale-x-0 h-[2px] group-hover:scale-x-100 transition-all duration-100'
+                      }`}
+                    ></div>
                   </button>
                 </li>
               </ul>
             </div>
             {activeTab === 1 && <MenteeRegister />}
             {activeTab === 2 && <EmployerRegister />}
-            <span className='text-[#526786] p-10 font-medium'>Want to become a Mentor? 
-                  <Link to='/mentor-form'> <span className='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>Click here </span></Link>
+            <span className='text-[#526786] p-10 font-medium'>
+              Want to become a Mentor?
+              <Link to='/mentor-form'>
+                {' '}
+                <span className='hover:font-bold hover:text-[#192433] text-primary-06 mt-3'>
+                  Click here{' '}
                 </span>
+              </Link>
+            </span>
             {/* <p className='text-center my-2 text-[#234270] text-base font-bold col-span-full'>
               Or
             </p>

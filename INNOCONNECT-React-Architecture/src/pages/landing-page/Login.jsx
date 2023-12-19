@@ -5,16 +5,17 @@ import axios from '../../axios/axios';
 import { Spinner } from '@material-tailwind/react';
 import useAuthProvider from '../../context/useAuthProvider';
 
+const roles = [
+  { name: 'mentor', to: '/mentors-dashboard' },
+  { name: 'mentee', to: '/mentees-dashboard' },
+  { name: 'employer', to: '/employers-dashboard' },
+];
+
 const Login = () => {
   const location = useLocation();
   const Navigate = useNavigate();
 
-  const { setIsLoggedIn } = useAuthProvider();
-  const roles = [
-    { name: 'mentor', to: '/mentors-dashboard' },
-    { name: 'mentee', to: '/mentees-dashboard' },
-    { name: 'employer', to: '/employers-dashboard' },
-  ];
+  const { isLoggedIn, setIsLoggedIn } = useAuthProvider();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,7 +49,7 @@ const Login = () => {
       setLoading(false);
       localStorage.setItem('isLoggedIn', JSON.stringify(response?.data));
       setIsLoggedIn(response?.data);
-      setErrMsg('')
+      setErrMsg('');
       let from =
         location.state?.from?.pathname ||
         `${roles.find((role) => role.name === response?.data?.user?.role)?.to}`;
@@ -62,6 +63,14 @@ const Login = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      Navigate(roles.find((role) => role.name === isLoggedIn?.user?.role)?.to, {
+        replace: true,
+      });
+    }
+  }, [isLoggedIn, Navigate]);
   return (
     <div className='flex flex-col md:flex-row min-h-screen'>
       <div className='md:absolute h-20 left-4 top-4 p-4 bg-[#112034]'>

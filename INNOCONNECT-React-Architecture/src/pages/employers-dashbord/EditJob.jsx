@@ -3,22 +3,26 @@ import useAuthProvider from '../../context/useAuthProvider';
 import axios from '../../axios/axios';
 import { useEffect, useState } from 'react';
 import { Spinner } from '@material-tailwind/react';
+import { Alert, Snackbar } from '@mui/material';
+import VerifiedIcon from '@mui/icons-material/Verified';
+
+const snackPosition = { vertical: 'bottom', horizontal: 'right' };
 
 const EditJob = () => {
-  function spreadWithoutKeys(obj, excludedKeys) {
-    const { ...rest } = obj;
-    for (const key of excludedKeys) {
-      delete rest[key];
-    }
-    return rest;
-  }
-
   const { isLoggedIn } = useAuthProvider();
   const { id } = useParams();
 
   const [job, setJob] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [success, setSuccess] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
+
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const formattedDate = d.toISOString().split('T')[0];
+    return formattedDate;
+  };
 
   useEffect(() => {
     const getJob = async () => {
@@ -29,10 +33,16 @@ const EditJob = () => {
           },
         });
         setIsLoading(false);
-        setJob(response?.data);
+        setJob({...response.data, endDate: formatDate(response.data.endDate)});
       } catch (error) {
         setIsLoading(false);
-        console.log(error.response.message);
+        setOpen(true);
+        if (!error?.response) {
+          setErrMsg('No Server Response');
+        } else {
+          setErrMsg(error?.response?.data?.message);
+        }
+        console.error(error?.response?.message);
       }
     };
     getJob();
@@ -46,33 +56,42 @@ const EditJob = () => {
     }));
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const data = spreadWithoutKeys(job, [
-      'id',
-      'createdAt',
-      'updatedAt',
-      'employerId',
-      'applications',
-    ]);
+    const data = {
+      ...job,
+      id: undefined,
+      createdAt: undefined,
+      updatedAt: undefined,
+      employerId: undefined,
+      applications: undefined,
+      employer: undefined,
+    };
 
-    console.log(data);
     try {
-      const response = await axios.patch(`/jobs/${id}`, JSON.stringify(data), {
+      await axios.patch(`/jobs/${id}`, JSON.stringify(data), {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
         },
       });
 
-      console.log(response.data);
-
       setIsLoading(false);
       setSuccess(true);
     } catch (error) {
+      setOpen(true);
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else {
+        setErrMsg(error?.response?.data?.message);
+      }
       setIsLoading(false);
-      console.log(error.response.message);
+      console.error(error?.response?.message);
     }
   };
 
@@ -85,6 +104,21 @@ const EditJob = () => {
   }
   return (
     <div className='px-10 z-0 mt-10'>
+      <Snackbar
+        autoHideDuration={5000}
+        anchorOrigin={snackPosition}
+        open={open}
+        onClose={handleClose}
+        key={snackPosition.vertical + snackPosition.horizontal}
+      >
+        <Alert
+          onClose={handleClose}
+          severity='error'
+          sx={{ width: '100%' }}
+        >
+          {errMsg}
+        </Alert>
+      </Snackbar>
       <div className='w-full bg-white p-10 shadow-card'>
         <h1 className='text-4xl font-bold text-primary-05 py-4'>Edit Job</h1>
         <hr className='border-slate-300' />
@@ -92,7 +126,7 @@ const EditJob = () => {
           id='form'
           className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-4'
         >
-          <div className>
+          <div>
             <label
               htmlFor='title'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -113,7 +147,7 @@ const EditJob = () => {
               />
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='Job-type'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -141,7 +175,7 @@ const EditJob = () => {
               </div>
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='workSetup'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -161,7 +195,6 @@ const EditJob = () => {
                 <option
                   value
                   disabled
-                  selected
                 >
                   Select one
                 </option>
@@ -174,7 +207,7 @@ const EditJob = () => {
               </div>
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='Job-category'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -192,7 +225,6 @@ const EditJob = () => {
                 <option
                   value
                   disabled
-                  selected
                 >
                   Select an option
                 </option>
@@ -213,7 +245,7 @@ const EditJob = () => {
               </div>
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='experience'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -233,7 +265,6 @@ const EditJob = () => {
                 <option
                   value
                   disabled
-                  selected
                 >
                   Select an option
                 </option>
@@ -247,7 +278,7 @@ const EditJob = () => {
               </div>
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='location'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -279,15 +310,16 @@ const EditJob = () => {
               <input
                 onChange={handleChange}
                 value={job?.endDate}
-                type='datetime-local'
+                type='date'
                 name='endDate'
                 id='endDate'
+                placeholder={job?.endDate}
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                             focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
               />
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='minSalary'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -304,11 +336,10 @@ const EditJob = () => {
                 placeholder='Min salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={' '}
               />
             </div>
           </div>
-          <div className>
+          <div>
             <label
               htmlFor='maxSalary'
               className='block text-sm font-medium leading-6 text-gray-900'
@@ -325,7 +356,6 @@ const EditJob = () => {
                 placeholder='Max salary'
                 className=' block w-full rounded-md border input py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                               placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={' '}
               />
             </div>
           </div>
@@ -345,30 +375,10 @@ const EditJob = () => {
                 id='requirements'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={''}
               />
             </div>
           </div>
-          <div className='col-span-full'>
-            <label
-              htmlFor='responsibilty'
-              className='block text-sm font-medium leading-6 text-gray-900'
-            >
-              Responsibilty
-            </label>
-            <div className='mt-2'>
-              <textarea
-                onChange={handleChange}
-                value={job?.responsibilty}
-                placeholder='responsibilty'
-                name='responsibilty'
-                id='responsibilty'
-                className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
-                   placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={' '}
-              />
-            </div>
-          </div>
+
           <div className='col-span-full'>
             <label
               htmlFor='about'
@@ -380,12 +390,11 @@ const EditJob = () => {
               <textarea
                 onChange={handleChange}
                 value={job?.description}
-                placeholder='about'
-                name='about'
-                id='about'
+                placeholder='description'
+                name='description'
+                id='description'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue={' '}
               />
             </div>
           </div>
@@ -405,11 +414,10 @@ const EditJob = () => {
                 id='benefits'
                 className='input block w-full rounded-md border py-1.5 px-4 text-gray-900 shadow-sm bg-gray-200
                    placeholder:text-accent-03 focus:ring-1 focus:ring-inset focus:ring-primary-05 sm:text-sm sm:leading-6'
-                defaultValue=' '
               />
             </div>
           </div>
-          <div className>
+          <div>
             <button
               onClick={handleSubmit}
               type='submit'
@@ -435,18 +443,7 @@ const EditJob = () => {
                 src='./assets/partypopper.png'
                 alt=""
               /> */}
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 24 24'
-                fill='currentColor'
-                className='w-12 h-12 animate-bounce'
-              >
-                <path
-                  fillRule='evenodd'
-                  d='M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z'
-                  clipRule='evenodd'
-                />
-              </svg>
+              <VerifiedIcon />
             </div>
             <div className='px-10'>
               <h1 className='text-xl font-bold my-3'>

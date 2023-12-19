@@ -27,7 +27,7 @@ const MentorOverview = () => {
       ),
     },
     {
-      title: 'Mentees Appointments',
+      title: 'Appointments',
       count: 0,
       icon: (
         <svg
@@ -79,7 +79,7 @@ const MentorOverview = () => {
   ];
 
   const [jobs, setJobs] = useState([]);
-  const [mentors, setMentors] = useState([]);
+  const [mentees, setMentees] = useState([]);
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -150,7 +150,7 @@ const MentorOverview = () => {
             </div>
           </div>
           <hr className='border-slate-300' />
-          {mentors.length > 0 ? (
+          {mentees.length > 0 ? (
             <div>
               <div className='flex items-center justify-between px-5 py-4 border-b border-b-slate-300'>
                 <div className='flex items-center justify-between gap-4'>
@@ -570,7 +570,10 @@ const MentorOverview = () => {
             ) : (
               todos.map((todo, index) => {
                 return (
-                  <ul className='w-full'>
+                  <ul
+                    key={index}
+                    className='w-full'
+                  >
                     {/* <TodoWidget
                       key={index}
                       todo={todo}

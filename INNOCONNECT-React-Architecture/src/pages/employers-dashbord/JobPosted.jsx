@@ -69,9 +69,8 @@ export default function JobPosted() {
         </div>
         ) : myJobs.length > 0 ? (
           myJobs.map((job) => (
-            <>
+            <div key={job.id}>
               <div
-                key={job.id}
                 className='flex justify-between items-center py-4 md:p-4 border-b border-b-slate-300'
               >
                 <div>
@@ -146,7 +145,7 @@ export default function JobPosted() {
                 cancelButtonRef={cancelButtonRef}
                 handleDelete={handleDelete}
               />
-            </>
+            </div>
           ))
         ) : (
           <div className='flex justify-center items-center h-full w-full'>

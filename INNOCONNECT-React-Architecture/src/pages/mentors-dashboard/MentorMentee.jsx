@@ -1,4 +1,4 @@
-import { Spinner } from '@material-tailwind/react';
+import { IconButton, Spinner } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
 import { Link } from 'react-router-dom';
@@ -6,11 +6,14 @@ import useAuthProvider from '../../context/useAuthProvider';
 import { Delete, Replay } from '@mui/icons-material';
 import Check from '@mui/icons-material/Check';
 import RemoveRedEye from '@mui/icons-material/RemoveRedEye';
+import { Alert, Snackbar } from '@mui/material';
 
 const MentorMentee = () => {
   const [loading, setLoading] = useState(true);
   const [mentees, setMentees] = useState([]);
   const { isLoggedIn } = useAuthProvider();
+  const [errMsg, setErrMsg] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const getmentor = async () => {
@@ -20,15 +23,22 @@ const MentorMentee = () => {
             Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
           },
         });
-        setMentees(response.data);
+        setMentees(response?.data);
       } catch (error) {
-        console.log(error.response.message);
+        setOpen(true);
+        console.log(error?.response?.message);
+        if (!error?.response) {
+          setErrMsg('No Server Response');
+        } else {
+          setErrMsg(error?.response?.message);
+        }
       } finally {
         setLoading(false);
       }
     };
     getmentor();
   }, [isLoggedIn]);
+
 
   const updateStatus = async (id, status) => {
     try {
@@ -50,7 +60,13 @@ const MentorMentee = () => {
         )
       );
     } catch (error) {
-      console.log(error.response.message);
+      console.log(error?.response?.message);
+      setOpen(true);
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else {
+        setErrMsg(error?.response?.data?.message);
+      }
     }
   };
 
@@ -58,7 +74,9 @@ const MentorMentee = () => {
     <div className='md:px-10 z-0 mt-10 h-full'>
       <div className='w-full bg-white p-5 md:p-10 shadow-card h-full'>
         <div className='flex items-center text-2xl md:text-4xl'>
-          <h1 className='mb-4 font-bold text-primary-05'>Bookmarks</h1>
+          <h1 className='mb-4 font-bold text-primary-05'>
+            Mentorship Requests
+          </h1>
         </div>
         <hr className='border-slate-300' />
         {loading ? (
@@ -89,37 +107,36 @@ const MentorMentee = () => {
                 </div>
               </div>
               <div className='mr-4 flex items-center gap-2'>
-                <button
+                <IconButton
                   aria-label='View'
-                  type='button'
-                  className='bg-gray-300 w-10 h-10 rounded-full mr-2'
+                  className='bg-primary-05 rounded-full'
                 >
                   <RemoveRedEye />
-                </button>
+                </IconButton>
                 {mentee?.mentorships?.status === 'pending' ? (
                   <>
-                    <button
+                    <IconButton
+                      size='small'
                       onClick={() => updateStatus(mentee?.id, 'approved')}
                       aria-label='accept'
-                      type='button'
-                      className='bg-gray-300 w-10 h-10 rounded-full mr-2'
+                      className='bg-primary-05 rounded-full'
                     >
                       <Check />
-                    </button>
-                    <button
+                    </IconButton>
+                    <IconButton
+                      size='small'
                       onClick={() => updateStatus(mentee?.id, 'rejected')}
                       aria-label='delete'
-                      type='button'
-                      className='bg-gray-300 w-10 h-10 rounded-full'
+                      className='bg-primary-05 rounded-full'
                     >
                       <Delete />
-                    </button>
+                    </IconButton>
                   </>
                 ) : (
                   <div className='flex items-center gap-2'>
                     {mentee?.mentorships?.status === 'approved' ? (
                       <span className='inline-flex items-center rounded-md bg-green-50 px-2 py-1 text font-medium text-green-700 ring-1 ring-inset ring-green-600/10 mr-2'>
-                        approved
+                        Approved
                       </span>
                     ) : (
                       <span className='inline-flex items-center rounded-md bg-red-50 px-2 py-1 text font-medium text-red-700 ring-1 ring-inset ring-red-600/10 mr-2'>
@@ -127,13 +144,14 @@ const MentorMentee = () => {
                       </span>
                     )}
 
-                    <button
+                    <IconButton
+                      size='small'
+                      onClick={() => updateStatus(mentee?.id, 'pending')}
                       aria-label='undo'
-                      type='button'
-                      className='bg-gray-300 w-10 h-10 rounded-full'
+                      className='bg-primary-05 rounded-full'
                     >
                       <Replay />
-                    </button>
+                    </IconButton>
                   </div>
                 )}
               </div>
@@ -155,19 +173,25 @@ const MentorMentee = () => {
                 />
               </svg>
 
-              <p className='text-primary-05 font-semibold my-2'>
-                No applications
-              </p>
-              <p className='text-gray-500'>Find your dream job</p>
-              <Link
-                to='/jobs'
-                className='inline-flex justify-center gap-x-1.5 rounded-md bg-secondary-06 px-3 text-sm py-2  text-white shadow-sm active:bg-secondary-07 hover:shadow-btn my-2'
-              >
-                Browse Jobs
-              </Link>
+              <p className='text-primary-05 font-semibold my-2'>No Requests</p>
             </div>
           </div>
         )}
+        <Snackbar
+          autoHideDuration={5000}
+          anchorOrigin={snackPosition}
+          open={open}
+          onClose={handleClose}
+          key={snackPosition.vertical + snackPosition.horizontal}
+        >
+          <Alert
+            onClose={handleClose}
+            severity='error'
+            sx={{ width: '100%' }}
+          >
+            {errMsg}
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );

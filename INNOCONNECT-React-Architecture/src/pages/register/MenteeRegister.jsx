@@ -50,7 +50,7 @@ const MenteeRegister = () => {
       setSuccess(true);
       console.log(response.data);
       setLoading(false);
-      setErrMsg('')
+      setErrMsg('');
     } catch (error) {
       setLoading(false);
       if (!error?.response) {
@@ -232,7 +232,8 @@ const MenteeRegister = () => {
                 Account successfully created
               </h1>
               <p className='text-[#777676] '>
-                Your account creation process has been completed and successful.
+                We are glad, that you are here with us ? We have sent you a
+                verification link to the email address{' '}
               </p>
             </div>
             <Link
