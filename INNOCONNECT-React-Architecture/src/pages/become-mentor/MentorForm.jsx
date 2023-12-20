@@ -231,7 +231,7 @@ const MentorForm = () => {
               : 'hidden'
           }
         >
-          <div className='container bg-white p-8 rounded-3xl text-center hover:shadow-lg'>
+          <div className='container w-[464px] bg-white p-8 rounded-3xl text-center hover:shadow-lg'>
             <div className='content'>
               <div className='flex justify-center items-center'>
                 {/* <img
