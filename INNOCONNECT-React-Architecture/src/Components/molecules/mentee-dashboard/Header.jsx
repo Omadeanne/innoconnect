@@ -2,15 +2,18 @@ import ProfileAndNotifications from '../nav_footer/ProfileAndNotifications';
 import useAuthProvider from '../../../context/useAuthProvider';
 import { Chip } from '@mui/material';
 
-const Header = () => {
+const Header = ({ open, setOpen }) => {
   const { isLoggedIn } = useAuthProvider();
 
   return (
     <header className='sticky top-0 right-0 z-50'>
       <div className='py-2 items-center justify-between drop-shadow-sm bg-[#ffffff] flex'>
-        <div
+        <button
           className='lg:hidden flex text-2xl ml-4'
           id='open-menu'
+          onClick={() => {
+            setOpen(!open);
+          }}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -26,7 +29,7 @@ const Header = () => {
               d='M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5'
             />
           </svg>
-        </div>
+        </button>
 
         <div className='p-2 ml-4'>
           <h1 className='text-2xl font-bold'>

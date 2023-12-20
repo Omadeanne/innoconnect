@@ -11,7 +11,7 @@ const Article = () => {
   return (
     <div>
       <Nav />
-      <main className=''>
+      <main className='mb-10'>
         <section className='bg-primary-05 px-4 py-5 m-auto'>
           <div className='container md:h-[500px] mx-auto flex flex-col-reverse md:flex-row justify-center items-center gap-10'>
             <div className='w-full md:w-2/5'>

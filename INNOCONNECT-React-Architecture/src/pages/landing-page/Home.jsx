@@ -9,11 +9,13 @@ import Testimonial from './Testimonial';
 import MentorCard from './MentorCard';
 import CourseCard from './CourseCard';
 import BlogCard from './BlogCard';
+import useAuthProvider from '../../context/useAuthProvider';
 
 const firstHalf = mentors.slice(0, 8);
 const secondHalf = mentors.slice(8);
 
 const Home = () => {
+  const { isLoggedIn } = useAuthProvider();
   return (
     <>
       <Nav />
@@ -34,20 +36,22 @@ const Home = () => {
                   <h4 className='mb-6 text-l font-light'>
                     Guiding Careers, Building Bridges
                   </h4>
-                  <div className='flex justify-center gap-3 xmd:flex-col xmd:w-[50%] xmd:m-auto'>
-                    <a
-                      href='/register'
-                      className='rounded border-[1px] border-neutral-50 px-10 py-2 text-sm font-medium bg-white text-[#37627E] transition duration-150 ease-in-out hover:border-neutral-100 hover:shadow-xl focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-white'
-                    >
-                      Register
-                    </a>
-                    <a
-                      href='/login'
-                      className='rounded border-[1px] border-neutral-50 px-12 py-2 text-sm font-medium leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10'
-                    >
-                      Login
-                    </a>
-                  </div>
+                  {!isLoggedIn && (
+                    <div className='flex justify-center gap-3 xmd:flex-col xmd:w-[50%] xmd:m-auto'>
+                      <a
+                        href='/register'
+                        className='rounded border-[1px] border-neutral-50 px-10 py-2 text-sm font-medium bg-white text-[#37627E] transition duration-150 ease-in-out hover:border-neutral-100 hover:shadow-xl focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-white'
+                      >
+                        Register
+                      </a>
+                      <a
+                        href='/login'
+                        className='rounded border-[1px] border-neutral-50 px-12 py-2 text-sm font-medium leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10'
+                      >
+                        Login
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -110,51 +114,65 @@ const Home = () => {
             <div>
               <div className='w-full mt-10 inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]'>
                 <ul className='flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll'>
-                  {firstHalf.map((mentor) => (
-                    <MentorCard mentor={mentor} />
+                  {firstHalf.map((mentor, index) => (
+                    <MentorCard
+                      key={index}
+                      mentor={mentor}
+                    />
                   ))}
                 </ul>
                 <ul
                   className='flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll'
                   aria-hidden='true'
                 >
-                  {secondHalf.map((mentor) => (
-                    <MentorCard mentor={mentor} />
+                  {secondHalf.map((mentor, index) => (
+                    <MentorCard
+                      key={index}
+                      mentor={mentor}
+                    />
                   ))}
                 </ul>
               </div>
               <div className='w-full mt-10 inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]'>
                 <ul className='flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll-reverse'>
-                  {firstHalf.map((mentor) => (
-                    <MentorCard mentor={mentor} />
+                  {firstHalf.map((mentor, index) => (
+                    <MentorCard
+                      key={index}
+                      mentor={mentor}
+                    />
                   ))}
                 </ul>
                 <ul
                   className='flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll-reverse'
                   aria-hidden='true'
                 >
-                  {secondHalf.map((mentor) => (
-                    <MentorCard mentor={mentor} />
+                  {secondHalf.map((mentor, index) => (
+                    <MentorCard
+                      key={index}
+                      mentor={mentor}
+                    />
                   ))}
                 </ul>
               </div>
             </div>
-            <div className='flex justify-center pt-10 gap-3'>
-              <Link
-                to='/mentors'
-                className='text-white font-semibold border bg-secondary-06 border-secondary-06 text-center rounded px-8 py-2  block active:bg-secondary-07 hover:shadow-btn'
-              >
-                Become a mentor
-              </Link>
-              <Link
-                href='/login'
-                className='rounded border-[1px] text-[#37627E] border-[#37627E] px-8 py-2 text-sm font-medium leading-normal transition duration-150 ease-in-out hover:border-[#37627E] hover:bg-neutral-500 hover:bg-opacity-10 focus:border-neutral-100 focus:ring-0 active:border-neutral-200 active:text-neutral-200'
-                data-te-ripple-init=''
-                data-te-ripple-color='light'
-              >
-                Login
-              </Link>
-            </div>
+            {!isLoggedIn && (
+              <div className='flex justify-center pt-10 gap-3'>
+                <Link
+                  to='/mentors'
+                  className='text-white font-semibold border bg-secondary-06 border-secondary-06 text-center rounded px-8 py-2  block active:bg-secondary-07 hover:shadow-btn'
+                >
+                  Become a mentor
+                </Link>
+                <Link
+                  href='/login'
+                  className='rounded border-[1px] text-[#37627E] border-[#37627E] px-8 py-2 text-sm font-medium leading-normal transition duration-150 ease-in-out hover:border-[#37627E] hover:bg-neutral-500 hover:bg-opacity-10 focus:border-neutral-100 focus:ring-0 active:border-neutral-200 active:text-neutral-200'
+                  data-te-ripple-init=''
+                  data-te-ripple-color='light'
+                >
+                  Login
+                </Link>
+              </div>
+            )}
           </section>
           <section className='py-20 max-w-[1440px] mx-auto px-4 sm:px-10 '>
             <div className='flex justify-center items-center gap-20 xmd:flex-col'>
@@ -162,18 +180,18 @@ const Home = () => {
                 <h1 className='text-[#222C2C] text-[40px] font-semibold py-2'>
                   Find<span className='text-[#457B9D]'> Jobs</span>
                   <br />
-                  That you'll definately love
+                  That you{"'"}ll definately love
                 </h1>
                 <p className='py-2'>
                   Your next role could be with one of these top leading
                   organizations.
                 </p>
-                <Link
+                {!isLoggedIn && <Link
                   to='/job-search'
                   className='text-white my-2 font-medium border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 inline-block active:bg-secondary-07 hover:shadow-btn'
                 >
                   Apply now
-                </Link>
+                </Link>}
               </div>
               <div className='hidden lg:block w-2/5 '>
                 <img
@@ -201,12 +219,12 @@ const Home = () => {
                   <p className='py-2'>
                     Post a job, Find &amp; Hire Top talents on InnoConnect.
                   </p>
-                  <a
-                    href='/register'
+                  {!isLoggedIn && <Link
+                    to='/register'
                     className='text-white my-2 font-medium border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 inline-block active:bg-secondary-07 hover:shadow-btn'
                   >
                     Create an Employer account
-                  </a>
+                  </Link>}
                 </div>
               </div>
             </div>
@@ -318,20 +336,20 @@ const Home = () => {
                   />
                 ))}
               </div>
-              <div className='flex justify-center pt-10 gap-3'>
-                <a
-                  href='/register'
+              {!isLoggedIn && <div className='flex justify-center pt-10 gap-3'>
+                <Link
+                  to='/register'
                   className='text-white font-semibold border bg-secondary-06 border-secondary-06 text-center rounded px-12 py-2  block active:bg-secondary-07 hover:shadow-btn'
                 >
                   Register
-                </a>
-                <a
+                </Link>
+                <Link
                   href='/login'
                   className='rounded border-[1px] text-[#37627E] border-[#37627E] px-12 py-2 text-sm font-medium leading-normal transition duration-150 ease-in-out hover:border-[#37627E] hover:bg-neutral-500 hover:bg-opacity-10 focus:border-neutral-100 focus:ring-0 active:border-neutral-200 active:text-neutral-200'
                 >
                   Login
-                </a>
-              </div>
+                </Link>
+              </div>}
             </div>
           </section>
           <section className='mt-16 pb-14 pt-14 bg-[#fff] py-8 max-w-[1440px] mx-auto px-4 sm:px-10'>
@@ -369,11 +387,29 @@ const Home = () => {
                   alt=''
                 />
 
-                <a href="https://imgbb.com/"><img src="https://i.ibb.co/Rpd5Tbt/Google.png" alt="Google" border="0" /></a>
+                <a href='https://imgbb.com/'>
+                  <img
+                    src='https://i.ibb.co/Rpd5Tbt/Google.png'
+                    alt='Google'
+                    border='0'
+                  />
+                </a>
 
-            <a href="https://imgbb.com/"><img src="https://i.ibb.co/Y8fjftc/Instagram.png" alt="Instagram" border="0" /></a>
+                <a href='https://imgbb.com/'>
+                  <img
+                    src='https://i.ibb.co/Y8fjftc/Instagram.png'
+                    alt='Instagram'
+                    border='0'
+                  />
+                </a>
 
-                <a href="https://imgbb.com/"><img src="https://i.ibb.co/h1wSb1f/Ubuntu.png" alt="Ubuntu" border="0" /></a>
+                <a href='https://imgbb.com/'>
+                  <img
+                    src='https://i.ibb.co/h1wSb1f/Ubuntu.png'
+                    alt='Ubuntu'
+                    border='0'
+                  />
+                </a>
               </div>
             </div>
             {/* <div className='w-[100%] xmd:w-[30%] m-auto'>
@@ -422,13 +458,13 @@ const Home = () => {
                 </p>
               </div>
               <div className='flex xmd:flex-col gap-10 justify-around px-20'>
-                {blogs.map((blog) => (
-                  <BlogCard blog={blog} />
+                {blogs.map((blog, index) => (
+                  <BlogCard key={index} blog={blog} />
                 ))}
               </div>
               <div className='flex justify-center pt-10 gap-3'>
                 <div className='flex gap-2 items-center rounded border-[1px] text-[#37627E] border-[#37627E] px-12 py-2 text-sm font-medium leading-normal transition duration-150 ease-in-out hover:border-[#37627E] hover:bg-neutral-500 hover:bg-opacity-10'>
-                  <a href='blog.html'>More Articles</a>
+                  <Link to='/blog'>More Articles</Link>
                   <i className='fa-solid fa-chevron-right' />
                 </div>
               </div>
@@ -477,7 +513,7 @@ const Home = () => {
                   Customer Support
                 </p>
                 <p className='pt-4 text-[12px]'>Chat with our friendly team</p>
-                <a 
+                <a
                   href='mailto:InnoConnect@gmail.com'
                   className='text-[12px] font-bold decoration-solid'
                 >
@@ -491,7 +527,7 @@ const Home = () => {
                 <p className='pt-2 text-[#222C2C] font-semibold text-[14px]'>
                   Service Questions
                 </p>
-                <p className='pt-4 text-[12px]'>Some questions we're asked</p>
+                <p className='pt-4 text-[12px]'>Some questions we{"'"}re asked</p>
                 <a
                   href='faq'
                   className='text-[12px] font-bold decoration-solid'

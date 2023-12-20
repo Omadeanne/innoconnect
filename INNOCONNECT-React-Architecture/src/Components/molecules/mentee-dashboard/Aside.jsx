@@ -9,7 +9,7 @@ import {
 import { CubeTransparentIcon } from '@heroicons/react/24/outline';
 import AsideButton from './AsideButton';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import useAuthProvider from '../../../context/useAuthProvider';
 import useLogout from '../../../hooks/useLogout';
 

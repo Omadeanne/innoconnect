@@ -5,8 +5,13 @@ import Proptypes from 'prop-types';
 import axios from '../../axios/axios';
 import { useEffect, useState } from 'react';
 import useAuthProvider from '../../context/useAuthProvider';
+import { Alert, Snackbar } from '@mui/material';
+
+const snackPosition = { vertical: 'bottom', horizontal: 'right' };
+
 const JobCard = ({ job }) => {
   const [bookmark, setBookmark] = useState(false);
+  const [open, setOpen] = useState(false);
   const { isLoggedIn } = useAuthProvider();
 
   useEffect(() => {
@@ -25,9 +30,12 @@ const JobCard = ({ job }) => {
     getBookmark();
   }, [isLoggedIn, job.id]);
 
-  console.log(bookmark);
   const handleBookmark = async () => {
     try {
+      if (!isLoggedIn) {
+        setOpen(true);
+        return;
+      }
       const res = axios.post(
         `jobs/${job.id}/bookmark`,
         {},
@@ -45,8 +53,26 @@ const JobCard = ({ job }) => {
     }
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className='job-cards'>
+      <Snackbar
+        autoHideDuration={5000}
+        anchorOrigin={snackPosition}
+        open={open}
+        onClose={handleClose}
+        key={snackPosition.vertical + snackPosition.horizontal}
+      >
+        <Alert
+          onClose={handleClose}
+          severity='error'
+          sx={{ width: '100%' }}
+        >
+          Please login to bookmark
+        </Alert>
+      </Snackbar>
       <div
         key={job.id}
         className='relative bg-white flex items-center gap-4 my-4 text-primary-05'

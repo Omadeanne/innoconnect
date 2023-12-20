@@ -2,7 +2,7 @@ import axios from '../axios/axios';
 import useAuthProvider from '../context/useAuthProvider';
 
 const useRefreshToken = () => {
-  const { isLoggedIn, setIsLoggedIn } = useAuthProvider();
+  const { isLoggedIn, setIsLoggedIn, setIsEmailVerified, isEmailVerified } = useAuthProvider();
 
   const refresh = async () => {
     if (isLoggedIn) {
@@ -13,6 +13,7 @@ const useRefreshToken = () => {
     if (existingData) {
       const storedData = JSON.parse(existingData);
       setIsLoggedIn(storedData);
+      setIsEmailVerified(storedData?.user?.isEmailVerified);
 
       try {
         const response = await axios.post(
@@ -28,6 +29,7 @@ const useRefreshToken = () => {
 
         localStorage.setItem('isLoggedIn', JSON.stringify(updatedData));
         setIsLoggedIn(updatedData);
+        setIsEmailVerified(updatedData?.user?.isEmailVerified);
         return response?.data?.access?.token;
       } catch (error) {
         console.error(error);
