@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Nav from '../../Components/molecules/nav_footer/Nav';
 import Footer from '../../Components/molecules/nav_footer/Footer';
 import { defaultImg } from '../../assets';
@@ -6,18 +6,28 @@ import axios from '../../axios/axios';
 import { useState, useEffect } from 'react';
 import formatDistance from 'date-fns/formatDistance';
 import { Spinner } from '@material-tailwind/react';
+import { Alert, Snackbar } from '@mui/material';
+import useAuthProvider from '../../context/useAuthProvider';
+
+const snackPosition = { vertical: 'bottom', horizontal: 'right' };
 
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState([]);
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  const [openAlert, setOpenAlert] = useState(false);
+  const { isLoggedIn } = useAuthProvider();
+
+  const handleClose = () => {
+    setOpenAlert(false);
+  };
 
   useEffect(() => {
     const getJobDetails = async () => {
       try {
         const response = await axios.get(`/jobs/${id}`, {});
         // setIsLoading(false);
-        console.log(response.data);
         setJob(response.data);
       } catch (error) {
         console.log(error.response.data.message);
@@ -28,8 +38,32 @@ const JobDetails = () => {
     getJobDetails();
   }, [id]);
 
+  const handleConnect = async (id) => {
+    if (!isLoggedIn) {
+      setOpenAlert(true);
+      return;
+    }
+
+    navigate(`/apply/${id}`);
+  }
+
   return (
     <>
+      <Snackbar
+        autoHideDuration={5000}
+        anchorOrigin={snackPosition}
+        open={openAlert}
+        onClose={handleClose}
+        key={snackPosition.vertical + snackPosition.horizontal}
+      >
+        <Alert
+          onClose={handleClose}
+          severity='error'
+          sx={{ width: '100%' }}
+        >
+          Please login to apply
+        </Alert>
+      </Snackbar>
       <Nav />
       {isLoading ? (
         <div className='flex items-center justify-center h-[calc(100vh-100px)]'>
@@ -112,12 +146,12 @@ const JobDetails = () => {
                 </div>
               </div>
               <hr className='mt-8' />
-              <Link
-                to={`/apply/${job.id}`}
+              <button
+                onClick={() => handleConnect(job.id)}
                 className='text-white font-semibold w-28 border bg-secondary-06 border-secondary-06 text-center rounded-lg px-4 py-2 block active:bg-secondary-07 hover:shadow-btn mt-8'
               >
                 Apply
-              </Link>
+              </button>
             </section>
           </>
         </main>

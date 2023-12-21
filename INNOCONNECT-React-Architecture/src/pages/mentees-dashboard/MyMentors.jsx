@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from '../../axios/axios';
 import { useEffect, useState } from 'react';
 import useAuthProvider from '../../context/useAuthProvider';
+import { Chip } from '@mui/material';
 
 const MyMentors = () => {
   const [mentors, setMentors] = useState([]);
@@ -37,7 +38,7 @@ const MyMentors = () => {
         <hr className='border-slate-300' />
         {!loading ? (
           <>
-            {mentors ? (
+            {mentors.length > 0 ? (
               mentors.map((mentor) => (
                 <>
                   <div className='flex items-center justify-between px-5 py-4 border-b border-b-slate-300'>
@@ -49,7 +50,7 @@ const MyMentors = () => {
                             'https://i.ibb.co/0rrxLz4/findamentor.jpg'
                           }
                           alt=''
-                          className='rounded-full h-20 w-20'
+                          className='object-cover object-center rounded-full h-20 w-20'
                         />
                       </div>
                       <div>
@@ -65,8 +66,8 @@ const MyMentors = () => {
                     </div>
                     <div className='flex items-center gap-3'>
                       {mentor?.mentorships.status === 'pending' ? (
-                        <span className='inline-flex items-center rounded-md bg-red-50 px-2 py-1 text font-medium text-red-700 ring-1 ring-inset ring-red-600/10 mr-2'>
-                          Pending
+                        <span className='inline-flex items-center rounded-md  px-2 py-1 text font-medium  ring-inset ring-red-600/10 mr-2'>
+                          <Chip label='Pending' />
                         </span>
                       ) : (
                         <span className='inline-flex items-center rounded-full h-9 w-9 bg-blue-gray-100 px-2 py-1 text font-medium ring-1 ring-inset ring-red-600/10 mr-2'>
@@ -84,7 +85,6 @@ const MyMentors = () => {
                           </svg>
                         </span>
                       )}
-                      <Link to=''>
                         <span className='inline-flex items-center rounded-full h-9 w-9 bg-blue-gray-100 px-2 py-1 text font-medium ring-1 ring-inset ring-red-600/10 mr-2'>
                           <svg
                             xmlns='http://www.w3.org/2000/svg'
@@ -100,7 +100,6 @@ const MyMentors = () => {
                             />
                           </svg>
                         </span>
-                      </Link>
                     </div>
                   </div>
                 </>

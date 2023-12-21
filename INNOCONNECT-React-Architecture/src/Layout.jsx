@@ -9,9 +9,9 @@ const Layout = () => {
     return <Navigate to='/login' state={{ from: location }} replace />;
   }
 
-  // if (!isEmailVerified) {
-  //   return <Navigate to='/verify-email' state={{ from: location }} replace />;
-  // }
+  if (!isEmailVerified) {
+    return <Navigate to='/verify-email' state={{ from: location }} replace />;
+  }
 
   return <Outlet />;
 };

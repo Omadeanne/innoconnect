@@ -4,12 +4,11 @@ import MentorCard from './MentorCard';
 // import mentors from './mentors';
 import { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
+import { Spinner } from '@material-tailwind/react';
 
 export default function Smartmatch() {
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  
 
   useEffect(() => {
     const fetchMentors = async () => {
@@ -50,9 +49,9 @@ export default function Smartmatch() {
         </div>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[75%] m-auto pt-[30px] mb-10'>
-        {loading ? <p>Loading...</p> : mentors.map((mentor) => (
+        {loading ? <Spinner className='mx-auto block' /> : mentors.map((mentor, index) => (
           <MentorCard
-            key={mentor.id}
+            key={index}
             mentor={mentor}
           />
         ))}

@@ -1,12 +1,14 @@
 import { IconButton, Spinner } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
-import { Link } from 'react-router-dom';
 import useAuthProvider from '../../context/useAuthProvider';
 import { Delete, Replay } from '@mui/icons-material';
 import Check from '@mui/icons-material/Check';
 import RemoveRedEye from '@mui/icons-material/RemoveRedEye';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, Chip, Snackbar } from '@mui/material';
+import { defaultImg } from '../../assets';
+
+const snackPosition = { vertical: 'bottom', horizontal: 'right' };
 
 const MentorMentee = () => {
   const [loading, setLoading] = useState(true);
@@ -39,6 +41,9 @@ const MentorMentee = () => {
     getmentor();
   }, [isLoggedIn]);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const updateStatus = async (id, status) => {
     try {
@@ -94,7 +99,7 @@ const MentorMentee = () => {
                   <a href='https://ibb.co/mTsNFWx'>
                     <img
                       className='w-20 h-20 rounded-full object-cover'
-                      src='https://i.ibb.co/mTsNFWx/edet.png'
+                      src={mentee?.user?.profileImg || defaultImg}
                       alt='edet'
                       border='0'
                     />
@@ -135,12 +140,12 @@ const MentorMentee = () => {
                 ) : (
                   <div className='flex items-center gap-2'>
                     {mentee?.mentorships?.status === 'approved' ? (
-                      <span className='inline-flex items-center rounded-md bg-green-50 px-2 py-1 text font-medium text-green-700 ring-1 ring-inset ring-green-600/10 mr-2'>
-                        Approved
+                      <span className='inline-flex items-center rounded-md px-2 py-1 text font-medium  ring-1 ring-inset ring-green-600/10 mr-2'>
+                        <Chip label='Approved' />
                       </span>
                     ) : (
-                      <span className='inline-flex items-center rounded-md bg-red-50 px-2 py-1 text font-medium text-red-700 ring-1 ring-inset ring-red-600/10 mr-2'>
-                        Rejected
+                      <span className='inline-flex items-center rounded-md px-2 py-1 text font-medium ring-1 ring-inset ring-red-600/10 mr-2'>
+                        <Chip label='Rejected' />
                       </span>
                     )}
 

@@ -12,6 +12,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 const MenteeOverview = () => {
   const [jobs, setJobs] = useState([]);
   const [mentors, setMentors] = useState([]);
+  const [acceptedMentors, setAcceptedMentors] = useState([]);
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const { isLoggedIn } = useAuthProvider();
@@ -49,7 +50,7 @@ const MenteeOverview = () => {
     },
     {
       title: 'Mentors',
-      count: 0,
+      count: acceptedMentors.length,
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -85,6 +86,30 @@ const MenteeOverview = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    const getAccepted = async () => {
+      try {
+        const response = await axios.get('/mentorship/accepted', {
+          headers: {
+            Authorization: `Bearer ${isLoggedIn?.tokens?.access?.token}`,
+          },
+        });
+        console.log(response?.data);
+        setAcceptedMentors(response?.data);
+      } catch (error) {
+        console.log(error?.response?.message);
+        if (!error?.response) {
+          setErrMsg('No Server Response');
+        } else {
+          setErrMsg(error?.response?.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    getAccepted();
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const getJobs = async () => {
@@ -268,9 +293,9 @@ const MenteeOverview = () => {
                 <div className='flex items-center justify-between gap-4'>
                   <div>
                     <img
-                      src='https://i.pravatar.cc/300'
+                      src={mentor?.user?.profileImg}
                       alt=''
-                      className='rounded-full h-20 w-20'
+                      className='object-cover object-center rounded-full h-20 w-20'
                     />
                   </div>
                   <div>

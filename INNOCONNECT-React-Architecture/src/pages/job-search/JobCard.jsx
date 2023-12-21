@@ -16,6 +16,9 @@ const JobCard = ({ job }) => {
 
   useEffect(() => {
     const getBookmark = async () => {
+      if (!isLoggedIn) {
+        return;
+      }
       try {
         const res = await axios.get(`jobs/${job.id}/bookmark`, {
           headers: {
@@ -79,9 +82,13 @@ const JobCard = ({ job }) => {
       >
         <div className='hidden md:block h-32 w-32'>
           <img
-            src={!job.companyLogo ? defaultImg : job.companyLogo}
+            src={
+              !job.employer.user.profileImg
+                ? defaultImg
+                : job.employer.user.profileImg
+            }
             alt='job_brand'
-            className='w-full object-cover rounded-full'
+            className='h-24 w-24 object-cover rounded-full'
           />
         </div>
         <div className='w-full rounded-md leading-8 '>

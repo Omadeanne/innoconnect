@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import PropTypes from 'prop-types';
 import 'aos/dist/aos.css';
@@ -7,20 +7,25 @@ import Modal from '../../Components/molecules/Modal';
 import axios from '../../axios/axios';
 import useAuthProvider from '../../context/useAuthProvider';
 import { Spinner } from '@material-tailwind/react';
+import { Alert, Snackbar } from '@mui/material';
+
+const snackPosition = { vertical: 'bottom', horizontal: 'right' };
 
 const MentorCard = ({ mentor }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/find-a-mentor';
   const { isLoggedIn } = useAuthProvider();
   const [connect, setConnect] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const cancelButtonRef = useRef(null);
 
+  const handleClose = () => {
+    setOpenAlert(false);
+  }
+
   const handleConnect = async () => {
     if (!isLoggedIn) {
-      navigate('/login', { state: { from } });
+      setOpenAlert(true);
       return;
     }
 
@@ -64,8 +69,24 @@ const MentorCard = ({ mentor }) => {
     AOS.init();
   }, []);
 
+  console.log(mentor);
   return (
     <div className='flex flex-col '>
+      <Snackbar
+        autoHideDuration={5000}
+        anchorOrigin={snackPosition}
+        open={openAlert}
+        onClose={handleClose}
+        key={snackPosition.vertical + snackPosition.horizontal}
+      >
+        <Alert
+          onClose={handleClose}
+          severity='error'
+          sx={{ width: '100%' }}
+        >
+          Please login to connect
+        </Alert>
+      </Snackbar>
       <div data-aos='fade-up'>
         <div className='flex flex-col items-center justify-center hull bg-primary-01 my-3 py-8 rounded-lg hover:shadow-lg hover:transition hover:duration-300'>
           <div className=' '>
@@ -76,9 +97,8 @@ const MentorCard = ({ mentor }) => {
               <img
                 className=' w-[120px] h-[120px] rounded-full shadow-card object-cover object-center '
                 src={
-                  mentor?.image || 'https://i.ibb.co/0rrxLz4/findamentor.jpg'
+                  `${mentor?.user?.profileImg}`
                 }
-                alt='Mentor'
               />
               <div className=' pt-[15px]'>
                 <p className='text-primary-07 font-font font-bold text-3xl text-center'>
