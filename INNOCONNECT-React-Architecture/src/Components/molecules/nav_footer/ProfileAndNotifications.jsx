@@ -58,7 +58,7 @@ const ProfileAndNotifications = () => {
                 <span className='sr-only'>Open user menu</span>
                 <img
                   className='h-10 w-10 rounded-full'
-                  src={defaultImg}
+                  src={isLoggedIn?.user?.profileImg || defaultImg}
                   alt=''
                 />
                 {/* <span className='font-semibold mx-4'>Patience</span> */}
